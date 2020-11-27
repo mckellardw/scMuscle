@@ -1,6 +1,6 @@
 # scMuscle
 
-Code and supplemental data from McKellar et al, bioRxiv, 2020:  
+Code and supplemental data from [insert preprint citation]:  
 [add link to preprint]
 
 Data is also available to explore using a web application we have developed:  
