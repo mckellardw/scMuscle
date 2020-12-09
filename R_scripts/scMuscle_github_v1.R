@@ -28,10 +28,10 @@ library(pals)
 library(viridis)
 library(shades)
 
-source("/workdir/dwm269/usr/Seurat_AddOns/DWM_SeuratHelperFunctions_v001.R") #TODO
+source("helper_functions_v1.R") 
 
 # Load metadata
-meta <- fread("scMuscle_metadata_v7.csv")
+meta <- fread("supplemental_data/sample_metadata.csv")
 
 # Set number of cores to use
 NCORES = 1 # 
