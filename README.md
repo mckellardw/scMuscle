@@ -8,8 +8,8 @@ The resulting compendium has ~350,000 cell/nucleus, which we have annotated usin
 Here, you'll find all of the R scripts used for the analysis as well as some of the supplemental resources (including metadata details, outputs from differential gene expression analysis, and some other useful gene lists).
 
 **Code and supplemental data from McKellar et al, *bioRxiv*, 2020:**  
-[link to preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v1)
+[link to preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v2)
 
-Web application to explore these data is coming soon!
+[Web application to explore these data](http://scmuscle.bme.cornell.edu/)
 
-Raw sequencing data will be made available on GEO soon!
+Raw sequencing data for new datasets will be made available on GEO soon!
