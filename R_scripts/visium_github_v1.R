@@ -212,10 +212,10 @@ n.cores=1
 scMuscle.seurat$decon_IDs <- levels(scMuscle.seurat$harmony_factorIDs)[as.numeric(scMuscle.seurat$harmony_factorIDs)]
 
 # Use PHATE bins to label myogenic states
-scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 4] ] <- "Quiescent_MuSCs"
-scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 5:7] ] <- "Activated_MuSCs"
+scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 4:5] ] <- "Quiescent_MuSCs"
+scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 6:7] ] <- "Activated_MuSCs"
 scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 8:10] ] <- "Committed_Myoblasts"
-scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 11:17] ] <- "Fusing_Myocytes"
+scMuscle.seurat$decon_IDs[ colnames(myo.slim.seurat)[myo.slim.seurat$phate1.bins %in% 11:18] ] <- "Fusing_Myocytes"
 scMuscle.seurat$decon_IDs[scMuscle.seurat$harmony_IDs %in% c(
   "MuSCs", "Myoblasts/Progenitors"
 ) ] <- NA
@@ -231,7 +231,7 @@ Idents(scMuscle.seurat) <- "decon_IDs"
 
 #Parallelize - optional, but runtime is multiple days without parallelization
 plan("multiprocess", workers = n.cores)
-options(future.globals.maxSize = 4500 * 1024^2)
+options(future.globals.maxSize = 4500 * 1024^2) # Be sure to change this according to memory limits on your machine
 
 # Output is in "supplemental_data/scMuscle_harmonytypes_plus_phatebins_markers.csv"
 all.markers <- FindAllMarkers(
@@ -274,6 +274,51 @@ for(i in 1:length(seu.list)){ # add theta (composition) values as an Assay
   seu.list[[i]][["celltype.bp"]] <- CreateAssayObject(data=t(celltype.bp[[i]]$res$final.gibbs.theta))
 }
 
+# Ridge plots for BayesPrism outputs (theta values)
+library(ggridges)
+
+tmp.df <- lapply(prediction.scores, as.data.frame)
+tmp.df[[1]]$injury <- "D2"
+tmp.df[[2]]$injury <- "D5"
+tmp.df[[3]]$injury <- "D7"
+
+tmp.df <- melt(tmp.df) 
+
+tmp.df$variable = factor(
+  tmp.df$variable, ordered = T,
+  levels = unique(tmp.df$variable) %>% rev()
+)
+
+ggplot(
+  tmp.df,
+  aes(
+    x=value,
+    y=variable,
+    fill=injury
+  )
+) + 
+  geom_density_ridges(alpha=0.5)+
+  scale_x_log10(
+    expand=c(0,0),
+    labels=scientific
+  )+
+  labs(
+    x="Theta",
+    fill="Injury"
+  )+ 
+  scale_fill_manual(
+    values=c("blue","red","yellow")
+  )+
+  theme_minimal()+
+  vln.them +
+  theme(
+    legend.position="bottom",
+    legend.title=element_text(color="black",face="bold"),
+    axis.ticks.x = element_line(color="black"),
+    axis.ticks.y = element_line(color="black"),
+    axis.title.y = element_blank()
+  )
+
 
 #      calculate co-occurrence ####
 # Adapted from:
@@ -285,7 +330,7 @@ celltypes.order = c(
   "Fusing-Myocytes",
   "Myonuclei-(Type-IIb)","Myonuclei-(Type-IIx)",
   
-  "Endothelial-(Stem)","Endothelial-(Capillary)","Endothelial-(Artery)","Endothelial-(Vein)",
+  "Endothelial-(Capillary)","Endothelial-(Artery)","Endothelial-(Vein)",
   
   "Smooth-Muscle", 
   
@@ -293,7 +338,6 @@ celltypes.order = c(
   "Tenocytes","Neural",
   
   "Monocyte-(Cxcl10+)", "Monocyte-(Patrolling)","Monocyte-(Inflammatory)",
-  "M1-Macro.",
   "M2-Macro.-(Cx3cr1-lo)",
   "M2-Macro.-(Cx3cr1-hi)",
   
@@ -308,257 +352,261 @@ prediction.scores <- lapply(
   }
 )
 
+# Inputs: 
+#   PRED: theta predictions
+#   loading.filter: theta loading to use as noise floor (cell types with theta loadings lower than this are not considered)
+#   celltype.filter: number of celltypes to look at in each spot (max is 10)
+
+find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
+  tmp.feat = colnames(PRED)
+  
+  interaction_matrix = matrix(
+    0, 
+    ncol = ncol(PRED), 
+    nrow = ncol(PRED)
+  )
+  rownames(interaction_matrix) <- tmp.feat
+  colnames(interaction_matrix) <- tmp.feat
+  
+  if(is.null(loading.filter)){
+    loading.filter <- 0.01 # filter for noisy/falsely predicted cell type loadings 
+  }
+  if(is.null(celltype.filter)){
+    celltype.filter <- 10 # number of cell types to look at, per spot (max is 10)
+  }
+  for(i in 1:nrow(PRED)){
+    tmp <- names(sort(PRED[i,PRED[i,] > 0], decreasing = T))[1:celltype.filter] # order cell types by BayesPrism loadings
+    tmp <- tmp[tmp>loading.filter] # set noise floor & filter based on loading values
+    
+    if(length(tmp) == 2){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+    } else if(length(tmp) == 3){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+    } else if(length(tmp) == 4){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+    } else if(length(tmp) == 5){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+    } else if(length(tmp) == 6){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+      interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
+      
+      interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
+    } else if(length(tmp) == 7){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
+      interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
+      interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
+      interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+      interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
+      interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
+      
+      interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
+      interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
+      
+      interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
+    } else if(length(tmp) == 8){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
+      interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
+      interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
+      interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
+      interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
+      interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
+      interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+      interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
+      interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
+      interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
+      interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
+      interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
+      interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
+      
+      interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
+    } else if(length(tmp) == 9){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
+      interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
+      interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
+      interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
+      interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
+      interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
+      interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
+      interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
+      interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
+      interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+      interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
+      interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
+      interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
+      interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
+      interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
+      interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
+      interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
+      interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
+      interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
+      interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
+      
+      interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
+    } else if(length(tmp) >= 10){
+      interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
+      interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
+      interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
+      interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
+      interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
+      interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
+      interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
+      interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
+      interaction_matrix[tmp[1], tmp[10] ] <- interaction_matrix[tmp[1], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
+      interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
+      interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
+      interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
+      interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
+      interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
+      interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
+      interaction_matrix[tmp[2], tmp[10] ] <- interaction_matrix[tmp[2], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
+      interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
+      interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
+      interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
+      interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
+      interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
+      interaction_matrix[tmp[3], tmp[10] ] <- interaction_matrix[tmp[3], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
+      interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
+      interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
+      interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
+      interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
+      interaction_matrix[tmp[4], tmp[10] ] <- interaction_matrix[tmp[4], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
+      interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
+      interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
+      interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
+      interaction_matrix[tmp[5], tmp[10] ] <- interaction_matrix[tmp[5], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
+      interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
+      interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
+      interaction_matrix[tmp[6], tmp[10] ] <- interaction_matrix[tmp[6], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
+      interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
+      interaction_matrix[tmp[7], tmp[10] ] <- interaction_matrix[tmp[7], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
+      interaction_matrix[tmp[8], tmp[10] ] <- interaction_matrix[tmp[8], tmp[10] ] + 1
+      
+      interaction_matrix[tmp[9], tmp[10] ] <- interaction_matrix[tmp[9], tmp[10] ] + 1
+    }
+    
+    # add self-interactions (just count how many times each cell type shows up...)
+    for(tmp.type in tmp){
+      interaction_matrix[tmp.type,tmp.type] <- interaction_matrix[tmp.type,tmp.type] + 1
+    }
+  }
+  
+  interaction_matrix <- interaction_matrix + t(interaction_matrix)
+  colnames(interaction_matrix)
+  
+  
+  interaction_matrix[lower.tri(interaction_matrix)] <- NA #0
+  
+  return(interaction_matrix)
+}
+
 interaction.list <- lapply(
   prediction.scores,
-  FUN=function(PRED){
-    tmp.feat = colnames(PRED)
-    
-    interaction_matrix = matrix(
-      0, 
-      ncol = ncol(PRED), 
-      nrow = ncol(PRED)
-    )
-    rownames(interaction_matrix) <- tmp.feat
-    colnames(interaction_matrix) <- tmp.feat
-    
-    celltype.filter <- 10 # filter for number of celltypes to look for in each spot
-    
-    for(i in 1:nrow(PRED)){
-      tmp <- names(sort(PRED[i,PRED[i,] > 0], decreasing = T))[1:celltype.filter] # filter based on hard number of cell types
-      
-      if(length(tmp) == 2){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-      } else if(length(tmp) == 3){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-      } else if(length(tmp) == 4){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-      } else if(length(tmp) == 5){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-      } else if(length(tmp) == 6){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-        interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-        
-        interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
-      } else if(length(tmp) == 7){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-        interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-        interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-        interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-        interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-        interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
-        
-        interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
-        interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
-        
-        interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
-      } else if(length(tmp) == 8){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-        interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
-        interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-        interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
-        interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-        interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
-        interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-        interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-        interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
-        interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
-        interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
-        interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
-        interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
-        
-        interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
-      } else if(length(tmp) == 9){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-        interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
-        interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
-        interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-        interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
-        interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
-        interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-        interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
-        interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
-        interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-        interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-        interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
-        interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
-        interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
-        interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
-        interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
-        interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
-        interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
-        interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
-        interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
-        
-        interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
-      } else if(length(tmp) >= 10){
-        interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
-        interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
-        interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
-        interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-        interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-        interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
-        interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
-        interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
-        interaction_matrix[tmp[1], tmp[10] ] <- interaction_matrix[tmp[1], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
-        interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
-        interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-        interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-        interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
-        interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
-        interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
-        interaction_matrix[tmp[2], tmp[10] ] <- interaction_matrix[tmp[2], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
-        interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-        interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-        interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
-        interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
-        interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
-        interaction_matrix[tmp[3], tmp[10] ] <- interaction_matrix[tmp[3], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
-        interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-        interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
-        interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
-        interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
-        interaction_matrix[tmp[4], tmp[10] ] <- interaction_matrix[tmp[4], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
-        interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
-        interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
-        interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
-        interaction_matrix[tmp[5], tmp[10] ] <- interaction_matrix[tmp[5], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
-        interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
-        interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
-        interaction_matrix[tmp[6], tmp[10] ] <- interaction_matrix[tmp[6], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
-        interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
-        interaction_matrix[tmp[7], tmp[10] ] <- interaction_matrix[tmp[7], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
-        interaction_matrix[tmp[8], tmp[10] ] <- interaction_matrix[tmp[8], tmp[10] ] + 1
-        
-        interaction_matrix[tmp[9], tmp[10] ] <- interaction_matrix[tmp[9], tmp[10] ] + 1
-      }
-      
-      # add self-interactions (just count how many times each cell type shows up...)
-      for(tmp.type in tmp){
-        interaction_matrix[tmp.type,tmp.type] <- interaction_matrix[tmp.type,tmp.type] + 1
-      }
-    }
-    
-    interaction_matrix <- interaction_matrix + t(interaction_matrix)
-    colnames(interaction_matrix)
-    
-    interaction_matrix[lower.tri(interaction_matrix)] <- NA 
-    
-    return(interaction_matrix)
-  }
-)
-
-# Normalize each cell type by how often it is detected
-interaction.list <- lapply(
-  interaction.list,
-  FUN = function(X){
-    for(i in 1:nrow(X)){
-      X[i,] <- X[i,]/diag(X)[i] # normalize each row by the diagonal value
-    }
-    return(X)
-  }
+  FUN=find_interactions,
+  loading.filter=0.1,
+  celltype.filter=10
 )
 
 # Set self-interactions to NA - helps with plotting scales
@@ -569,8 +617,8 @@ interaction.list <- lapply(
     return(X)
   }
 )
-
-#      interaction heatmaps, Fig. 4e ####
+    
+#      interaction heatmaps, Fig. 4f ####
 injury=c("D2", "D5", "D7")
 
 inter.heat <- list()
@@ -589,7 +637,7 @@ for(i in 1:length(injury)){
       labels_col = stringr::str_replace_all(colnames(interaction.list[[i]]),"-"," ")[-1],
       fontsize_row = 5, fontsize_col= 5,
       
-      fontsize=small.font, 
+      fontsize=6, 
       cluster_rows = F, cluster_cols = F,
       na_col = "white"
     )
