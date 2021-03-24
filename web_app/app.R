@@ -13,8 +13,11 @@ library(shinycssloaders)
 library(shades) 
 
 # Gene lists used to draw the app (prevents need for loading data immediately)
-genes_all <- read.csv("genes_all.csv")[,1] %>% sort() # ABC order
-genes_myo <- read.csv("genes_myo.csv")[,1] %>% sort() 
+genes_all <- read.csv("genes_all_v5.csv")[,1] %>% sort() # ABC order
+genes_myo <- read.csv("genes_myo_v3.csv")[,1] %>% sort() 
+
+load("scMuscle_mm10_slim_v5.RData")
+load("myo_slim_seurat_v3.RData")
 
 # User interface (side panel and navigation bar) ----
 ui <- fluidPage(
@@ -389,14 +392,14 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output){
   # Loading data----
-  # if( is.null(scMuscle.seurat) ){ 
+  # if( is.null(scMuscle.slim.seurat) ){ 
     # load("scMuscle_slim_v3.RData") 
     # }
   # if( is.null(myo.slim.seurat) ){ 
     # load("myo_slim_v2.RData") 
     # }
-  load("scMuscle_slim_v4.RData")
-  load("myo_slim_v2.RData")
+  # load("scMuscle_slim_v4.RData")
+  # load("myo_slim_v2.RData")
   
   # Plot themes and colors----
   # Figure settings
@@ -599,8 +602,8 @@ server <- function(input, output){
   # generates second plot (All Cells - Cell Type UMAP) ----
   output$umap <- renderPlot({
     DimPlot(
-      scMuscle.seurat,
-      cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+      scMuscle.slim.seurat,
+      cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=umap.idents(),
       cols=colors1(), #adds colors for just the cell types present in this clustering
@@ -617,8 +620,8 @@ server <- function(input, output){
   # generates third plot (All Cells - metadata UMAP) ----
   output$grouping <- renderPlot({
     DimPlot(
-      scMuscle.seurat,
-      cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+      scMuscle.slim.seurat,
+      cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=variables.umap(),
       cols=colors1(), #adds colors for just the cell types present in this clustering
@@ -635,8 +638,8 @@ server <- function(input, output){
   output$feature <- renderPlot({
     if (input$action3 %% 2 == 0) {
       FeaturePlot(
-        scMuscle.seurat,
-        cells = sample(Cells(scMuscle.seurat)),
+        scMuscle.slim.seurat,
+        cells = sample(Cells(scMuscle.slim.seurat)),
         #plot cells in random order
         features = gene1(),
         reduction = umap.reduction()
@@ -646,8 +649,8 @@ server <- function(input, output){
         umap.theme() + theme(legend.position = "top")
     } else {
       FeaturePlot(
-        scMuscle.seurat,
-        cells = sample(Cells(scMuscle.seurat)),
+        scMuscle.slim.seurat,
+        cells = sample(Cells(scMuscle.slim.seurat)),
         #plot cells in random order
         features = gene1(),
         reduction = umap.reduction()
@@ -662,7 +665,7 @@ server <- function(input, output){
   # generates fourth plot (All Cells - Violin Plot)----
   output$violin1 <- renderPlot({
     VlnPlot( #TODO - add multiple gene plotting
-      scMuscle.seurat,
+      scMuscle.slim.seurat,
       features = gene2(),
       group.by = variables.singleVln(),
       cols = colors1(),
@@ -680,7 +683,7 @@ server <- function(input, output){
   # renders image of fifth plot (All Cells - Split Violin Plot)----
   
   # scales the height of image (300 px of height given per violin plot)
-  scaler <- reactive({200*length(unique(scMuscle.seurat@meta.data[[variables.splitVln()]]))})
+  scaler <- reactive({200*length(unique(scMuscle.slim.seurat@meta.data[[variables.splitVln()]]))})
   
   # generates image of split violin plot
   output$violin2 <- renderImage({
@@ -693,14 +696,14 @@ server <- function(input, output){
     png(outfile, width = 1100, height = scaler())
     print(
       VlnPlot(
-        scMuscle.seurat,
+        scMuscle.slim.seurat,
         features = gene3(),
         group.by = splitviolincelltype(),
         pt.size = 0
       ) +
         NoLegend() +
         scale_y_continuous(expand=c(0,0.5))+
-        facet_grid(rows = vars(scMuscle.seurat@meta.data[[variables.splitVln()]])) +
+        facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]])) +
         scale_colour_viridis_c() +
         vln.theme()
     )
@@ -720,10 +723,10 @@ server <- function(input, output){
   #   input$action1
   #   isolate(
   #     DotPlot(
-  #       scMuscle.seurat,
+  #       scMuscle.slim.seurat,
   #       features = dot(),
   #       # Don't draw noisy data
-  #       # idents=unique(scMuscle.seurat[[variables.dot()]])[!unique(scMuscle.seurat[[variables.dot()]]) %in% c("NOISY")],
+  #       # idents=unique(scMuscle.slim.seurat[[variables.dot()]])[!unique(scMuscle.slim.seurat[[variables.dot()]]) %in% c("NOISY")],
   #       group.by = variables.dot()
   #     )+
   #       scale_colour_viridis_c() +
@@ -830,8 +833,8 @@ server <- function(input, output){
     content = function(file){
       print(
         DimPlot(
-          scMuscle.seurat,
-          cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+          scMuscle.slim.seurat,
+          cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
           reduction=umap.reduction(),
           group.by=umap.idents(),
           cols=colors1(), #adds colors for just the cell types present in this clustering
@@ -868,8 +871,8 @@ server <- function(input, output){
     content = function(file){
       
       print(DimPlot(
-        scMuscle.seurat,
-        cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+        scMuscle.slim.seurat,
+        cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
         reduction=umap.reduction(),
         group.by=variables.umap(),
         cols=colors1(), #adds colors for just the cell types present in this clustering
@@ -905,8 +908,8 @@ server <- function(input, output){
     content = function(file){
       if (input$action3 %% 2 == 0) {
         print(FeaturePlot(
-          scMuscle.seurat,
-          cells = sample(Cells(scMuscle.seurat)),
+          scMuscle.slim.seurat,
+          cells = sample(Cells(scMuscle.slim.seurat)),
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
@@ -916,8 +919,8 @@ server <- function(input, output){
           umap.theme()) + theme(legend.position = "top")
       } else {
         print(FeaturePlot(
-          scMuscle.seurat,
-          cells = sample(Cells(scMuscle.seurat)),
+          scMuscle.slim.seurat,
+          cells = sample(Cells(scMuscle.slim.seurat)),
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
@@ -948,7 +951,7 @@ server <- function(input, output){
     content = function(file) {
       print(
         VlnPlot( #TODO - add multiple gene plotting
-          scMuscle.seurat,
+          scMuscle.slim.seurat,
           features = gene2(),
           group.by = variables.singleVln(),
           cols = colors1(),
@@ -983,14 +986,14 @@ server <- function(input, output){
     content = function(file){
       print(
         VlnPlot(
-          scMuscle.seurat, 
+          scMuscle.slim.seurat, 
           features = gene3(), 
           group.by = splitviolincelltype(), 
           pt.size = 0
         ) + 
           NoLegend() +
           scale_y_continuous(expand=c(0,.5))+
-          facet_grid(rows = vars(scMuscle.seurat@meta.data[[variables.splitVln()]]))+
+          facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]]))+
           scale_colour_viridis_c()+
           vln.theme()
       )
@@ -1015,10 +1018,10 @@ server <- function(input, output){
   #   content = function(file){
   #     print(
   #       DotPlot(
-  #         scMuscle.seurat,
+  #         scMuscle.slim.seurat,
   #         features = dot(),
   #         # Don't draw noisy data
-  #         # idents=unique(scMuscle.seurat[[variables.dot()]])[!unique(scMuscle.seurat[[variables.dot()]]) %in% c("NOISY")],
+  #         # idents=unique(scMuscle.slim.seurat[[variables.dot()]])[!unique(scMuscle.slim.seurat[[variables.dot()]]) %in% c("NOISY")],
   #         group.by = variables.dot()
   #       )+
   #         scale_colour_viridis_c()+ 
