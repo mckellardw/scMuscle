@@ -1,5 +1,8 @@
 # scMuscle Explorer
-#   written by Leo Song
+#   written by Leo Song & David McKellar
+
+CURR_DATA_VERSION = 1.1
+
 # Load libraries ----
 # library(shiny)
 library(Seurat)
@@ -13,7 +16,7 @@ library(shinycssloaders)
 library(shades) 
 library(shiny)
 # Gene lists used to draw the app (prevents need for loading data immediately)
-genes_all <- read.csv("resorces/genes_all.csv") 
+genes_all <- read.csv("resources/genes_all.csv") 
 genes_myo <- read.csv("resources/genes_myo.csv") 
 
 # User interface ----
@@ -57,6 +60,15 @@ ui <- fluidPage(
           div(
             img(src = "img3.png", width = 500, height = 100), 
             align = "center"
+          ),
+          br(),
+          h4(
+            p(
+              paste("Current data version:", CURR_DATA_VERSION, "(details found "),
+              a(href = "https://github.com/mckellardw/scMuscle/tree/main/web_app/README.md", "here"),
+              ")",
+              align = "center",
+            )
           )
         ),
         column(
@@ -105,19 +117,19 @@ ui <- fluidPage(
             br(),
             # helpText("Select a cell type clustering, gene, or metadata feature to visualize in UMAP space"),
             # inputs gene for feature plot
-            selectInput(
+            selectizeInput(
               "gene1",
               label = "Plot 1: Gene expression UMAP... Select gene",
               choices = genes_all,
               selected = "Myod1"
             ),
-            selectInput(
+            selectizeInput(
               "umap.reduction",
               label = "Plot 2: Cell type UMAP... Select reduction",
               choices = c("Harmony", "BBKNN", "Scanorama"),
               selected = "Harmony"
             ),
-            selectInput(
+            selectizeInput(
               "variables.umap",
               label = "Plot 3: Metadata feature UMAP... Select feature",
               choices = c(
@@ -137,13 +149,13 @@ ui <- fluidPage(
             condition = "input.tabselected==2",
             # selects gene to be examined on violin plot
             br(),
-            selectInput(
+            selectizeInput(
               "gene2",
               label = "Select gene",
               choices = genes_all,
               selected = "Myod1"
             ),
-            selectInput(
+            selectizeInput(
               "variables.singleVln",
               label = "Select feature",
               choices = c(
@@ -160,7 +172,7 @@ ui <- fluidPage(
             condition = "input.tabselected==3",
             # selects gene to be examined on violin plots
             br(),
-            selectInput(
+            selectizeInput(
               "gene3",
               label = "Select a gene to plot",
               choices = genes_all,
@@ -168,13 +180,13 @@ ui <- fluidPage(
             ),
             # selects cell types to label on x axis
             br(),
-            selectInput(
+            selectizeInput(
               "splitviolincelltype",
               label = "Select cell type IDs:",
               choices = c("Harmony", "BBKNN", "Scanorama"),
               selected = "Harmony"
             ),
-            selectInput(
+            selectizeInput(
               "variables.splitVln",
               label = "Select feature",
               choices = c(
@@ -205,7 +217,7 @@ ui <- fluidPage(
               selected = "Myod1",
               multiple = TRUE
             ),
-            selectInput(
+            selectizeInput(
               "variables.dot",
               label = "Select feature",
               choices = c(
@@ -223,7 +235,7 @@ ui <- fluidPage(
             # downloadable plot type and dimensions for "All Cell Types" NavBar Tab
           br(),
           helpText("Download Specifications"),
-          selectInput(
+          selectizeInput(
             "downloadable1",
             label = "file type:",
             choices = c("pdf", "png", "eps"),
@@ -312,7 +324,7 @@ ui <- fluidPage(
           # inputs for reduction to be shown
           br(),
           helpText("Visualize gene expression in myogenic cells alone..."),
-          selectInput(
+          selectizeInput(
             "reduction3",
             label = "Choose a dimensional reduction to display:",
             choices = c(
@@ -323,7 +335,7 @@ ui <- fluidPage(
           ),
           br(),
           helpText("Group cells by metadata features..."),
-          selectInput(
+          selectizeInput(
             "bins",
             label = "Metadata Features:",
             choices = c("PHATE bins"),
@@ -349,7 +361,7 @@ ui <- fluidPage(
           # downloadable plot type and dimensions for "Myogenic Cells" Tab
           br(),
           helpText("Download Specifications"),
-          selectInput(
+          selectizeInput(
             "downloadable2",
             label = "file type:",
             choices = c("pdf", "png", "eps"),
@@ -412,8 +424,14 @@ ui <- fluidPage(
     # 'Data' tab----
     tabPanel(
       title="Downloads",
-      h2("Click on the links below to download Seurat Objects, metadata files, etc."),
+      h4("Click on the links below to download Seurat Objects, metadata files, etc."),
       br(),
+      h4(
+        p(
+          "Other results may be found ",
+          a(href = "https://github.com/mckellardw/scMuscle/tree/main/supplemental_data", "here.")
+        )
+      ),
       downloadLink("down11", label = "All Cells"),
       br(),
       downloadLink('down12', label = "Myogenic Cells")
@@ -425,23 +443,17 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output){
   # Loading data----
-  # if( is.null(scMuscle.seurat) ){
-  #   load("scMuscle_slim_v3.RData")
-  # }
-  # if( is.null(myo.slim.seurat) ){
-  #   load("myo_slim_v2.RData")
-  # }
-  load("scMuscle_mm10_slim_v5.RData")
-  load("myo_slim_seurat_v3.RData")
+  load("./data/scMuscle_mm10_slim_v5.RData")
+  load("./data/myo_slim_seurat_v3.RData")
  
   # Plot themes and colors----
   # Figure settings
-  small.font = reactive(10)
-  big.font = reactive(12)
-  line.width = reactive(0.8)
-  pt.size = reactive(0.01)
-  pt.stroke = reactive(0.3)
-  label.size = reactive(4)
+  small.font = 10
+  big.font = 12
+  line.width = 0.8
+  pt.size = 0.01
+  pt.stroke = 0.3
+  label.size = 4
   feature_color_direction = reactive(1)
   
   # Color Palette to cell delegation
@@ -450,55 +462,47 @@ server <- function(input, output){
   })
   
   # Plot themes
-  umap.theme <- reactive({theme(
-    panel.border = element_rect(color="black", size = line.width()),
-    axis.line = element_blank(), #element_line(color = "black", size = line.width()),
-    axis.title = element_text(face="bold.italic",size = small.font(), hjust = 0.5, vjust = 1),
-    axis.text = element_text(size=small.font(),color="black"),
-    axis.ticks = element_line(color = "black", size = line.width()),
-    legend.text = element_text(size=small.font(),color="black"),
-    legend.title = element_text(size=big.font(),color="black")
-  )})
-  dot.theme <- reactive({theme(
+  umap.theme <- theme(
+    panel.border = element_rect(color="black", size = line.width),
+    axis.line = element_blank(), #element_line(color = "black", size = line.width),
+    axis.title = element_text(face="bold",size = small.font, hjust = 0.5, vjust = 1),
+    axis.text = element_text(size=small.font,color="black"),
+    axis.ticks = element_line(color = "black", size = line.width),
+    legend.text = element_text(size=small.font,color="black"),
+    legend.title = element_text(size=small.font,color="black", face="bold"),
+    title=element_text(face="bold.italic",size = small.font, hjust = 0.5)
+  )
+  dot.theme <- theme(
     axis.line = element_blank(),
     panel.border = element_rect(colour = "black", fill=NA, size=1),
-    legend.text = element_text(size=small.font(), color="black"),
+    legend.text = element_text(size=small.font, color="black"),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     axis.text.x=element_text(angle = 90,hjust = 1,vjust= 0.5),
     panel.grid.major = element_line(colour = "gray", size = 0.5)
-  )})
-  vln.theme <- reactive({theme(
+  )
+  vln.theme <- theme(
     panel.background = element_blank(),
-    axis.line = element_line(color = "black", size = line.width()),
-    legend.text = element_text(size=small.font(), color="black"),
+    axis.line = element_line(color = "black", size = line.width),
+    legend.text = element_text(size=small.font, color="black"),
     panel.grid = element_blank(),
     axis.title.x = element_blank(),
-    axis.title.y=element_text(size=big.font(), face="bold",color="black"),
-    axis.text = element_text(color="black",size=small.font()),
+    axis.title.y=element_text(size=small.font, face="bold",color="black"),
+    axis.text = element_text(color="black",size=small.font),
     axis.ticks.x = element_line(color="black")
-  )})
-  
-  # Flipping color scale for feature plot
-  # scalecolor <- reactiveValues(color = scale_colour_viridis_c())
-  # observe({
-  #   input$action3
-  #   if (input$action3 %% 2 == 0) {
-  #     scalecolor$color <- scale_colour_viridis_c()
-  #   } else {
-  #     scalecolor$color <- scale_colour_viridis_c(direction = -1)
-  #   }
-  # })
+  )
   
   # Passes UMAP Panel Inputs----
   
   # passes the reduction type to be plotted
-  umap.reduction <- reactive(
-    {switch(input$umap.reduction,
-            "Harmony" = "umap_harmony",
-            "BBKNN" = "umap_bbknn",
-            "Scanorama" = "umap_scanorama")}
-  )
+  umap.reduction <- reactive({
+    switch(
+      input$umap.reduction,
+      "Harmony" = "umap_harmony",
+      "BBKNN" = "umap_bbknn",
+      "Scanorama" = "umap_scanorama"
+    )
+  })
   umapxlabel <- reactive(paste(umap.reduction(), "1", sep = "_"))
   umapylabel <- reactive(paste(umap.reduction(), "2", sep = "_"))
   
@@ -633,62 +637,62 @@ server <- function(input, output){
   # generates second plot (All Cells - Cell Type UMAP) ----
   output$umap <- renderPlot({
     DimPlot(
-      scMuscle.seurat,
-      cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+      scMuscle.slim.seurat,
+      cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=umap.idents(),
       cols=colors1(), #adds colors for just the cell types present in this clustering
       na.value = NA, # removes noisy cells from plot
-      pt.size = pt.size(), # see value above
-      label.size = label.size(), # see value above
+      pt.size = pt.size, # see value above
+      label.size = label.size, # see value above
       repel = T,label= TRUE
     ) +
       NoLegend() +
-      aes(stroke=pt.stroke())+
-      umap.theme()
+      aes(stroke=pt.stroke)+
+      umap.theme
   })
   
   # generates third plot (All Cells - metadata UMAP) ----
   output$grouping <- renderPlot({
     DimPlot(
-      scMuscle.seurat,
-      cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+      scMuscle.slim.seurat,
+      cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=variables.umap(),
       cols=colors1(), #adds colors for just the cell types present in this clustering
       na.value = NA, # removes noisy cells from plot
-      pt.size = pt.size(), # see value above
-      label.size = label.size(), # see value above
+      pt.size = pt.size, # see value above
+      label.size = label.size, # see value above
       repel = T,label= TRUE
     ) +
-      aes(stroke=pt.stroke())+
-      umap.theme() +NoLegend()
+      aes(stroke=pt.stroke)+
+      umap.theme +NoLegend()
   })
   
   # generates first plot (All Cells - FeaturePlot/UMAP) ----
   output$feature <- renderPlot({
     if (input$action3 %% 2 == 0) {
       FeaturePlot(
-        scMuscle.seurat,
-        cells = sample(Cells(scMuscle.seurat)),
+        scMuscle.slim.seurat,
+        cells = sample(Cells(scMuscle.slim.seurat)),
         #plot cells in random order
         features = gene1(),
         reduction = umap.reduction()
       ) +
         scale_colour_viridis_c() +
         labs(color = "Log-Normalized\nExpression") +
-        umap.theme() + theme(legend.position = "top")
+        umap.theme + theme(legend.position = "top")
     } else {
       FeaturePlot(
-        scMuscle.seurat,
-        cells = sample(Cells(scMuscle.seurat)),
+        scMuscle.slim.seurat,
+        cells = sample(Cells(scMuscle.slim.seurat)),
         #plot cells in random order
         features = gene1(),
         reduction = umap.reduction()
       ) +
         scale_colour_viridis_c(direction = -1) +
         labs(color = "Log-Normalized\nExpression") +
-        umap.theme() + theme(legend.position = "top")
+        umap.theme + theme(legend.position = "top")
     }
   })
   
@@ -696,7 +700,7 @@ server <- function(input, output){
   # generates fourth plot (All Cells - Violin Plot)----
   output$violin1 <- renderPlot({
     VlnPlot( #TODO - add multiple gene plotting
-      scMuscle.seurat,
+      scMuscle.slim.seurat,
       features = gene2(),
       group.by = variables.singleVln(),
       cols = colors1(),
@@ -707,14 +711,14 @@ server <- function(input, output){
         NoLegend() +
         scale_y_continuous(expand=c(0,0)) +
         scale_colour_viridis_c() +
-        vln.theme()
+        vln.theme
     ) %>% wrap_plots(ncol=1)
   })
   
   # renders image of fifth plot (All Cells - Split Violin Plot)----
   
   # scales the height of image (300 px of height given per violin plot)
-  scaler <- reactive({200*length(unique(scMuscle.seurat@meta.data[[variables.splitVln()]]))})
+  scaler <- reactive({200*length(unique(scMuscle.slim.seurat@meta.data[[variables.splitVln()]]))})
   
   # generates image of split violin plot
   output$violin2 <- renderImage({
@@ -727,16 +731,16 @@ server <- function(input, output){
     png(outfile, width = 1100, height = scaler())
     print(
       VlnPlot(
-        scMuscle.seurat,
+        scMuscle.slim.seurat,
         features = gene3(),
         group.by = splitviolincelltype(),
         pt.size = 0
       ) +
         NoLegend() +
         scale_y_continuous(expand=c(0,0.5))+
-        facet_grid(rows = vars(scMuscle.seurat@meta.data[[variables.splitVln()]])) +
+        facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]])) +
         scale_colour_viridis_c() +
-        vln.theme()
+        vln.theme
     )
     dev.off()
     
@@ -754,14 +758,14 @@ server <- function(input, output){
   #   input$action1
   #   isolate(
   #     DotPlot(
-  #       scMuscle.seurat,
+  #       scMuscle.slim.seurat,
   #       features = dot(),
   #       # Don't draw noisy data
-  #       # idents=unique(scMuscle.seurat[[variables.dot()]])[!unique(scMuscle.seurat[[variables.dot()]]) %in% c("NOISY")],
+  #       # idents=unique(scMuscle.slim.seurat[[variables.dot()]])[!unique(scMuscle.slim.seurat[[variables.dot()]]) %in% c("NOISY")],
   #       group.by = variables.dot()
   #     )+
   #       scale_colour_viridis_c() +
-  #       dot.theme() +
+  #       dot.theme +
   #       labs(title = "Metadata Features")
   #   )
   # })
@@ -775,15 +779,15 @@ server <- function(input, output){
       group.by=bins(),
       cols=rainbow(25)%>%saturation(values=0.75) %>% brightness(values=0.9) %>% as.vector(), #adds colors for just the cell types present in this clustering
       na.value = NA, # removes noisy cells from plot
-      pt.size = pt.size(), # see value above
-      label.size = label.size(), # see value above
+      pt.size = pt.size, # see value above
+      label.size = label.size, # see value above
       repel = T,label= TRUE
     ) +
       NoLegend() +
-      aes(stroke=pt.stroke())+
+      aes(stroke=pt.stroke)+
       xlab("PHATE_Harmony_1") +
       ylab("PHATE_Harmony_2") +
-      umap.theme()
+      umap.theme
   })
   # generates eigth plot (Myogenic Cells - PHATE violins)----
   # scales the height of image (300 px of height given per violin plot)
@@ -812,7 +816,7 @@ server <- function(input, output){
             NoLegend() +
             scale_y_continuous(expand=c(0,.5))+
             scale_colour_viridis_c() +
-            vln.theme()
+            vln.theme
         ) %>% wrap_plots(ncol=1)
       )
       dev.off()
@@ -842,21 +846,21 @@ server <- function(input, output){
     content = function(file){
       print(
         DimPlot(
-          scMuscle.seurat,
-          cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+          scMuscle.slim.seurat,
+          cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
           reduction=umap.reduction(),
           group.by=umap.idents(),
           cols=colors1(), #adds colors for just the cell types present in this clustering
           na.value = NA, # removes noisy cells from plot
-          pt.size = pt.size(), # see value above
-          label.size = label.size(), # see value above
+          pt.size = pt.size, # see value above
+          label.size = label.size, # see value above
           repel = T,label= TRUE
         ) +
           NoLegend() +
-          aes(stroke=pt.stroke())+
+          aes(stroke=pt.stroke)+
           xlab(umapxlabel()) +
           ylab(umapylabel()) +
-          umap.theme()
+          umap.theme
       )
       
       ggsave(
@@ -880,21 +884,21 @@ server <- function(input, output){
     content = function(file){
       
       print(DimPlot(
-        scMuscle.seurat,
-        cells = sample(colnames(scMuscle.seurat)), #plot cells in random order
+        scMuscle.slim.seurat,
+        cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
         reduction=umap.reduction(),
         group.by=variables.umap(),
         cols=colors1(), #adds colors for just the cell types present in this clustering
         na.value = NA, # removes noisy cells from plot
-        pt.size = pt.size(), # see value above
-        label.size = label.size(), # see value above
+        pt.size = pt.size, # see value above
+        label.size = label.size, # see value above
         repel = T,label= TRUE
       ) +
         NoLegend() +
-        aes(stroke=pt.stroke())+
+        aes(stroke=pt.stroke)+
         xlab(umapxlabel()) +
         ylab(umapylabel()) +
-        umap.theme())
+        umap.theme)
       
       ggsave(
         file = file,#paste0(file,".",input$downloadable),
@@ -917,26 +921,26 @@ server <- function(input, output){
     content = function(file){
       if (input$action3 %% 2 == 0) {
         print(FeaturePlot(
-          scMuscle.seurat,
-          cells = sample(Cells(scMuscle.seurat)),
+          scMuscle.slim.seurat,
+          cells = sample(Cells(scMuscle.slim.seurat)),
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
         ) +
           scale_colour_viridis_c() +
           labs(color = "Log-Normalized\nExpression") +
-          umap.theme()) + theme(legend.position = "top")
+          umap.theme) + theme(legend.position = "top")
       } else {
         print(FeaturePlot(
-          scMuscle.seurat,
-          cells = sample(Cells(scMuscle.seurat)),
+          scMuscle.slim.seurat,
+          cells = sample(Cells(scMuscle.slim.seurat)),
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
         ) +
           scale_colour_viridis_c(direction = -1) +
           labs(color = "Log-Normalized\nExpression") +
-          umap.theme()) + theme(legend.position = "top")
+          umap.theme) + theme(legend.position = "top")
       }
       
       ggsave(
@@ -960,7 +964,7 @@ server <- function(input, output){
     content = function(file) {
       print(
         VlnPlot( #TODO - add multiple gene plotting
-          scMuscle.seurat,
+          scMuscle.slim.seurat,
           features = gene2(),
           group.by = variables.singleVln(),
           cols = colors1(),
@@ -971,7 +975,7 @@ server <- function(input, output){
             NoLegend() +
             scale_y_continuous(expand=c(0,0)) +
             scale_colour_viridis_c() +
-            vln.theme()
+            vln.theme
         ) %>% wrap_plots(ncol=1)
       )
       ggsave(
@@ -995,16 +999,16 @@ server <- function(input, output){
     content = function(file){
       print(
         VlnPlot(
-          scMuscle.seurat, 
+          scMuscle.slim.seurat, 
           features = gene3(), 
           group.by = splitviolincelltype(), 
           pt.size = 0
         ) + 
           NoLegend() +
           scale_y_continuous(expand=c(0,.5))+
-          facet_grid(rows = vars(scMuscle.seurat@meta.data[[variables.splitVln()]]))+
+          facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]]))+
           scale_colour_viridis_c()+
-          vln.theme()
+          vln.theme
       )
       
       ggsave(
@@ -1027,14 +1031,14 @@ server <- function(input, output){
   #   content = function(file){
   #     print(
   #       DotPlot(
-  #         scMuscle.seurat,
+  #         scMuscle.slim.seurat,
   #         features = dot(),
   #         # Don't draw noisy data
-  #         # idents=unique(scMuscle.seurat[[variables.dot()]])[!unique(scMuscle.seurat[[variables.dot()]]) %in% c("NOISY")],
+  #         # idents=unique(scMuscle.slim.seurat[[variables.dot()]])[!unique(scMuscle.slim.seurat[[variables.dot()]]) %in% c("NOISY")],
   #         group.by = variables.dot()
   #       )+
   #         scale_colour_viridis_c()+ 
-  #         dot.theme()
+  #         dot.theme
   #     )
   #     ggsave(
   #       file = file,#paste0(file,".",input$downloadable),
@@ -1062,15 +1066,15 @@ server <- function(input, output){
         group.by=bins(),
         cols=rainbow(25)%>%saturation(values=0.75) %>% brightness(values=0.9) %>% as.vector(), #adds colors for just the cell types present in this clustering
         na.value = NA, # removes noisy cells from plot
-        pt.size = pt.size(), # see value above
-        label.size = label.size(), # see value above
+        pt.size = pt.size, # see value above
+        label.size = label.size, # see value above
         repel = T,label= TRUE
       ) +
         NoLegend() +
-        aes(stroke=pt.stroke())+
+        aes(stroke=pt.stroke)+
         xlab("PHATE_Harmony_1") +
         ylab("PHATE_Harmony_2") +
-        umap.theme())
+        umap.theme)
       
       ggsave(
         file = file,#paste0(file,".",input$downloadable),
@@ -1103,7 +1107,7 @@ server <- function(input, output){
           NoLegend() +
           scale_y_continuous(expand=c(0,.5))+
           scale_colour_viridis_c() +
-          vln.theme()
+          vln.theme
       ) %>% wrap_plots(ncol=1))
       
       ggsave(
@@ -1122,7 +1126,7 @@ server <- function(input, output){
       paste("name", "Rdata", sep=".")
     },
     content = function(file){
-      saveRDS(scMuscle.seurat, file=file)
+      saveRDS(scMuscle.slim.seurat, file=file)
     }
   )
 }
