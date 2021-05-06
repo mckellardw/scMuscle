@@ -5,15 +5,15 @@
 # Calculate the number of PCs that contain some proportion (95%) of the variance
 #     Output: number of dimensions that contain the desired percentage of variance
 npcs <- function(
-  seu, 
-  var.toal=0.95, 
+  seu,
+  var.toal=0.95,
   reduction="pca"
 ){
   if(is.null(seu@reductions[[reduction]])){
     cat("Reduction", reduction, "not found!")
     return(NULL)
   }
-  
+
   tmp.var <- (seu@reductions[[reduction]]@stdev)^2
   var.cut <- var.toal*sum(tmp.var)
   n.pcs=0
@@ -22,14 +22,14 @@ npcs <- function(
     n.pcs = n.pcs + 1
     var.sum <- var.sum + tmp.var[n.pcs]
   }
-  
+
   return(n.pcs)
 }
 
 
 # Function to generate mean expression profiles for individual cell types
 #     Output: genes-by-celltype matrix of mean expression profiles
-get_cell_type_model <- 
+get_cell_type_model <-
   function(
     seur, #seurat object
     assay='RNA',
@@ -43,70 +43,70 @@ get_cell_type_model <-
     verbose=T
   ){
     require(Seurat)
-    
+
     #build singlet_cell type_gene expression matrix
     ref.mat <- list() #initialize reference expression matrix
     exp.mat <- GetAssayData(seur, assay=assay, slot=slot) # Pull out expression data
-    
+
     # subset based on desired cells
-    if(!is.null(cells.use)){ 
+    if(!is.null(cells.use)){
       exp.mat <- exp.mat[,cells.use]
     }
-    
+
     # remove ignored genes
     if(!is.null(genes.ignore)){
       exp.mat = exp.mat[!rownames(seur)%in%genes.ignore,]
     }
-    
+
     #Grab meta.data, filtered for singlets
     if(is.null(cells.use)){ #TODO- subset based on cells.use
       meta <- seur@meta.data  #ignore sinlget/doublet classifications
     }else{
-      meta <- seur@meta.data[cells.use,] 
+      meta <- seur@meta.data[cells.use,]
     }
-    
+
     cell.types <- sort(unlist(unique(meta[[cluster.names]]))) #Get cell type names
     if(!is.null(ignore.clusters)){
-      cell.types <- cell.types[(!cell.types%in%ignore.clusters)]  
+      cell.types <- cell.types[(!cell.types%in%ignore.clusters)]
     }
     print(cell.types)
-    
+
     # Remove NAs from exp.mat and meta
     exp.mat <- exp.mat[,!is.na(meta[[cluster.names]])]
     meta <- meta[!is.na(meta[[cluster.names]]),]
-    
+
     # Generate cell type references, one cell type at a time
     if(verbose){cat("Building reference profiles... \n")}
     if(verbose & !is.null(cells.use)){cat("   Using the provided cells... \n")}
-    
+
     for(i in 1:length(cell.types)){
       tmp.cells = rownames(meta)[ as.vector(meta[[cluster.names]])==cell.types[i] ]
-      
+
       if(verbose){cat(cell.types[i]," (",i,"/",length(cell.types),")","... ", sep="")}
-      
+
       if(length(tmp.cells)==0){
         if(verbose){cat(" NO CELLS", sep="")}
       }
-      
+
       if(length(tmp.cells)==1){
         if(verbose){cat(" Only 1 cell!", sep="")}
         ref.mat[[i]] <- exp.mat[,rownames(meta)%in%tmp.cells]  # grab expression data
       }else{
         if(verbose){cat(length(tmp.cells)," cells.", sep="")}
-        ref.mat[[i]] <- 
+        ref.mat[[i]] <-
           Matrix::rowMeans( #TODO: should these expression profiles be built on row means?
             exp.mat[,rownames(meta)%in%tmp.cells]  # grab expression data
-            
+
           )
       }
-      
+
       if(verbose){cat("\n")}
     }
     ref.mat <- do.call(cbind, ref.mat)
     colnames(ref.mat) <- cell.types
-    
+
     if(verbose){cat("Done!\n")}
-    
+
     return(ref.mat)
   }
 
@@ -120,21 +120,21 @@ estimateDoubletRate.DWM <- function(seur.list, doublet.dist=NULL){
                                multi.rate=     c(0.4,  0.8,  1.6,  2.3,  3.1,  3.9,  4.6,  5.4,  6.1,  6.9,   7.6)
     )
   }
-  
+
   fit <- lm(multi.rate~cells.recovered, data = doublet.dist)
   fit.func <- function(x){
     return(as.numeric(fit$coefficients['cells.recovered']*x + fit$coefficients['(Intercept)']))
   }
-  
+
   ncells.list <- lapply(seur.list, ncol)
   out.list <- lapply(ncells.list, fit.func)
   return(unlist(out.list))
 }
 
 # Added in PCA functionality
-paramSweep_v3_DWM <- 
+paramSweep_v3_DWM <-
   function(
-    seu, 
+    seu,
     PCs=1:10,
     assay='RNA', slot='counts',
     reduction='pca', #only needed if running on PC values instead of RNA
@@ -143,20 +143,20 @@ paramSweep_v3_DWM <-
     sct = FALSE
   ) {
     require(Seurat); require(fields);
-    
+
     ## Set pN-pK param sweep ranges
     pK <- c(0.0005, 0.001, 0.005, seq(0.01,0.3,by=0.01))
     pN <- seq(0.05, 0.3, by=0.05)
-    
+
     ## Remove pK values with too few cells
     min.cells <- round(nrow(seu@meta.data)/(1-0.05) - nrow(seu@meta.data))
     pK.test <- round(pK*min.cells)
     pK <- pK[which(pK.test >= 1)]
     cat("Using ", length(pK), " values for pK testing...\n")
-    
+
     ## Extract pre-processing parameters from original data analysis workflow
     orig.commands <- seu@commands
-    
+
     ## Down-sample cells to 10000 (when applicable) for computational effiency
     if(nrow(seu@meta.data) > 10000){
       real.cells <- rownames(seu@meta.data)[sample(1:nrow(seu@meta.data), 10000, replace=FALSE)]
@@ -165,7 +165,7 @@ paramSweep_v3_DWM <-
     }else{
       cat("ERROR IN SUBSETTING THE DATA")
     }
-    
+
     if(is.pca){
       if(is.null(seu@reductions[[reduction]])){
         cat("Reduction ", reduction, " is missing. Try again... \n")
@@ -176,15 +176,15 @@ paramSweep_v3_DWM <-
       data <- GetAssayData(seu, assay=assay, slot=slot)[ , real.cells]
     }
     n_real.cells <- ncol(data)
-    
+
     cat("Using ", n_real.cells, " out of ", ncol(seu), " cells...\n")
-    
+
     ## Iterate through pN, computing pANN vectors at varying pK
     if(num.cores>1){
       require(parallel)
       cat("     Running on ", num.cores, " cores...")
       cl <- makeCluster(num.cores)
-      
+
       if(is.pca){ #workflow in PC space
         output2 <- mclapply(as.list(1:length(pN)),
                             FUN = parallel_paramSweep_PCA,
@@ -237,8 +237,8 @@ paramSweep_v3_DWM <-
                           sct)
       }
     }
-    
-    
+
+
     ## Write parallelized output into list
     sweep.res.list <- list()
     list.ind <- 0
@@ -248,35 +248,35 @@ paramSweep_v3_DWM <-
         sweep.res.list[[list.ind]] <- output2[[i]][[j]]
       }
     }
-    
+
     ## Assign names to list of results
     name.vec <- NULL
     for (j in 1:length(pN)) {
       name.vec <- c(name.vec, paste("pN", pN[j], "pK", pK, sep = "_" ))
     }
     names(sweep.res.list) <- name.vec
-    
+
     cat("Done!\n")
-    
+
     return(sweep.res.list)
   }
 #
 
 # Added in ability to set meta data column name (eases merging many datasets)
-doubletFinder_V3.DWM_v2 <- 
+doubletFinder_V3.DWM_v2 <-
   function(
-    seu, PCs, pN = 0.25, pK, nExp='auto', 
+    seu, PCs, pN = 0.25, pK, nExp='auto',
     pANN.cutoff=NULL, # hard limit for distinguishing singlets/doublets
-    assay='RNA', reduction='pca',slot='counts', 
+    assay='RNA', reduction='pca',slot='counts',
     classification.name=NULL, pANN.name=NULL, # meta data naming parameters
-    reuse.pANN = FALSE, #changed in my implementation 
-    sct = FALSE 
+    reuse.pANN = FALSE, #changed in my implementation
+    sct = FALSE
   ) {
     require(Seurat); require(fields); require(KernSmooth)
-    
+
     #TODO: check passed seurat object for assay, reduction, etc.
     #TODO: add parallelization with future to the Seurat section
-    
+
     ## Generate new list of doublet classificatons from existing pANN vector to save time
     if(is.character(reuse.pANN)){ #reuse pANN values, but rename classifications
       if(is.null(seu[[reuse.pANN]])){
@@ -285,17 +285,17 @@ doubletFinder_V3.DWM_v2 <-
       }else{
         #Doublet Classification
         cat("Classifying doublets based on previous pANN values (", reuse.pANN, ")...\n",sep = '')
-        
+
         pANN.old <- seu@meta.data[ , reuse.pANN]
         classifications <- rep("Singlet", length(pANN.old))
-        
+
         if(is.null(pANN.cutoff)){
           classifications[order(pANN.old, decreasing=TRUE)[1:nExp]] <- "Doublet"
         }else{
           classifications[pANN.old>=pANN.cutoff] <- "Doublet"
         }
-        
-        # Add in metadata columns with classifications 
+
+        # Add in metadata columns with classifications
         if(is.null(classification.name)){
           seu@meta.data[, paste("DF.classifications",pN,pK,nExp,sep="_")] <- classifications
         }else if(is.character(classification.name)){
@@ -304,9 +304,9 @@ doubletFinder_V3.DWM_v2 <-
           cat("Doublet classifications labeled as 'DF.classifications'...\n")
           seu@meta.data[, "DF.classifications"] <- classifications
         }
-        
+
         #Don't need to add pANN values again
-        
+
         return(seu)
       }
     }
@@ -317,17 +317,17 @@ doubletFinder_V3.DWM_v2 <-
       }else{
         #Doublet Classification
         cat("Classifying doublets based on previous pANN values...\n")
-        
+
         pANN.old <- seu[[pANN.name]]
         classifications <- rep("Singlet", length(pANN.old))
-        
+
         if(is.null(pANN.cutoff)){
           classifications[order(pANN.old, decreasing=TRUE)[1:nExp]] <- "Doublet"
         }else{
           classifications[pANN.old>=pANN.cutoff] <- "Doublet"
         }
-        
-        # Add in metadata columns with classifications 
+
+        # Add in metadata columns with classifications
         if(is.null(classification.name)){
           seu@meta.data[, paste("DF.classifications",pN,pK,nExp,sep="_")] <- classifications
         }else if(is.character(classification.name)){
@@ -336,31 +336,31 @@ doubletFinder_V3.DWM_v2 <-
           cat("Doublet classifications labeled as 'DF.classifications'...\n")
           seu@meta.data[, "DF.classifications"] <- classifications
         }
-        
+
         #Don't need to add pANN values again
-        
+
         return(seu)
       }
     }else{
-      
+
       ## Make merged real-artifical data
       real.cells <- rownames(seu@meta.data)
       data <- GetAssayData(seu, assay=assay, slot=slot)
       n_real.cells <- length(real.cells)
       n_doublets <- round(n_real.cells/(1 - pN) - n_real.cells)
-      
+
       cat("Creating ", n_doublets, " artificial doublets from ", n_real.cells, " cells...\n")
-      
+
       real.cells1 <- sample(real.cells, n_doublets, replace = TRUE)
       real.cells2 <- sample(real.cells, n_doublets, replace = TRUE)
-      
+
       doublets <- (data[, real.cells1] + data[, real.cells2])/2 # Literally taking the average of two cells...
       colnames(doublets) <- paste0("X", 1:n_doublets)
       data_wdoublets <- cbind(data, doublets)
-      
+
       ## Store important pre-processing information
       orig.commands <- seu@commands
-      
+
       ## Initialize Seurat object
       if(slot=='counts'){
         cat("Creating Seurat object with artificial doublets...\n")
@@ -375,15 +375,15 @@ doubletFinder_V3.DWM_v2 <-
         cat("Creating Seurat object with artificial doublets...\n")
         seu_wdoublets <- CreateSeuratObject(counts = data_wdoublets) #don't renormalize if normalized data is provided
       }
-      
+
       ## Preprocess Seurat object
       if(assay=='SCT'){
         require(sctransform)
-        
+
         if(slot=='data'){
           cat('WARNING: running SCTransform on normalized data!\n')
         }
-        
+
         cat("Running SCTransform & PCA...\n")
         seu_wdoublets <- SCTransform(
           seu_wdoublets
@@ -391,13 +391,13 @@ doubletFinder_V3.DWM_v2 <-
           npcs = length(PCs),
           reduction.name='DOUBLETFINDER_PCA'
         )
-        
+
         pca.coord <- seu_wdoublets@reductions$DOUBLETFINDER_PCA@cell.embeddings[ , PCs]
         cell.names <- rownames(seu_wdoublets@meta.data)
         nCells <- length(cell.names)
-        
+
         rm(seu_wdoublets); gc()
-        
+
       }else if(assay=='RNA'){
         cat("     Piping FindVariableFeatures(), ScaleData(), and RunPCA()...\n")
         seu_wdoublets <- FindVariableFeatures(
@@ -428,7 +428,7 @@ doubletFinder_V3.DWM_v2 <-
           reduction.name='DOUBLETFINDER_PCA',
           verbose=FALSE
         )
-        
+
         pca.coord <- seu_wdoublets@reductions$DOUBLETFINDER_PCA@cell.embeddings[ , PCs]
         cell.names <- rownames(seu_wdoublets@meta.data)
         nCells <- length(cell.names)
@@ -463,18 +463,18 @@ doubletFinder_V3.DWM_v2 <-
           reduction.name='DOUBLETFINDER_PCA',
           verbose=FALSE
         )
-        
+
         pca.coord <- seu_wdoublets@reductions$DOUBLETFINDER_PCA@cell.embeddings[ , PCs]
         cell.names <- rownames(seu_wdoublets@meta.data)
         nCells <- length(cell.names)
-        
+
         rm(seu_wdoublets); gc() # Free up memory
       }
-      
+
       ## Compute PC distance matrix
       cat("Calculating PC distance matrix...\n")
       dist.mat <- fields::rdist(pca.coord)
-      
+
       ## Compute pANN
       cat("Computing pANN...\n")
       pANN <- as.data.frame(matrix(0L, nrow = n_real.cells, ncol = 1))
@@ -485,28 +485,28 @@ doubletFinder_V3.DWM_v2 <-
       cat('   k = ', k,' \n')
       for (i in 1:n_real.cells) {
         neighbors <- order(dist.mat[, i])
-        neighbors <- neighbors[2:(k + 1)] 
+        neighbors <- neighbors[2:(k + 1)]
         neighbor.names <- rownames(dist.mat)[neighbors]
         pANN$pANN[i] <- length(which(neighbors > n_real.cells))/k
       }
-      
+
       #Smooth pANN values, compute cutoff for doublet identification - DWM
       #TODO: find local minima in pANN values, and calculate the tiers of multiplets
       if(nExp=='auto'){
         #Smooth pANN
-        
+
         #Find the two maxes and one local min
-        
+
         # Set cutoff to the local min
       }
-      
-      
-      
+
+
+
       #Doublet Classification
       cat("Classifying doublets...\n")
       classifications <- rep("Singlet",n_real.cells)
       classifications[order(pANN$pANN[1:n_real.cells], decreasing=TRUE)[1:nExp]] <- "Doublet"
-      
+
       # Add in metadata columns with classifications and pANN values
       if(is.null(classification.name)){
         seu@meta.data[, paste("DF.classifications",pN,pK,nExp,sep="_")] <- classifications
@@ -515,7 +515,7 @@ doubletFinder_V3.DWM_v2 <-
       }else{
         seu@meta.data[, "DF.classifications"] <- classifications
       }
-      
+
       if(is.null(pANN.name)){
         seu@meta.data[, paste("pANN",pN,pK,nExp,sep="_")] <- pANN[rownames(seu@meta.data), 1]
       }else if(is.character(pANN.name)){
@@ -523,9 +523,7 @@ doubletFinder_V3.DWM_v2 <-
       }else{
         seu@meta.data[, "DF.pANN"] <- pANN[rownames(seu@meta.data), 1]
       }
-      
+
       return(seu)
     }
   }
-
-
