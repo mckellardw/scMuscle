@@ -2,12 +2,21 @@
 # Generate feature plots given
 visListPlot <- function(
   seu.list,
-  features,
+  features=NULL,
+  alt.titles=NULL, # alternative titles for genes/features being passed
   assay='Spatial',
   reduction="space",
   pt.size=1,
   font.size=8
 ){
+  require(Seurat)
+  require(ggplot2)
+  require(viridis)
+  
+  if(is.null(alt.titles)){
+    alt.titles=features
+  }
+  
   seu.list <- lapply(
     seu.list,
     FUN = function(SEU){
@@ -16,10 +25,9 @@ visListPlot <- function(
     }
   )
   
-  gene.lims <- c(0,max(GetAssayData(vis.seurat,assay=assay)[tmp.feat,]))
-
+  # Get expression limits for each gene, across all datasets 
   gene.lims <- lapply(
-    tmp.feat,
+    features,
     FUN = function(FEAT){
       out.max <- lapply(
         seu.list,
@@ -30,14 +38,14 @@ visListPlot <- function(
   )
 
   plot.list <- list()
-  for(i in 1:length(tmp.feat)){
+  for(i in 1:length(features)){
     tmp <- lapply(
       seu.list,
       FUN = function(SEU)
         FeaturePlot(
           SEU,
           slot ="data",
-          features = tmp.feat[i],
+          features = features[i],
           pt.size = pt.size,
           reduction=reduction
         ) +
@@ -60,7 +68,7 @@ visListPlot <- function(
       theme(
         plot.title = element_text(size=font.size,face="bold.italic",  vjust=1)
       ) +
-      labs(title=tmp.titles[i])
+      labs(title=alt.titles[i])
     plot.list[[i]] <- tmp
   }
 
@@ -77,5 +85,7 @@ visListPlot <- function(
       wrap_plots(X, ncol=1, guides="collect")&theme(legend.position="bottom",legend.margin = margin(0,0,0,0,"inches"))
   )
 
-  wrap_plots(plot.list,nrow=1)
+  return(
+    wrap_plots(plot.list,nrow=1)
+  )
 }
