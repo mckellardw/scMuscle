@@ -1,4 +1,5 @@
 
 # Ignore some R files
 *.RData
+.RDataTmp
 .Rhistory
