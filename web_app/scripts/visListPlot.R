@@ -1,5 +1,5 @@
 
-# Generate feature plots given
+# Generate feature plots given a list of Visium/Seurat objects
 visListPlot <- function(
   seu.list,
   features=NULL,
@@ -12,6 +12,8 @@ visListPlot <- function(
   require(Seurat)
   require(ggplot2)
   require(viridis)
+  
+  cat("Plotting Visium data!\n")
   
   if(is.null(alt.titles)){
     alt.titles=features
@@ -85,6 +87,8 @@ visListPlot <- function(
       wrap_plots(X, ncol=1, guides="collect")&theme(legend.position="bottom",legend.margin = margin(0,0,0,0,"inches"))
   )
 
+  cat("Done plotting Visium data!\n")
+  
   return(
     wrap_plots(plot.list,nrow=1)
   )

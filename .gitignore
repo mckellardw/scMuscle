@@ -3,3 +3,8 @@
 *.RData
 .RDataTmp
 .Rhistory
+.h5Seurat
+
+data/*.h5Seurat
+data/*.RData
+web_app/data/*
