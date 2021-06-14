@@ -21,6 +21,7 @@ source("scripts/visListPlot.R")
 CURR_DATA_VERSION = 1.1
 cornell_red = "#B31B1B"
 spatial_theta_colors <- c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
+vis.height = "600px"
 
 # Gene lists used to draw the app (prevents need for loading data immediately)
 genes_all <- read.csv("resources/genes_all.csv") %>% unlist() %>% unique() %>% sort()
@@ -74,7 +75,7 @@ ui <- fluidPage(
           h4(
             p(
               paste("Current data version:", CURR_DATA_VERSION, "(details found "),
-              a(href = "https://github.com/mckellardw/scMuscle/tree/main/web_app/README.md", "here"),
+              a(href = "https://github.com/mckellardw/scMuscle/tree/main/data_versions", "here"),
               ")",
               align = "center"
             ),
@@ -93,7 +94,7 @@ ui <- fluidPage(
           ),
           h4(
             p("Code for this web app is available ",
-              a(href = "https://github.com/mckellardw/scMuscle", "here"), 
+              a(href = "https://github.com/mckellardw/scMuscle/tree/main/web_app", "here"), 
               ". To report errors or request new features, please post an issue on the ",
               a(href="https://github.com/mckellardw/scMuscle", "Github"), 
               "page or email", span(" scmuscle@cornell.edu", style = "color:#B31B1B")),
@@ -437,13 +438,13 @@ ui <- fluidPage(
           downloadButton("down9", label = "Download"),
           br(),
           br(),
-          plotOutput("spatialgene") %>% withSpinner(type = 1, color = cornell_red),
+          plotOutput("spatialgene", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
           br(),
           # Theta Values----
           downloadButton("down10", label = "Download"),
           br(),
           br(),
-          plotOutput("spatialtheta") %>% withSpinner(type = 1, color = cornell_red),
+          plotOutput("spatialtheta", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
           br()
         )
       )
@@ -489,12 +490,13 @@ server <- function(input, output){
   big.font = 12
   line.width = 0.8
   pt.size = 0.01
+  vis.pt.size=1.5
   pt.stroke = 0.3
   label.size = 4
   feature_color_direction = reactive(1)
   
   # Color Palette to cell delegation
-  colors1 <- reactive({
+  colors.celltypes <- reactive({
     as.vector(polychrome())[c(3:9,17,11:13,21,14:16,32,18:20,28,10,30,29,31,33,34,35,36,22:27)]
   })
   
@@ -713,7 +715,7 @@ server <- function(input, output){
       cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=umap.idents(),
-      cols=colors1(), #adds colors for just the cell types present in this clustering
+      cols=colors.celltypes(), #adds colors for just the cell types present in this clustering
       na.value = NA, # removes noisy cells from plot
       pt.size = pt.size, # see value above
       label.size = label.size, # see value above
@@ -732,7 +734,7 @@ server <- function(input, output){
       cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
       reduction=umap.reduction(),
       group.by=variables.umap(),
-      cols=colors1(), #adds colors for just the cell types present in this clustering
+      cols=colors.celltypes(), #adds colors for just the cell types present in this clustering
       na.value = NA, # removes noisy cells from plot
       pt.size = pt.size, # see value above
       label.size = label.size, # see value above
@@ -750,7 +752,7 @@ server <- function(input, output){
       scMuscle.slim.seurat,
       features = gene2(),
       group.by = variables.singleVln(),
-      cols = colors1(),
+      cols = colors.celltypes(),
       combine = F,
       pt.size = 0
     ) %>% lapply(
@@ -886,9 +888,10 @@ server <- function(input, output){
         features=vis_genes_selector(),
         assay='Spatial',
         reduction="space",
-        pt.size=1,
-        font.size=8
-      ) %>%print()
+        legend.position="right",
+        pt.size=vis.pt.size,
+        font.size=big.font
+      ) 
     }
   )
   
@@ -903,9 +906,10 @@ server <- function(input, output){
         features=vis_types_selector(),
         assay='sub_raw_deg_ted',
         reduction="space",
-        pt.size=1,
-        font.size=8
-      )&scale_color_gradientn(colors=spatial_theta_colors,na.value = gray(0.42),limits=c(10^-2,1)) %>%print()
+        legend.position="right",
+        pt.size=vis.pt.size,
+        font.size=big.font
+      )&scale_color_gradientn(colors=spatial_theta_colors, na.value=gray(0.42), limits=c(10^-2,1)) #%>% print()
   })
   
   # DownloadHandler----
@@ -924,7 +928,7 @@ server <- function(input, output){
           cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
           reduction=umap.reduction(),
           group.by=umap.idents(),
-          cols=colors1(), #adds colors for just the cell types present in this clustering
+          cols=colors.celltypes(), #adds colors for just the cell types present in this clustering
           na.value = NA, # removes noisy cells from plot
           pt.size = pt.size, # see value above
           label.size = label.size, # see value above
@@ -964,7 +968,7 @@ server <- function(input, output){
           cells = sample(colnames(scMuscle.slim.seurat)), #plot cells in random order
           reduction=umap.reduction(),
           group.by=variables.umap(),
-          cols=colors1(), #adds colors for just the cell types present in this clustering
+          cols=colors.celltypes(), #adds colors for just the cell types present in this clustering
           na.value = NA, # removes noisy cells from plot
           pt.size = pt.size, # see value above
           label.size = label.size, # see value above
@@ -1045,7 +1049,7 @@ server <- function(input, output){
           scMuscle.slim.seurat,
           features = gene2(),
           group.by = variables.singleVln(),
-          cols = colors1(),
+          cols = colors.celltypes(),
           combine = F,
           pt.size = 0
         ) %>% lapply(
