@@ -20,6 +20,7 @@ source("scripts/visListPlot.R")
 # Settings & version info ----
 CURR_DATA_VERSION = 1.1
 cornell_red = "#B31B1B"
+spatial_theta_colors <- c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
 
 # Gene lists used to draw the app (prevents need for loading data immediately)
 genes_all <- read.csv("resources/genes_all.csv") %>% unlist() %>% unique() %>% sort()
@@ -330,7 +331,7 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
-          # PHATE Panel Inputs----
+          # PHATE Panel Inputs
           # inputs for reduction to be shown
           br(),
           helpText("Visualize gene expression in myogenic cells alone..."),
@@ -367,7 +368,7 @@ ui <- fluidPage(
             selected = "Myod1",
             multiple = TRUE
           ),
-          # inputs present on all tabs----
+          # inputs present on all tabs
           # downloadable plot type and dimensions for "Myogenic Cells" Tab
           br(),
           helpText("Download Specifications"),
@@ -389,9 +390,9 @@ ui <- fluidPage(
           )
         ), 
 
-        # Establishes spaces for plots in the main panel ----
+        # Establishes spaces for plots in the main panel
         mainPanel(
-          # PHATE grouped by variables----
+          # PHATE grouped by variables
           br(),
           downloadButton("down7", label = "Download"),
           br(), br(),
@@ -411,7 +412,7 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
-          #Spatial Panel Inputs----
+          #Spatial Panel Inputs
           br(),
           helpText("Visualize spatial gene expression across injury response"),
           selectizeInput(
@@ -429,7 +430,7 @@ ui <- fluidPage(
             selected = "Fusing-Myocytes"
           )
         ),
-        # Establishes spaces for plots in the main panel----
+        # Establishes spaces for plots in the main panel
         mainPanel(
           # Gene Expression----
           br(),
@@ -446,7 +447,7 @@ ui <- fluidPage(
           br()
         )
       )
-    ),  
+    ),
     # 'Downloads' tab----
     tabPanel(
       title="Downloads",
@@ -454,7 +455,7 @@ ui <- fluidPage(
       br(),
       h4(
         p(
-          "Supplemetal results from our preprint may be found ",
+          "Supplemetal resources from our preprint may be found ",
           a(href = "https://github.com/mckellardw/scMuscle/tree/main/supplemental_data", "here.")
         )
       ),
@@ -478,8 +479,8 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output){
   # Loading data----
-  load("./data/scMuscle_mm10_slim_v5.RData") # All Cells
-  load("./data/myo_slim_seurat_v3.RData") # Myo Cells
+  load("./data/scMuscle_mm10_slim_v1-1.RData") # All Cells
+  load("./data/myo_slim_seurat_v1-1.RData") # Myo Cells
   load("./data/vis_slim_v1.RData") # Visium
  
   # Plot themes and colors----
@@ -878,66 +879,34 @@ server <- function(input, output){
   # passes genes for spatial gene plots
   vis_genes_selector <- reactive({input$vis_genes_selector})
   
-  output$spatialgene <- renderImage({
-    input$action2
-    isolate({
-      # A temp file to save the output. It will be deleted after renderImage
-      # sends it, because deleteFile=TRUE.
-      outfile <- tempfile(fileext='.png')
-      
-      print(
-        visListPlot(
-          seu.list=vis.list,
-          features=vis_genes_selector(),
-          assay='Spatial',
-          reduction="space",
-          pt.size=1,
-          font.size=8
-        )
-      )
-      dev.off()
-      
-      # Return a list
-      # list(
-      #   src = outfile,
-      #   contentType = 'image/png',
-      #   alt = "This is alternate text"
-      # )
-    })}, deleteFile = TRUE)
+  #TODO- add adjustable point sizes & color scale reversal here
+  output$spatialgene <- renderPlot({
+      visListPlot(
+        seu.list=vis.list,
+        features=vis_genes_selector(),
+        assay='Spatial',
+        reduction="space",
+        pt.size=1,
+        font.size=8
+      ) %>%print()
+    }
+  )
   
   # generates Spatial Plot (theta values) ####
   
   # passes cell types for spatial cell type plots
-  vis_genes_selector <- reactive({input$vis_genes_selector})
+  vis_types_selector <- reactive({input$vis_types_selector})
   
-  output$spatialtheta <- renderImage({
-    input$action2
-    isolate({
-      # A temp file to save the output. It will be deleted after renderImage
-      # sends it, because deleteFile=TRUE.
-      outfile <- tempfile(fileext='.png')
-      
-      message(vis_genes_selector())
-      
-      print(
-        visListPlot(
-          seu.list=vis.list,
-          features=vis_genes_selector(),
-          assay='Spatial',
-          reduction="space",
-          pt.size=1,
-          font.size=8
-        )
-      )
-      dev.off()
-      
-      # Return a list
-      # list(
-      #   src = outfile,
-      #   contentType = 'image/png',
-      #   alt = "This is alternate text"
-      # )
-    })}, deleteFile = TRUE)
+  output$spatialtheta <- renderPlot({
+    visListPlot(
+        seu.list=vis.list,
+        features=vis_types_selector(),
+        assay='sub_raw_deg_ted',
+        reduction="space",
+        pt.size=1,
+        font.size=8
+      )&scale_color_gradientn(colors=spatial_theta_colors,na.value = gray(0.42),limits=c(10^-2,1)) %>%print()
+  })
   
   # DownloadHandler----
   # Allows plots to be donwloaded in specificed file type
@@ -1230,7 +1199,7 @@ server <- function(input, output){
       )
     }
   )
-    # All Cells - .Rdata----
+    # All Cells - .RData----
   output$down11 <- downloadHandler(
     filename = function() {
       paste("name", "Rdata", sep=".")
