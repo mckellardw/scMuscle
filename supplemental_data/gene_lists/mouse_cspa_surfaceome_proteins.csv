@@ -1,0 +1,1297 @@
+organism,ID_link,CSPA category,UP_Protein_name,UP_entry_name,CD,ENTREZ_gene_ID,ENTREZ gene symbol,protein probability,count detection in different cell types,Phobius TM predicted yes/no,# predicted TM domains,GPI,UniProt cell surface
+Mouse,Q61391,1 - high confidence,Neprilysin,NEP_MOUSE,CD10,17380,Mme,1,13,1,1,0,yes
+Mouse,O09126,1 - high confidence,Semaphorin-4D,SEM4D_MOUSE,CD100,20354,Sema4d,1,22,1,1,0,yes
+Mouse,A8E0Y8,1 - high confidence,Immunoglobulin superfamily member 2,IGSF2_MOUSE,CD101,630146,Cd101,1,3,1,1,0,yes
+Mouse,P35330,1 - high confidence,Intercellular adhesion molecule 2,ICAM2_MOUSE,CD102,15896,Icam2,1,9,1,1,0,yes
+Mouse,Q60677,1 - high confidence,Integrin alpha-E,ITAE_MOUSE,CD103,16407,Itgae,0.9949,1,1,1,0,yes
+Mouse,A2A863,1 - high confidence,Integrin beta-4,ITB4_MOUSE,CD104,192897,Itgb4,1,2,1,1,0,yes
+Mouse,Q63961,1 - high confidence,Endoglin,EGLN_MOUSE,CD105,13805,Eng,1,9,1,1,0,yes
+Mouse,P29533,1 - high confidence,Vascular cell adhesion protein 1,VCAM1_MOUSE,CD106,22329,Vcam1,1,16,1,1,1,yes
+Mouse,P11438,1 - high confidence,Lysosome-associated membrane glycoprotein 1,LAMP1_MOUSE,CD107a,16783,Lamp1,1,28,1,1,0,yes
+Mouse,P17047,1 - high confidence,Lysosome-associated membrane glycoprotein 2,LAMP2_MOUSE,CD107b,16784,Lamp2,1,28,1,1,0,yes
+Mouse,Q9QUR8,1 - high confidence,Semaphorin-7A,SEM7A_MOUSE,CD108,20361,Sema7a,1,5,1,1,1,yes
+Mouse,Q8R422,1 - high confidence,CD109 antigen,CD109_MOUSE,CD109,235505,Cd109,1,8,0,0,1,yes
+Mouse,Q9JKF6,1 - high confidence,Poliovirus receptor-related protein 1,PVRL1_MOUSE,CD111,58235,Pvrl1,1,23,1,1,0,yes
+Mouse,P32507,1 - high confidence,Poliovirus receptor-related protein 2,PVRL2_MOUSE,CD112,19294,Pvrl2,1,22,1,1,0,yes
+Mouse,Q9JLB9,1 - high confidence,Poliovirus receptor-related protein 3,PVRL3_MOUSE,CD113,58998,Pvrl3,1,16,1,1,0,yes
+Mouse,P09581,1 - high confidence,Macrophage colony-stimulating factor 1 receptor,CSF1R_MOUSE,CD115,12978,Csf1r,1,3,1,1,0,yes
+Mouse,Q00941,1 - high confidence,Granulocyte-macrophage colony-stimulating factor receptor subunit alpha,CSF2R_MOUSE,CD116,12982,Csf2ra,1,9,1,1,0,yes
+Mouse,P05532,1 - high confidence,Mast/stem cell growth factor receptor,KIT_MOUSE,CD117,16590,Kit,0.9966,6,1,1,0,yes
+Mouse,P42703,1 - high confidence,Leukemia inhibitory factor receptor,LIFR_MOUSE,CD118,16880,Lifr,1,15,1,1,0,yes
+Mouse,P24063,1 - high confidence,Integrin alpha-L,ITAL_MOUSE,CD11a,16408,Itgal,0.9999,11,1,1,0,yes
+Mouse,P05555,1 - high confidence,Integrin alpha-M,ITAM_MOUSE,CD11b,16409,Itgam,1,8,1,1,0,yes
+Mouse,Q9QXH4,1 - high confidence,Integrin alpha-X,ITAX_MOUSE,CD11c,16411,Itgax,1,1,1,1,0,yes
+Mouse,Q3V0T4,1 - high confidence,Integrin alpha-D,ITAD_MOUSE,CD11d,381924,Itgad,1,2,1,1,0,yes
+Mouse,P13504,1 - high confidence,Interleukin-1 receptor type 1,IL1R1_MOUSE,CD121a,16177,Il1r1,1,1,1,1,0,yes
+Mouse,P27931,1 - high confidence,Interleukin-1 receptor type 2,IL1R2_MOUSE,CD121b,16178,Il1r2,1,2,1,1,0,yes
+Mouse,P26952,1 - high confidence,Interleukin-3 receptor subunit alpha,IL3RA_MOUSE,CD123,16188,Il3ra,1,11,1,1,0,yes
+Mouse,P16382,1 - high confidence,Interleukin-4 receptor subunit alpha,IL4RA_MOUSE,CD124,16190,Il4r,0.9966,5,1,1,0,yes
+Mouse,P22272,1 - high confidence,Interleukin-6 receptor subunit alpha,IL6RA_MOUSE,CD126,16194,Il6ra,0.9813,2,1,1,0,yes
+Mouse,P16872,1 - high confidence,Interleukin-7 receptor subunit alpha,IL7RA_MOUSE,CD127,16197,Il7r,1,3,1,1,0,yes
+Mouse,P97449,3 - unspecific,Aminopeptidase N,AMPN_MOUSE,CD13,16790,Anpep,1,24,0,0,0,#N/A
+Mouse,Q00560,1 - high confidence,Interleukin-6 receptor subunit beta,IL6RB_MOUSE,CD130,16195,Il6st,1,19,1,1,0,yes
+Mouse,P34902,1 - high confidence,Cytokine receptor common subunit gamma,IL2RG_MOUSE,CD132,16186,Il2rg,1,3,1,1,0,yes
+Mouse,O54990,1 - high confidence,Prominin-1,PROM1_MOUSE,CD133,19126,Prom1,1,15,1,5,0,yes
+Mouse,P47741,1 - high confidence,Tumor necrosis factor receptor superfamily member 4,TNR4_MOUSE,CD134,22163,Tnfrsf4,1,2,1,1,0,yes
+Mouse,P20334,1 - high confidence,Tumor necrosis factor receptor superfamily member 9,TNR9_MOUSE,CD137,21942,Tnfrsf9,0.9954,1,1,1,0,yes
+Mouse,P10810,1 - high confidence,Monocyte differentiation antigen CD14,CD14_MOUSE,CD14,12475,Cd14,1,11,0,0,1,yes
+Mouse,P26618,1 - high confidence,Alpha-type platelet-derived growth factor receptor,PGFRA_MOUSE,CD140a,18595,Pdgfra,0.9986,2,1,1,0,yes
+Mouse,P05622,1 - high confidence,Beta-type platelet-derived growth factor receptor,PGFRB_MOUSE,CD140b,18596,Pdgfrb,1,11,1,1,0,yes
+Mouse,P15306,1 - high confidence,Thrombomodulin,TRBM_MOUSE,CD141,21824,Thbd,1,7,1,1,0,yes
+Mouse,P20352,1 - high confidence,Tissue factor,TF_MOUSE,CD142,14066,F3,1,21,1,1,0,yes
+Mouse,P09470,1 - high confidence,Angiotensin-converting enzyme,ACE_MOUSE,CD143,11421,Ace,1,3,1,1,0,yes
+Mouse,P55284,1 - high confidence,Cadherin-5,CADH5_MOUSE,CD144,12562,Cdh5,0.9898,3,1,1,0,yes
+Mouse,Q8R2Y2,1 - high confidence,Cell surface glycoprotein MUC18,MUC18_MOUSE,CD146,84004,Mcam,1,16,1,1,0,yes
+Mouse,P18572,1 - high confidence,Basigin,BASI_MOUSE,CD147,12215,Bsg,1,31,1,1,0,yes
+Mouse,Q64455,1 - high confidence,Receptor-type tyrosine-protein phosphatase eta,PTPRJ_MOUSE,CD148,19271,Ptprj,1,29,1,1,0,yes
+Mouse,Q9QUM4,1 - high confidence,Signaling lymphocytic activation molecule,SLAF1_MOUSE,CD150,27218,Slamf1,1,3,1,1,0,yes
+Mouse,O35566,2 - putative,CD151 antigen,CD151_MOUSE,CD151,12476,Cd151,1,10,1,4,0,#N/A
+Mouse,P09793,1 - high confidence,Cytotoxic T-lymphocyte protein 4,CTLA4_MOUSE,CD152,12477,Ctla4,1,2,1,1,0,yes
+Mouse,P32972,2 - putative,Tumor necrosis factor ligand superfamily member 8,TNFL8_MOUSE,CD153,21949,Tnfsf8,0.9938,1,1,1,0,#N/A
+Mouse,Q9Z0F8,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 17,ADA17_MOUSE,CD156b,11491,Adam17,1,17,1,1,0,yes
+Mouse,O35598,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 10,ADA10_MOUSE,CD156c,11487,Adam10,1,27,1,1,0,yes
+Mouse,Q64277,1 - high confidence,ADP-ribosyl cyclase 2,BST1_MOUSE,CD157,12182,Bst1,1,5,0,0,1,yes
+Mouse,Q2VLH6,1 - high confidence,Scavenger receptor cysteine-rich type 1 protein M130,C163A_MOUSE,CD163,93671,Cd163,1,2,1,1,0,yes
+Mouse,Q9R0L9,1 - high confidence,Sialomucin core protein 24,MUC24_MOUSE,CD164,53599,Cd164,1,19,1,1,0,yes
+Mouse,Q61490,1 - high confidence,CD166 antigen,CD166_MOUSE,CD166,11658,Alcam,1,28,1,1,0,yes
+Mouse,Q62230,1 - high confidence,Sialoadhesin,SN_MOUSE,CD169,20612,Siglec1,1,6,1,1,0,yes
+Mouse,P11627,1 - high confidence,Neural cell adhesion molecule L1,L1CAM_MOUSE,CD171,16728,L1cam,1,25,1,1,0,yes
+Mouse,P97797,1 - high confidence,Tyrosine-protein phosphatase non-receptor type substrate 1,SHPS1_MOUSE,CD172a,19261,Sirpa,1,25,1,1,0,yes
+Mouse,P11835,1 - high confidence,Integrin beta-2,ITB2_MOUSE,CD18,16414,Itgb2,1,13,1,1,0,yes
+Mouse,Q62192,1 - high confidence,CD180 antigen,CD180_MOUSE,CD180,17079,Cd180,0.9999,3,1,1,0,yes
+Mouse,Q04683,1 - high confidence,C-X-C chemokine receptor type 5,CXCR5_MOUSE,CD185,12145,Cxcr5,0.9933,2,1,7,0,yes
+Mouse,P25918,1 - high confidence,B-lymphocyte antigen CD19,CD19_MOUSE,CD19,12478,Cd19,1,5,1,1,0,yes
+Mouse,P51680,1 - high confidence,C-C chemokine receptor type 4,CCR4_MOUSE,CD194,12773,Ccr4,0.9954,3,1,7,0,yes
+Mouse,P47774,1 - high confidence,C-C chemokine receptor type 7,CCR7_MOUSE,CD197,12775,Ccr7,1,2,1,6,0,yes
+Mouse,P08920,1 - high confidence,T-cell surface antigen CD2,CD2_MOUSE,CD2,12481,Cd2,1,5,1,1,0,yes
+Mouse,P19437,1 - high confidence,B-lymphocyte antigen CD20,CD20_MOUSE,CD20,12482,Ms4a1,1,1,1,4,0,yes
+Mouse,O54901,1 - high confidence,OX-2 membrane glycoprotein,OX2G_MOUSE,CD200,17470,Cd200,1,13,1,1,0,yes
+Mouse,Q64695,1 - high confidence,Endothelial protein C receptor,EPCR_MOUSE,CD201,19124,Procr,1,11,1,1,0,yes
+Mouse,Q02858,1 - high confidence,Angiopoietin-1 receptor,TIE2_MOUSE,CD202b,0,Tek,0.99,1,1,1,0,yes
+Mouse,P06802,1 - high confidence,Ectonucleotide pyrophosphatase/phosphodiesterase family member 1,ENPP1_MOUSE,CD203a,18605,Enpp1,1,23,1,1,0,yes
+Mouse,Q6DYE8,1 - high confidence,Ectonucleotide pyrophosphatase/phosphodiesterase family member 3,ENPP3_MOUSE,CD203c,209558,Enpp3,1,16,1,1,0,yes
+Mouse,P30204,2 - putative,Macrophage scavenger receptor types I and II,MSRE_MOUSE,CD204,20288,Msr1,1,10,1,1,0,#N/A
+Mouse,Q60767,1 - high confidence,Lymphocyte antigen 75,LY75_MOUSE,CD205,17076,Ly75,1,21,1,1,0,yes
+Mouse,Q61830,1 - high confidence,Macrophage mannose receptor 1,MRC1_MOUSE,CD206,17533,Mrc1,1,2,1,1,0,yes
+Mouse,P19070,1 - high confidence,Complement receptor type 2,CR2_MOUSE,CD21,12902,Cr2,1,1,1,1,0,yes
+Mouse,Q60837,1 - high confidence,Interleukin-12 receptor subunit beta-1,I12R1_MOUSE,CD212,16161,Il12rb1,0.9938,1,1,1,0,yes
+Mouse,Q60943,1 - high confidence,Interleukin-17 receptor A,I17RA_MOUSE,CD217,16172,Il17ra,0.9963,4,1,1,0,yes
+Mouse,Q61098,1 - high confidence,Interleukin-18 receptor 1,IL18R_MOUSE,CD218a,16182,Il18r1,1,4,1,1,0,yes
+Mouse,P35329,1 - high confidence,B-cell receptor CD22,CD22_MOUSE,CD22,12483,Cd22,1,3,1,1,0,yes
+Mouse,P15208,1 - high confidence,Insulin receptor,INSR_MOUSE,CD220,16337,Insr,1,31,1,1,0,yes
+Mouse,Q60751,1 - high confidence,Insulin-like growth factor 1 receptor,IGF1R_MOUSE,CD221,16001,Igf1r,1,25,1,1,0,yes
+Mouse,Q07113,1 - high confidence,Cation-independent mannose-6-phosphate receptor,MPRI_MOUSE,CD222,16004,Igf2r,1,22,1,1,0,yes
+Mouse,Q61790,1 - high confidence,Lymphocyte activation gene 3 protein,LAG3_MOUSE,CD223,16768,Lag3,1,2,1,1,0,yes
+Mouse,Q60928,2 - putative,Gamma-glutamyltranspeptidase 1,GGT1_MOUSE,CD224,14598,Ggt1,1,18,1,1,0,#N/A
+Mouse,Q8K4F0,1 - high confidence,CD226 antigen,CD226_MOUSE,CD226,225825,Cd226,1,3,1,1,0,yes
+Mouse,Q02496,1 - high confidence,Mucin-1,MUC1_MOUSE,CD227,17829,Muc1,0.9979,2,1,1,0,yes
+Mouse,Q9R0R1,1 - high confidence,Melanotransferrin,TRFM_MOUSE,CD228,30060,Mfi2,1,2,1,1,1,yes
+Mouse,Q01965,1 - high confidence,T-lymphocyte surface antigen Ly-9,LY9_MOUSE,CD229,17085,Ly9,1,6,1,2,0,yes
+Mouse,P20693,1 - high confidence,Low affinity immunoglobulin epsilon Fc receptor,FCER2_MOUSE,CD23,14128,Fcer2,1,2,1,1,0,yes
+Mouse,P04925,1 - high confidence,Major prion protein,PRIO_MOUSE,CD230,19122,Prnp,1,30,1,2,1,yes
+Mouse,Q62283,2 - putative,Tetraspanin-7,TSN7_MOUSE,CD231,21912,Tspan7,1,4,1,4,0,#N/A
+Mouse,Q9QZC2,1 - high confidence,Plexin-C1,PLXC1_MOUSE,CD232,54712,Plxnc1,1,5,1,2,0,yes
+Mouse,P24807,1 - high confidence,Signal transducer CD24,CD24_MOUSE,CD24,12484,Cd24,1,27,0,0,1,yes
+Mouse,Q9QUT0,2 - putative,Ammonium transporter Rh type A,RHAG_MOUSE,CD241,19743,Rhag,1,1,1,11,0,#N/A
+Mouse,Q07763,1 - high confidence,Natural killer cell receptor 2B4,CD244_MOUSE,CD244,18106,Cd244,0.9945,2,1,1,0,yes
+Mouse,P97793,1 - high confidence,ALK tyrosine kinase receptor,ALK_MOUSE,CD246,11682,Alk,0.9973,1,1,1,0,yes
+Mouse,P16406,2 - putative,Glutamyl aminopeptidase,AMPE_MOUSE,CD249,13809,Enpep,1,4,1,1,0,#N/A
+Mouse,P01590,1 - high confidence,Interleukin-2 receptor subunit alpha,IL2RA_MOUSE,CD25,16184,Il2ra,1,2,1,1,0,yes
+Mouse,O35235,1 - high confidence,Tumor necrosis factor ligand superfamily member 11,TNF11_MOUSE,CD254,21943,Tnfsf11,1,2,1,1,0,yes
+Mouse,P28843,1 - high confidence,Dipeptidyl peptidase 4,DPP4_MOUSE,CD26,13482,Dpp4,1,13,1,1,0,yes
+Mouse,Q9QZM4,1 - high confidence,Tumor necrosis factor receptor superfamily member 10B,TR10B_MOUSE,CD262,21933,Tnfrsf10b,1,8,1,2,0,yes
+Mouse,P41272,1 - high confidence,CD27 antigen,CD27_MOUSE,CD27,21940,Cd27,1,3,1,1,0,yes
+Mouse,Q9WUL5,1 - high confidence,Programmed cell death 1 ligand 2,PD1L2_MOUSE,CD273,58205,Pdcd1lg2,0.9954,3,1,1,0,yes
+Mouse,Q9EP73,1 - high confidence,Programmed cell death 1 ligand 1,PD1L1_MOUSE,CD274,60533,Cd274,0.9962,9,1,1,0,yes
+Mouse,Q9JHJ8,1 - high confidence,ICOS ligand,ICOSL_MOUSE,CD275,50723,Icoslg,1,4,1,1,0,yes
+Mouse,Q8VE98,1 - high confidence,CD276 antigen,CD276_MOUSE,CD276,102657,Cd276,1,24,1,1,0,yes
+Mouse,Q02242,1 - high confidence,Programmed cell death protein 1,PDCD1_MOUSE,CD279,18566,Pdcd1,0.9034,2,1,1,0,yes
+Mouse,P31041,1 - high confidence,T-cell-specific surface glycoprotein CD28,CD28_MOUSE,CD28,12487,Cd28,1,6,1,1,0,yes
+Mouse,Q64449,1 - high confidence,C-type mannose receptor 2,MRC2_MOUSE,CD280,17534,Mrc2,1,17,1,1,0,yes
+Mouse,Q9EPQ1,1 - high confidence,Toll-like receptor 1,TLR1_MOUSE,CD281,21897,Tlr1,1,5,1,2,0,yes
+Mouse,Q9QUN7,1 - high confidence,Toll-like receptor 2,TLR2_MOUSE,CD282,24088,Tlr2,1,6,1,1,0,yes
+Mouse,Q9QUK6,1 - high confidence,Toll-like receptor 4,TLR4_MOUSE,CD284,21898,Tlr4,0.9912,5,1,1,0,yes
+Mouse,Q9EPW9,1 - high confidence,Toll-like receptor 6,TLR6_MOUSE,CD286,21899,Tlr6,0.9842,2,1,1,0,yes
+Mouse,P58682,1 - high confidence,Toll-like receptor 8,TLR8_MOUSE,CD288,170744,Tlr8,0.9929,2,1,1,0,yes
+Mouse,P09055,1 - high confidence,Integrin beta-1,ITB1_MOUSE,CD29,16412,Itgb1,1,31,1,1,0,yes
+Mouse,P97370,1 - high confidence,Sodium/potassium-transporting ATPase subunit beta-3,AT1B3_MOUSE,CD298,11933,Atp1b3,1,30,1,1,0,yes
+Mouse,Q60846,1 - high confidence,Tumor necrosis factor receptor superfamily member 8,TNR8_MOUSE,CD30,21941,Tnfrsf8,1,2,1,1,0,yes
+Mouse,Q9DCG2,1 - high confidence,CD302 antigen,CD302_MOUSE,CD302,66205,Cd302,0.9886,3,1,1,0,yes
+Mouse,P97333,1 - high confidence,Neuropilin-1,NRP1_MOUSE,CD304,18186,Nrp1,1,20,1,1,0,yes
+Mouse,Q8BG84,1 - high confidence,Leukocyte-associated immunoglobulin-like receptor 1,LAIR1_MOUSE,CD305,52855,Lair1,1,4,1,1,0,yes
+Mouse,P35918,1 - high confidence,Vascular endothelial growth factor receptor 2,VGFR2_MOUSE,CD309,16542,Kdr,0.9923,4,1,1,0,yes
+Mouse,Q08481,1 - high confidence,Platelet endothelial cell adhesion molecule,PECA1_MOUSE,CD31,18613,Pecam1,1,22,1,1,0,yes
+Mouse,Q9WV91,1 - high confidence,Prostaglandin F2 receptor negative regulator,FPRP_MOUSE,CD315,19221,Ptgfrn,1,24,1,1,0,yes
+Mouse,Q8R366,1 - high confidence,Immunoglobulin superfamily member 8,IGSF8_MOUSE,CD316,140559,Igsf8,1,20,1,1,0,yes
+Mouse,Q8R2Q8,1 - high confidence,Bone marrow stromal antigen 2,BST2_MOUSE,CD317,69550,Bst2,1,27,1,1,1,yes
+Mouse,Q5U462,1 - high confidence,CUB domain-containing protein 1,CDCP1_MOUSE,CD318,109332,Cdcp1,1,3,1,1,0,yes
+Mouse,P08101,1 - high confidence,Low affinity immunoglobulin gamma Fc region receptor II,FCGR2_MOUSE,CD32,14130,Fcgr2,1,11,1,1,0,yes
+Mouse,Q9Z1P5,1 - high confidence,CD320 antigen,CD320_MOUSE,CD320,54219,Cd320,1,18,1,1,0,yes
+Mouse,O88792,1 - high confidence,Junctional adhesion molecule A,JAM1_MOUSE,CD321,16456,F11r,1,25,1,1,0,yes
+Mouse,Q9JI59,1 - high confidence,Junctional adhesion molecule B,JAM2_MOUSE,CD322,67374,Jam2,1,7,1,1,0,yes
+Mouse,P09803,1 - high confidence,Cadherin-1,CADH1_MOUSE,CD324,12550,Cdh1,0.9583,6,1,1,0,yes
+Mouse,P15116,1 - high confidence,Cadherin-2,CADH2_MOUSE,CD325,12558,Cdh2,1,21,1,1,0,yes
+Mouse,Q99JW5,1 - high confidence,Epithelial cell adhesion molecule,EPCAM_MOUSE,CD326,17075,Epcam,1,11,1,1,0,yes
+Mouse,Q63994,1 - high confidence,Myeloid cell surface antigen CD33,CD33_MOUSE,CD33,12489,Cd33,0.9999,1,1,1,0,yes
+Mouse,P16092,1 - high confidence,Basic fibroblast growth factor receptor 1,FGFR1_MOUSE,CD331,14182,Fgfr1,1,21,1,1,0,yes
+Mouse,P21803,1 - high confidence,Fibroblast growth factor receptor 2,FGFR2_MOUSE,CD332,14183,Fgfr2,1,6,1,1,0,yes
+Mouse,Q61851,1 - high confidence,Fibroblast growth factor receptor 3,FGFR3_MOUSE,CD333,14184,Fgfr3,1,4,1,1,0,yes
+Mouse,Q9QXX0,1 - high confidence,Protein jagged-1,JAG1_MOUSE,CD339,16449,Jag1,1,16,1,1,0,yes
+Mouse,Q64314,1 - high confidence,Hematopoietic progenitor cell antigen CD34,CD34_MOUSE,CD34,12490,Cd34,1,13,1,1,0,yes
+Mouse,P70424,1 - high confidence,Receptor tyrosine-protein kinase erbB-2,ERBB2_MOUSE,CD340,13866,Erbb2,1,9,1,1,0,yes
+Mouse,Q9R216,1 - high confidence,Frizzled-9,FZD9_MOUSE,CD349,14371,Fzd9,1,2,1,7,0,yes
+Mouse,Q08857,2 - putative,Platelet glycoprotein 4,CD36_MOUSE,CD36,12491,Cd36,1,19,1,2,0,#N/A
+Mouse,Q61470,2 - putative,Leukocyte antigen CD37,CD37_MOUSE,CD37,12493,Cd37,1,5,1,4,0,#N/A
+Mouse,P56528,2 - putative,ADP-ribosyl cyclase 1,CD38_MOUSE,CD38,12494,Cd38,1,20,1,1,0,#N/A
+Mouse,P55772,2 - putative,Ectonucleoside triphosphate diphosphohydrolase 1,ENTP1_MOUSE,CD39,12495,Entpd1,1,13,1,2,0,#N/A
+Mouse,P04235,1 - high confidence,T-cell surface glycoprotein CD3 delta chain,CD3D_MOUSE,CD3d,12500,Cd3d,0.9946,4,1,1,0,yes
+Mouse,P11942,1 - high confidence,T-cell surface glycoprotein CD3 gamma chain,CD3G_MOUSE,CD3g,12502,Cd3g,0.9946,4,1,1,0,yes
+Mouse,P06332,1 - high confidence,T-cell surface glycoprotein CD4,CD4_MOUSE,CD4,12504,Cd4,1,4,1,1,0,yes
+Mouse,P27512,1 - high confidence,Tumor necrosis factor receptor superfamily member 5,TNR5_MOUSE,CD40,21939,Cd40,0.9883,6,1,1,0,yes
+Mouse,O88186,1 - high confidence,Platelet glycoprotein IX,GPIX_MOUSE,CD42a,54368,Gp9,0.9771,1,1,1,0,yes
+Mouse,O08742,1 - high confidence,Platelet glycoprotein V,GPV_MOUSE,CD42d,14729,Gp5,0.9763,1,1,1,0,yes
+Mouse,P15379,1 - high confidence,CD44 antigen,CD44_MOUSE,CD44,12505,Cd44,1,22,1,1,0,yes
+Mouse,P06800,1 - high confidence,Receptor-type tyrosine-protein phosphatase C,PTPRC_MOUSE,CD45,19264,Ptprc,1,7,1,1,0,yes
+Mouse,Q61735,1 - high confidence,Leukocyte surface antigen CD47,CD47_MOUSE,CD47,16423,Cd47,1,28,1,5,0,yes
+Mouse,P18181,1 - high confidence,CD48 antigen,CD48_MOUSE,CD48,12506,Cd48,1,8,0,0,1,yes
+Mouse,Q3V3R4,1 - high confidence,Integrin alpha-1,ITA1_MOUSE,CD49a,109700,Itga1,1,20,1,1,0,yes
+Mouse,Q62469,1 - high confidence,Integrin alpha-2,ITA2_MOUSE,CD49b,16398,Itga2,1,8,1,1,0,yes
+Mouse,Q62470,1 - high confidence,Integrin alpha-3,ITA3_MOUSE,CD49c,16400,Itga3,1,25,1,1,0,yes
+Mouse,Q00651,1 - high confidence,Integrin alpha-4,ITA4_MOUSE,CD49d,16401,Itga4,1,13,1,1,0,yes
+Mouse,P11688,1 - high confidence,Integrin alpha-5,ITA5_MOUSE,CD49e,16402,Itga5,1,23,1,1,0,yes
+Mouse,Q61739,1 - high confidence,Integrin alpha-6,ITA6_MOUSE,CD49f,16403,Itga6,1,27,1,1,0,yes
+Mouse,P13379,1 - high confidence,T-cell surface glycoprotein CD5,CD5_MOUSE,CD5,12507,Cd5,1,3,1,1,0,yes
+Mouse,P43406,1 - high confidence,Integrin alpha-V,ITAV_MOUSE,CD51,16410,Itgav,1,30,1,1,0,yes
+Mouse,Q61451,2 - putative,Leukocyte surface antigen CD53,CD53_MOUSE,CD53,12508,Cd53,1,7,1,4,0,#N/A
+Mouse,P13597,1 - high confidence,Intercellular adhesion molecule 1,ICAM1_MOUSE,CD54,15894,Icam1,1,28,1,1,0,yes
+Mouse,P13595,1 - high confidence,Neural cell adhesion molecule 1,NCAM1_MOUSE,CD56,17967,Ncam1,1,25,1,1,1,yes
+Mouse,Q61003,1 - high confidence,T-cell differentiation antigen CD6,CD6_MOUSE,CD6,12511,Cd6,1,4,1,1,0,yes
+Mouse,O54890,1 - high confidence,Integrin beta-3,ITB3_MOUSE,CD61,16416,Itgb3,0.9999,5,1,1,0,yes
+Mouse,P18337,1 - high confidence,L-selectin,LYAM1_MOUSE,CD62L,20343,Sell,1,3,1,1,0,yes
+Mouse,P41731,1 - high confidence,CD63 antigen,CD63_MOUSE,CD63,12512,Cd63,1,19,1,4,0,yes
+Mouse,P26151,1 - high confidence,High affinity immunoglobulin gamma Fc receptor I,FCGR1_MOUSE,CD64,14129,Fcgr1,1,4,1,1,0,yes
+Mouse,P31809,1 - high confidence,Carcinoembryonic antigen-related cell adhesion molecule 1,CEAM1_MOUSE,CD66a,26365,Ceacam1,1,17,1,1,0,yes
+Mouse,P37217,2 - putative,Early activation antigen CD69,CD69_MOUSE,CD69,12515,Cd69,1,5,1,1,0,#N/A
+Mouse,Q62351,1 - high confidence,Transferrin receptor protein 1,TFR1_MOUSE,CD71,22042,Tfrc,1,26,1,1,0,yes
+Mouse,P21855,2 - putative,B-cell differentiation antigen CD72,CD72_MOUSE,CD72,12517,Cd72,0.9945,5,1,1,0,#N/A
+Mouse,Q7TSA3,1 - high confidence,B- and T-lymphocyte attenuator,BTLA_MOUSE,CD727,208154,Btla,1,2,1,1,0,yes
+Mouse,Q61503,1 - high confidence,5'-nucleotidase,5NTD_MOUSE,CD73,23959,Nt5e,1,21,1,1,1,yes
+Mouse,P04441,2 - putative,H-2 class II histocompatibility antigen gamma chain,HG2A_MOUSE,CD74,16149,Cd74,1,2,1,1,0,#N/A
+Mouse,P11911,1 - high confidence,B-cell antigen receptor complex-associated protein alpha chain,CD79A_MOUSE,CD79a,12518,Cd79a,0.9949,1,1,1,0,yes
+Mouse,P15530,1 - high confidence,B-cell antigen receptor complex-associated protein beta chain,CD79B_MOUSE,CD79b,15985,Cd79b,1,2,1,1,0,yes
+Mouse,Q00609,1 - high confidence,T-lymphocyte activation antigen CD80,CD80_MOUSE,CD80,12519,Cd80,0.9966,19,1,1,0,yes
+Mouse,P40237,2 - putative,CD82 antigen,CD82_MOUSE,CD82,12521,Cd82,1,11,1,4,0,#N/A
+Mouse,Q18PI6,1 - high confidence,SLAM family member 5,SLAF5_MOUSE,CD84,12523,Cd84,1,5,1,1,0,yes
+Mouse,Q64281,1 - high confidence,Leukocyte immunoglobulin-like receptor subfamily B member 4,LIRB4_MOUSE,CD85k,14728,Lilrb4,1,3,1,1,0,yes
+Mouse,P42082,1 - high confidence,T-lymphocyte activation antigen CD86,CD86_MOUSE,CD86,12524,Cd86,1,2,1,1,0,yes
+Mouse,P35456,1 - high confidence,Urokinase plasminogen activator surface receptor,UPAR_MOUSE,CD87,18793,Plaur,1,16,1,1,1,yes
+Mouse,P01731,1 - high confidence,T-cell surface glycoprotein CD8 alpha chain,CD8A_MOUSE,CD8a,12525,Cd8a,1,3,1,1,0,yes
+Mouse,P10300,1 - high confidence,T-cell surface glycoprotein CD8 beta chain,CD8B_MOUSE,CD8b,12526,Cd8b,1,2,1,1,0,yes
+Mouse,P01831,1 - high confidence,Thy-1 membrane glycoprotein,THY1_MOUSE,CD90,21838,Thy1,1,23,1,1,1,yes
+Mouse,Q91ZX7,1 - high confidence,Prolow-density lipoprotein receptor-related protein 1,LRP1_MOUSE,CD91,16971,Lrp1,1,29,1,1,0,yes
+Mouse,Q6X893,1 - high confidence,Choline transporter-like protein 1,CTL1_MOUSE,CD92,100434,Slc44a1,1,3,1,9,0,yes
+Mouse,O89103,1 - high confidence,Complement component C1q receptor,C1QR1_MOUSE,CD93,17064,Cd93,0.9944,2,1,1,0,yes
+Mouse,P25446,1 - high confidence,Tumor necrosis factor receptor superfamily member 6,TNR6_MOUSE,CD95,14102,Fas,1,5,1,1,0,yes
+Mouse,Q3U0X8,1 - high confidence,T-cell surface protein tactile,TACT_MOUSE,CD96,84544,Cd96,0.9946,1,1,1,0,yes
+Mouse,Q9Z0M6,1 - high confidence,CD97 antigen,CD97_MOUSE,CD97,26364,Cd97,1,24,1,7,0,yes
+Mouse,P10852,1 - high confidence,4F2 cell-surface antigen heavy chain,4F2_MOUSE,CD98,17254,Slc3a2,1,31,1,1,0,yes
+Mouse,Q61190,1 - high confidence,Interleukin-10 receptor subunit beta,I10R2_MOUSE,CDw210b,16155,Il10rb,0.9906,1,1,1,0,yes
+Mouse,P17182,1 - high confidence,Alpha-enolase,ENOA_MOUSE,no,13806,Eno1,1,11,0,0,0,yes
+Mouse,P68040,1 - high confidence,Guanine nucleotide-binding protein subunit beta-2-like 1,GBLP_MOUSE,no,14694,Gnb2l1,1,10,0,0,0,yes
+Mouse,P97321,1 - high confidence,Seprase,SEPR_MOUSE,no,14089,Fap,1,1,0,0,0,yes
+Mouse,Q60932,1 - high confidence,Voltage-dependent anion-selective channel protein 1,VDAC1_MOUSE,no,22333,Vdac1,1,16,0,0,0,yes
+Mouse,Q9Z1Q5,1 - high confidence,Chloride intracellular channel protein 1,CLIC1_MOUSE,no,114584,Clic1,1,3,0,0,0,yes
+Mouse,Q8C3Q5,1 - high confidence,Protein shisa-6-like,SHS6L_MOUSE,no,232813,0,0.9973,1,0,0,0,yes
+Mouse,Q7TN16,1 - high confidence,Hedgehog-interacting protein,HHIP_MOUSE,no,15245,Hhip,0.996,2,0,0,0,yes
+Mouse,P84091,1 - high confidence,AP-2 complex subunit mu,AP2M1_MOUSE,no,11773,Ap2m1,0.9951,6,0,0,0,yes
+Mouse,Q8C8R3,1 - high confidence,Ankyrin-2,ANK2_MOUSE,no,109676,Ank2,0.9945,1,0,0,0,yes
+Mouse,Q3TNL8,1 - high confidence,"Inositol 1,4,5-triphosphate receptor-interacting protein",IPRI_MOUSE,no,414801,Itprip,0.9894,3,0,0,0,yes
+Mouse,P01898,1 - high confidence,"H-2 class I histocompatibility antigen, Q10 alpha chain",HA10_MOUSE,no,15007,H2-Q10,0.9819,16,0,0,0,yes
+Mouse,A6H584,1 - high confidence,Collagen alpha-5(VI) chain,CO6A5_MOUSE,no,665033,Col29a1,1,3,0,0,0,yes
+Mouse,O08665,1 - high confidence,Semaphorin-3A,SEM3A_MOUSE,no,20346,Sema3a,1,3,0,0,0,yes
+Mouse,O70340,1 - high confidence,Neuronal pentraxin-2,NPTX2_MOUSE,no,53324,Nptx2,1,7,0,0,0,yes
+Mouse,P01872,1 - high confidence,Ig mu chain C region secreted form,IGHM_MOUSE,no,16019,Igh-6,1,5,0,0,0,yes
+Mouse,P01881,1 - high confidence,Ig delta chain C region secreted form,IGHD_MOUSE,no,0,0,1,2,0,0,0,yes
+Mouse,P02468,1 - high confidence,Laminin subunit gamma-1,LAMC1_MOUSE,no,226519,Lamc1,1,23,0,0,0,yes
+Mouse,P02469,1 - high confidence,Laminin subunit beta-1,LAMB1_MOUSE,no,16777,Lamb1-1,1,20,0,0,0,yes
+Mouse,P07356,1 - high confidence,Annexin A2,ANXA2_MOUSE,no,12306,Anxa2,1,11,0,0,0,yes
+Mouse,P11276,1 - high confidence,Fibronectin,FINC_MOUSE,no,14268,Fn1,1,26,0,0,0,yes
+Mouse,P19137,1 - high confidence,Laminin subunit alpha-1,LAMA1_MOUSE,no,16772,Lama1,1,16,0,0,0,yes
+Mouse,P21956,1 - high confidence,Lactadherin,MFGM_MOUSE,no,17304,Mfge8,1,12,0,0,0,yes
+Mouse,P24383,1 - high confidence,Protein Wnt-7a,WNT7A_MOUSE,no,22421,Wnt7a,1,2,0,0,0,yes
+Mouse,P28047,1 - high confidence,Protein Wnt-7b,WNT7B_MOUSE,no,22422,Wnt7b,1,2,0,0,0,yes
+Mouse,P28798,1 - high confidence,Granulins,GRN_MOUSE,no,14824,Grn,1,5,0,0,0,yes
+Mouse,P29699,1 - high confidence,Alpha-2-HS-glycoprotein,FETUA_MOUSE,no,11625,Ahsg,1,13,0,0,0,yes
+Mouse,P37889,1 - high confidence,Fibulin-2,FBLN2_MOUSE,no,14115,Fbln2,1,4,0,0,0,yes
+Mouse,P39061,1 - high confidence,Collagen alpha-1(XVIII) chain [Cleaved into: Endostatin],COIA1_MOUSE,no,12822,Col18a1,1,13,0,0,0,yes
+Mouse,P55065,1 - high confidence,Phospholipid transfer protein,PLTP_MOUSE,no,18830,Pltp,1,10,0,0,0,yes
+Mouse,P55066,1 - high confidence,Neurocan core protein,NCAN_MOUSE,no,13004,Ncan,1,3,0,0,0,yes
+Mouse,P58022,1 - high confidence,Lysyl oxidase homolog 2,LOXL2_MOUSE,no,94352,Loxl2,1,4,0,0,0,yes
+Mouse,P58242,1 - high confidence,Acid sphingomyelinase-like phosphodiesterase 3b,ASM3B_MOUSE,no,100340,Smpdl3b,1,19,0,0,0,yes
+Mouse,P62960,1 - high confidence,Nuclease-sensitive element-binding protein 1,YBOX1_MOUSE,no,22608,Ybx1,1,10,0,0,0,yes
+Mouse,P98086,1 - high confidence,Complement C1q subcomponent subunit A,C1QA_MOUSE,no,12259,C1qa,1,4,0,0,0,yes
+Mouse,Q00493,1 - high confidence,Carboxypeptidase E,CBPE_MOUSE,no,12876,Cpe,1,8,0,0,0,yes
+Mouse,Q02788,1 - high confidence,Collagen alpha-2(VI) chain,CO6A2_MOUSE,no,12834,Col6a2,1,7,0,0,0,yes
+Mouse,Q03311,1 - high confidence,Cholinesterase,CHLE_MOUSE,no,12038,Bche,1,1,0,0,0,yes
+Mouse,Q04857,1 - high confidence,Collagen alpha-1(VI) chain,CO6A1_MOUSE,no,12833,Col6a1,1,3,0,0,0,yes
+Mouse,Q05793,1 - high confidence,Basement membrane-specific heparan sulfate proteoglycan core protein,PGBM_MOUSE,no,15530,Hspg2,1,18,0,0,0,yes
+Mouse,Q06890,1 - high confidence,Clusterin,CLUS_MOUSE,no,12759,Clu,1,15,0,0,0,yes
+Mouse,Q07797,1 - high confidence,Galectin-3-binding protein,LG3BP_MOUSE,no,19039,Lgals3bp,1,16,0,0,0,yes
+Mouse,Q3UQ28,1 - high confidence,Peroxidasin homolog,PXDN_MOUSE,no,69675,Pxdn,1,10,0,0,0,yes
+Mouse,Q3V1M1,1 - high confidence,Immunoglobulin superfamily member 10,IGS10_MOUSE,no,242050,Igsf10,1,6,0,0,0,yes
+Mouse,Q3V1T4,1 - high confidence,Prolyl 3-hydroxylase 1,P3H1_MOUSE,no,56401,Lepre1,1,6,0,0,0,yes
+Mouse,Q60675,1 - high confidence,Laminin subunit alpha-2,LAMA2_MOUSE,no,16773,Lama2,1,1,0,0,0,yes
+Mouse,Q60847,1 - high confidence,Collagen alpha-1(XII) chain,COCA1_MOUSE,no,12816,Col12a1,1,6,0,0,0,yes
+Mouse,Q61001,1 - high confidence,Laminin subunit alpha-5,LAMA5_MOUSE,no,16776,Lama5,1,18,0,0,0,yes
+Mouse,Q61147,1 - high confidence,Ceruloplasmin,CERU_MOUSE,no,12870,Cp,1,16,0,0,0,yes
+Mouse,Q61292,1 - high confidence,Laminin subunit beta-2,LAMB2_MOUSE,no,16779,Lamb2,1,5,0,0,0,yes
+Mouse,Q61554,1 - high confidence,Fibrillin-1,FBN1_MOUSE,no,14118,Fbn1,1,9,0,0,0,yes
+Mouse,Q61555,1 - high confidence,Fibrillin-2,FBN2_MOUSE,no,14119,Fbn2,1,7,0,0,0,yes
+Mouse,Q61838,1 - high confidence,Alpha-2-macroglobulin,A2M_MOUSE,no,232345,A2m,1,6,0,0,0,yes
+Mouse,Q66PY1,1 - high confidence,"Signal peptide, CUB and EGF-like domain-containing protein 3",SCUB3_MOUSE,no,268935,Scube3,1,2,0,0,0,yes
+Mouse,Q6DFY8,1 - high confidence,Protein FAM5B,FAM5B_MOUSE,no,240843,Fam5b,1,5,0,0,0,yes
+Mouse,Q80T21,1 - high confidence,ADAMTS-like protein 4,ATL4_MOUSE,no,229595,Adamtsl4,1,4,0,0,0,yes
+Mouse,Q80YX1,1 - high confidence,Tenascin,TENA_MOUSE,no,21923,Tnc,1,11,0,0,0,yes
+Mouse,Q8BHE5,1 - high confidence,Bone morphogenetic protein 3,BMP3_MOUSE,no,110075,Bmp3,1,1,0,0,0,yes
+Mouse,Q8BZ64,1 - high confidence,Tectonic-1,TECT1_MOUSE,no,654470,Tctn1,1,3,0,0,0,yes
+Mouse,Q8C6K9,1 - high confidence,Collagen alpha-6(VI) chain,CO6A6_MOUSE,no,245026,Col6a6,1,2,0,0,0,yes
+Mouse,Q8CG19,1 - high confidence,Latent-transforming growth factor beta-binding protein 1,LTBP1_MOUSE,no,268977,Ltbp1,1,11,0,0,0,yes
+Mouse,Q8HW98,1 - high confidence,IgLON family member 5,IGLO5_MOUSE,no,210094,Iglon5,1,17,0,0,0,yes
+Mouse,Q8K482,1 - high confidence,EMILIN-2,EMIL2_MOUSE,no,246707,Emilin2,1,2,0,0,0,yes
+Mouse,Q91VF5,1 - high confidence,EMI domain-containing protein 1,EMID1_MOUSE,no,140703,Emid1,1,1,0,0,0,yes
+Mouse,Q99K41,1 - high confidence,EMILIN-1,EMIL1_MOUSE,no,100952,Emilin1,1,13,0,0,0,yes
+Mouse,Q9CQN4,1 - high confidence,Sclerostin domain-containing protein 1,SOSD1_MOUSE,no,66042,Sostdc1,1,1,0,0,0,yes
+Mouse,Q9D1H9,1 - high confidence,Microfibril-associated glycoprotein 4,MFAP4_MOUSE,no,76293,Mfap4,1,6,0,0,0,yes
+Mouse,Q9D6X6,1 - high confidence,Serine protease 23,PRS23_MOUSE,no,76453,Prss23,1,4,0,0,0,yes
+Mouse,Q9DB72,1 - high confidence,BTB/POZ domain-containing protein 17,BTBDH_MOUSE,no,72014,Btbd17,1,8,0,0,0,yes
+Mouse,Q9JIF7,1 - high confidence,Coatomer subunit beta,COPB_MOUSE,no,70349,Copb1,1,3,0,0,0,yes
+Mouse,Q9JM58,1 - high confidence,Cytokine receptor-like factor 1,CRLF1_MOUSE,no,12931,Crlf1,1,5,0,0,0,yes
+Mouse,Q9QZJ6,1 - high confidence,Microfibrillar-associated protein 5,MFAP5_MOUSE,no,50530,Mfap5,1,1,0,0,0,yes
+Mouse,Q9R045,1 - high confidence,Angiopoietin-related protein 2,ANGL2_MOUSE,no,26360,Angptl2,1,6,0,0,0,yes
+Mouse,Q9R1B9,1 - high confidence,Slit homolog 2 protein,SLIT2_MOUSE,no,20563,Slit2,1,6,0,0,0,yes
+Mouse,Q9WVG5,1 - high confidence,Endothelial lipase,LIPE_MOUSE,no,16891,Lipg,1,3,0,0,0,yes
+Mouse,Q9Z0L8,1 - high confidence,Gamma-glutamyl hydrolase,GGH_MOUSE,no,14590,Ggh,1,3,0,0,0,yes
+Mouse,Q9Z1P8,1 - high confidence,Angiopoietin-related protein 4,ANGL4_MOUSE,no,57875,Angptl4,1,1,0,0,0,yes
+Mouse,B2RPV6,1 - high confidence,Multimerin-1,MMRN1_MOUSE,no,70945,Mmrn1,0.9998,2,0,0,0,yes
+Mouse,P0C7W3,1 - high confidence,Prosalusin,TOR2X_MOUSE,no,30933,Tor2a,0.9979,6,0,0,0,yes
+Mouse,P29788,1 - high confidence,Vitronectin,VTNC_MOUSE,no,22370,Vtn,0.9979,7,0,0,0,yes
+Mouse,Q62059,1 - high confidence,Versican core protein,CSPG2_MOUSE,no,13003,Vcan,0.9979,4,0,0,0,yes
+Mouse,Q6GQT1,1 - high confidence,Alpha-2-macroglobulin-P,A2MP_MOUSE,no,232345,A2mp,0.9979,1,0,0,0,yes
+Mouse,P11087,1 - high confidence,Collagen alpha-1(I) chain,CO1A1_MOUSE,no,12842,Col1a1,0.9975,4,0,0,0,yes
+Mouse,O88783,1 - high confidence,Coagulation factor V,FA5_MOUSE,no,14067,F5,0.9974,6,0,0,0,yes
+Mouse,Q7TNR6,1 - high confidence,Immunoglobulin superfamily member 21,IGS21_MOUSE,no,230868,Igsf21,0.9974,3,0,0,0,yes
+Mouse,Q8BM13,1 - high confidence,Noelin-2,NOE2_MOUSE,no,244723,Olfm2,0.9973,5,0,0,0,yes
+Mouse,Q8K4Z0,1 - high confidence,Leucine-rich repeat LGI family member 2,LGI2_MOUSE,no,246316,Lgi2,0.9973,1,0,0,0,yes
+Mouse,O08538,1 - high confidence,Angiopoietin-1,ANGP1_MOUSE,no,11600,Angpt1,0.9972,2,0,0,0,yes
+Mouse,Q9Z100,1 - high confidence,Probable carboxypeptidase X1,CPXM1_MOUSE,no,56264,Cpxm1,0.9972,2,0,0,0,yes
+Mouse,O09118,1 - high confidence,Netrin-1,NET1_MOUSE,no,18208,Ntn1,0.9971,2,0,0,0,yes
+Mouse,P04426,1 - high confidence,Proto-oncogene Wnt-1,WNT1_MOUSE,no,22408,Wnt1,0.9971,1,0,0,0,yes
+Mouse,Q3UTY6,1 - high confidence,Thrombospondin type-1 domain-containing protein 4,THSD4_MOUSE,no,207596,Thsd4,0.9971,2,0,0,0,yes
+Mouse,Q8CI19,1 - high confidence,Platelet-derived growth factor C,PDGFC_MOUSE,no,54635,Pdgfc,0.9971,1,0,0,0,yes
+Mouse,Q8K4G1,1 - high confidence,Latent-transforming growth factor beta-binding protein 4,LTBP4_MOUSE,no,108075,Ltbp4,0.9971,1,0,0,0,yes
+Mouse,Q9ER58,1 - high confidence,Testican-2,TICN2_MOUSE,no,94214,Spock2,0.9971,2,0,0,0,yes
+Mouse,Q9JJS0,1 - high confidence,"Signal peptide, CUB and EGF-like domain-containing protein 2",SCUB2_MOUSE,no,56788,Scube2,0.9971,2,0,0,0,yes
+Mouse,Q99M71,1 - high confidence,Mammalian ependymin-related protein 1,EPDR1_MOUSE,no,105298,Epdr1,0.9969,2,0,0,0,yes
+Mouse,Q07104,1 - high confidence,Growth/differentiation factor 3,GDF3_MOUSE,no,14562,Gdf3,0.9968,2,0,0,0,yes
+Mouse,O54819,1 - high confidence,Tissue factor pathway inhibitor,TFPI1_MOUSE,no,21788,Tfpi,0.9966,7,0,0,0,yes
+Mouse,O88322,1 - high confidence,Nidogen-2,NID2_MOUSE,no,18074,Nid2,0.9966,14,0,0,0,yes
+Mouse,P01868,1 - high confidence,Ig gamma-1 chain C region secreted form,IGHG1_MOUSE,no,16017,Ighg1,0.9966,4,0,0,0,yes
+Mouse,P12032,1 - high confidence,Metalloproteinase inhibitor 1,TIMP1_MOUSE,no,21857,Timp1,0.9966,6,0,0,0,yes
+Mouse,P28665,1 - high confidence,Murinoglobulin-1,MUG1_MOUSE,no,17836,Mug1,0.9966,1,0,0,0,yes
+Mouse,P54751,1 - high confidence,"CMP-N-acetylneuraminate-beta-galactosamide-alpha-2,3-sialyltransferase 1",SIA4A_MOUSE,no,20442,St3gal1,0.9966,11,0,0,0,yes
+Mouse,Q61207,1 - high confidence,Sulfated glycoprotein 1,SAP_MOUSE,no,19156,Psap,0.9966,20,0,0,0,yes
+Mouse,Q62356,1 - high confidence,Follistatin-related protein 1,FSTL1_MOUSE,no,14314,Fstl1,0.9966,5,0,0,0,yes
+Mouse,Q99MQ4,1 - high confidence,Asporin,ASPN_MOUSE,no,66695,Aspn,0.9966,2,0,0,0,yes
+Mouse,Q9CYD3,1 - high confidence,Cartilage-associated protein,CRTAP_MOUSE,no,56693,Crtap,0.9966,5,0,0,0,yes
+Mouse,A2AVA0,1 - high confidence,"Sushi, von Willebrand factor type A, EGF and pentraxin domain-containing protein 1",SVEP1_MOUSE,no,64817,Svep1,0.9965,1,0,0,0,yes
+Mouse,Q8CIF4,1 - high confidence,Biotinidase,BTD_MOUSE,no,26363,Btd,0.9965,2,0,0,0,yes
+Mouse,Q8R2G6,1 - high confidence,Coiled-coil domain-containing protein 80,CCD80_MOUSE,no,67896,Ccdc80,0.9965,1,0,0,0,yes
+Mouse,Q920C1,1 - high confidence,Chordin-like protein 1,CRDL1_MOUSE,no,83453,Chrdl1,0.9965,2,0,0,0,yes
+Mouse,Q8BTG6,1 - high confidence,UPF0454 protein C12orf49 homolog,CL049_MOUSE,no,76792,0,0.9963,4,0,0,0,yes
+Mouse,Q60963,1 - high confidence,Platelet-activating factor acetylhydrolase,PAFA_MOUSE,no,27226,Pla2g7,0.9962,1,0,0,0,yes
+Mouse,P04769,1 - high confidence,Prolactin-7D1,PR7D1_MOUSE,no,18814,Prl7d1,0.996,1,0,0,0,yes
+Mouse,P28481,1 - high confidence,Collagen alpha-1(II) chain,CO2A1_MOUSE,no,12824,Col2a1,0.996,3,0,0,0,yes
+Mouse,P47878,1 - high confidence,Insulin-like growth factor-binding protein 3,IBP3_MOUSE,no,16009,Igfbp3,0.996,1,0,0,0,yes
+Mouse,Q62181,1 - high confidence,Semaphorin-3C,SEM3C_MOUSE,no,20348,Sema3c,0.996,2,0,0,0,yes
+Mouse,Q64527,1 - high confidence,Protein Wnt-8a,WNT8A_MOUSE,no,20890,Wnt8a,0.996,1,0,0,0,yes
+Mouse,Q8VCC9,1 - high confidence,Spondin-1,SPON1_MOUSE,no,233744,Spon1,0.996,2,0,0,0,yes
+Mouse,Q920A5,1 - high confidence,Retinoid-inducible serine carboxypeptidase,RISC_MOUSE,no,74617,Scpep1,0.996,2,0,0,0,yes
+Mouse,O88207,1 - high confidence,Collagen alpha-1(V) chain,CO5A1_MOUSE,no,12831,Col5a1,0.9959,3,0,0,0,yes
+Mouse,Q8BLX7,1 - high confidence,Collagen alpha-1(XVI) chain,COGA1_MOUSE,no,107581,Col16a1,0.9956,1,0,0,0,yes
+Mouse,P50427,1 - high confidence,Steryl-sulfatase,STS_MOUSE,no,20905,Sts,0.9955,1,0,0,0,yes
+Mouse,Q9DAY5,1 - high confidence,UPF0669 protein C6orf120 homolog,CF120_MOUSE,no,67912,0,0.9955,1,0,0,0,yes
+Mouse,P04202,1 - high confidence,Transforming growth factor beta-1,TGFB1_MOUSE,no,21803,Tgfb1,0.9954,3,0,0,0,yes
+Mouse,P52430,1 - high confidence,Serum paraoxonase/arylesterase 1,PON1_MOUSE,no,18979,Pon1,0.9954,4,0,0,0,yes
+Mouse,Q61508,1 - high confidence,Extracellular matrix protein 1,ECM1_MOUSE,no,13601,Ecm1,0.9954,1,0,0,0,yes
+Mouse,P28653,1 - high confidence,Biglycan,PGS1_MOUSE,no,12111,Bgn,0.9953,3,0,0,0,yes
+Mouse,Q80TR4,1 - high confidence,Slit homolog 1 protein,SLIT1_MOUSE,no,20562,Slit1,0.9951,5,0,0,0,yes
+Mouse,P21844,1 - high confidence,Chymase,CMA1_MOUSE,no,17228,Cma1,0.9948,1,0,0,0,yes
+Mouse,P51885,1 - high confidence,Lumican,LUM_MOUSE,no,17022,Lum,0.9945,1,0,0,0,yes
+Mouse,Q8BJD1,1 - high confidence,Inter-alpha-trypsin inhibitor heavy chain H5,ITIH5_MOUSE,no,209378,Itih5,0.9945,1,0,0,0,yes
+Mouse,P11032,1 - high confidence,Granzyme A,GRAA_MOUSE,no,14938,Gzma,0.9935,1,0,0,0,yes
+Mouse,P22725,1 - high confidence,Protein Wnt-5a,WNT5A_MOUSE,no,22418,Wnt5a,0.9931,4,0,0,0,yes
+Mouse,Q61361,1 - high confidence,Brevican core protein,PGCB_MOUSE,no,12032,Bcan,0.9931,3,0,0,0,yes
+Mouse,P28654,1 - high confidence,Decorin,PGS2_MOUSE,no,13179,Dcn,0.9928,1,0,0,0,yes
+Mouse,Q62009,1 - high confidence,Periostin,POSTN_MOUSE,no,50706,Postn,0.9914,1,0,0,0,yes
+Mouse,P02772,1 - high confidence,Alpha-fetoprotein,FETA_MOUSE,no,11576,Afp,0.9913,7,0,0,0,yes
+Mouse,P63075,1 - high confidence,Fibroblast growth factor 17,FGF17_MOUSE,no,14171,Fgf17,0.99,7,0,0,0,yes
+Mouse,P97927,1 - high confidence,Laminin subunit alpha-4,LAMA4_MOUSE,no,16775,Lama4,0.9898,3,0,0,0,yes
+Mouse,P10493,1 - high confidence,Nidogen-1,NID1_MOUSE,no,18073,Nid1,0.9889,2,0,0,0,yes
+Mouse,Q9QUN9,1 - high confidence,Dickkopf-related protein 3,DKK3_MOUSE,no,50781,Dkk3,0.9881,1,0,0,0,yes
+Mouse,P50608,1 - high confidence,Fibromodulin,FMOD_MOUSE,no,14264,Fmod,0.987,1,0,0,0,yes
+Mouse,Q9WVB4,1 - high confidence,Slit homolog 3 protein,SLIT3_MOUSE,no,20564,Slit3,0.9817,5,0,0,0,yes
+Mouse,P98064,1 - high confidence,Mannan-binding lectin serine protease 1,MASP1_MOUSE,no,17174,Masp1,0.9639,1,0,0,0,yes
+Mouse,Q9EQF4,1 - high confidence,Probable folate receptor delta,FOLR4_MOUSE,no,64931,Folr4,0.9538,6,0,0,0,yes
+Mouse,Q9JM99,1 - high confidence,Proteoglycan 4,PRG4_MOUSE,no,96875,Prg4,0.94,8,0,0,0,yes
+Mouse,P08121,1 - high confidence,Collagen alpha-1(III) chain,CO3A1_MOUSE,no,12825,Col3a1,0.93,2,0,0,0,yes
+Mouse,P11214,1 - high confidence,Tissue-type plasminogen activator,TPA_MOUSE,no,18791,Plat,0.9201,2,0,0,0,yes
+Mouse,O88998,1 - high confidence,Noelin,NOE1_MOUSE,no,56177,Olfm1,1,2,0,0,0,yes
+Mouse,P18242,1 - high confidence,Cathepsin D,CATD_MOUSE,no,13033,Ctsd,1,9,0,0,0,yes
+Mouse,P61979,1 - high confidence,Heterogeneous nuclear ribonucleoprotein K,HNRPK_MOUSE,no,15387,Hnrnpk,1,16,0,0,0,yes
+Mouse,P98063,1 - high confidence,Bone morphogenetic protein 1,BMP1_MOUSE,no,12153,Bmp1,1,16,0,0,0,yes
+Mouse,O35887,1 - high confidence,Calumenin,CALU_MOUSE,no,12321,Calu,0.9966,9,0,0,0,yes
+Mouse,P10605,1 - high confidence,Cathepsin B,CATB_MOUSE,no,13030,Ctsb,0.9954,5,0,0,0,yes
+Mouse,O08842,1 - high confidence,GDNF family receptor alpha-2,GFRA2_MOUSE,no,14586,Gfra2,1,8,0,0,1,yes
+Mouse,O35632,1 - high confidence,Hyaluronidase-2,HYAL2_MOUSE,no,15587,Hyal2,1,4,0,0,1,yes
+Mouse,O88507,1 - high confidence,Ciliary neurotrophic factor receptor subunit alpha,CNTFR_MOUSE,no,12804,Cntfr,1,16,0,0,1,yes
+Mouse,P09242,1 - high confidence,"Alkaline phosphatase, tissue-nonspecific isozyme",PPBT_MOUSE,no,11647,Alpl,1,21,0,0,1,yes
+Mouse,P35846,1 - high confidence,Folate receptor alpha,FOLR1_MOUSE,no,14275,Folr1,1,4,0,0,1,yes
+Mouse,Q05685,1 - high confidence,Folate receptor beta,FOLR2_MOUSE,no,14276,Folr2,1,5,0,0,1,yes
+Mouse,Q0PMG2,1 - high confidence,MAM domain-containing glycosylphosphatidylinositol anchor protein 1,MDGA1_MOUSE,no,74762,Mdga1,1,1,0,0,1,yes
+Mouse,Q6PCX7,1 - high confidence,Repulsive guidance molecule A,RGMA_MOUSE,no,244058,Rgma,1,6,0,0,1,yes
+Mouse,Q8BLK3,1 - high confidence,Limbic system-associated membrane protein,LSAMP_MOUSE,no,268890,Lsamp,1,7,0,0,1,yes
+Mouse,Q8C255,1 - high confidence,Dipeptidase 2,DPEP2_MOUSE,no,319446,Dpep2,1,2,0,0,1,yes
+Mouse,Q99PJ0,1 - high confidence,Neurotrimin,NTRI_MOUSE,no,235106,Ntm,1,9,0,0,1,yes
+Mouse,Q9JMI7,1 - high confidence,Testis-expressed protein 101,TX101_MOUSE,no,56746,Tex101,1,6,0,0,1,yes
+Mouse,Q9WUC3,1 - high confidence,Lymphocyte antigen 6H,LY6H_MOUSE,no,23934,Ly6h,1,8,0,0,1,yes
+Mouse,Q9D7S0,1 - high confidence,Uncharacterized protein UNQ511/PRO1026 homolog,YA003_MOUSE,no,70163,0,0.9999,1,0,0,1,yes
+Mouse,Q9JMB8,1 - high confidence,Contactin-6,CNTN6_MOUSE,no,53870,Cntn6,0.9973,1,0,0,1,yes
+Mouse,P11152,1 - high confidence,Lipoprotein lipase,LIPL_MOUSE,no,16956,Lpl,0.9972,3,0,0,1,yes
+Mouse,P57096,1 - high confidence,Prostate stem cell antigen,PSCA_MOUSE,no,72373,Psca,0.9971,1,0,0,1,yes
+Mouse,Q64444,1 - high confidence,Carbonic anhydrase 4,CAH4_MOUSE,no,12351,Ca4,0.9968,1,0,0,1,yes
+Mouse,P52801,1 - high confidence,Ephrin-A2,EFNA2_MOUSE,no,13637,Efna2,0.9966,5,0,0,1,yes
+Mouse,Q61330,1 - high confidence,Contactin-2,CNTN2_MOUSE,no,21367,Cntn2,0.9966,6,0,0,1,yes
+Mouse,O35118,1 - high confidence,GDNF family receptor alpha-3,GFRA3_MOUSE,no,14587,Gfra3,0.9938,1,0,0,1,yes
+Mouse,P51655,1 - high confidence,Glypican-4,GPC4_MOUSE,no,14735,Gpc4,0.9938,3,0,0,1,yes
+Mouse,Q63912,1 - high confidence,Oligodendrocyte-myelin glycoprotein,OMGP_MOUSE,no,18377,Omg,0.9931,3,0,0,1,yes
+Mouse,Q8R4F1,1 - high confidence,Netrin-G2,NTNG2_MOUSE,no,171171,Ntng2,0.9922,3,0,0,1,yes
+Mouse,P31428,1 - high confidence,Dipeptidase 1,DPEP1_MOUSE,no,13479,Dpep1,0.9819,3,0,0,1,yes
+Mouse,A2A8L5,1 - high confidence,Receptor-type tyrosine-protein phosphatase F,PTPRF_MOUSE,no,19268,Ptprf,1,16,1,1,0,yes
+Mouse,A2AFS3,1 - high confidence,UPF0577 protein KIAA1324,K1324_MOUSE,no,229722,Kiaa1324,1,2,1,1,0,yes
+Mouse,A2AJN7,1 - high confidence,Sodium bicarbonate transporter-like protein 11,S4A11_MOUSE,no,269356,Slc4a11,1,4,1,11,0,yes
+Mouse,A2ARI4,1 - high confidence,Leucine-rich repeat-containing G-protein coupled receptor 4,LGR4_MOUSE,no,107515,Lgr4,1,9,1,7,0,yes
+Mouse,A2ARV4,1 - high confidence,Low-density lipoprotein receptor-related protein 2,LRP2_MOUSE,no,14725,Lrp2,1,13,1,1,0,yes
+Mouse,O08530,1 - high confidence,Sphingosine 1-phosphate receptor 1,S1PR1_MOUSE,no,13609,S1pr1,1,14,1,7,0,yes
+Mouse,O08532,1 - high confidence,Voltage-dependent calcium channel subunit alpha-2/delta-1,CA2D1_MOUSE,no,12293,Cacna2d1,1,24,1,1,0,yes
+Mouse,O08747,1 - high confidence,Netrin receptor UNC5C,UNC5C_MOUSE,no,22253,Unc5c,1,7,1,1,0,yes
+Mouse,O09047,1 - high confidence,C3a anaphylatoxin chemotactic receptor,C3AR_MOUSE,no,12267,C3ar1,1,3,1,7,0,yes
+Mouse,O35161,1 - high confidence,Cadherin EGF LAG seven-pass G-type receptor 1,CELR1_MOUSE,no,12614,Celsr1,1,6,1,7,0,yes
+Mouse,O35316,1 - high confidence,Sodium- and chloride-dependent taurine transporter,SC6A6_MOUSE,no,21366,Slc6a6,1,21,1,12,0,yes
+Mouse,O35393,1 - high confidence,Ephrin-B3,EFNB3_MOUSE,no,13643,Efnb3,1,13,1,1,0,yes
+Mouse,O35409,1 - high confidence,Glutamate carboxypeptidase 2,FOLH1_MOUSE,no,53320,Folh1,1,2,1,1,0,yes
+Mouse,O35659,1 - high confidence,Glucagon-like peptide 1 receptor,GLP1R_MOUSE,no,14652,Glp1r,1,1,1,7,0,yes
+Mouse,O35714,1 - high confidence,Tumor necrosis factor receptor superfamily member 18,TNR18_MOUSE,no,21936,Tnfrsf18,1,3,1,1,0,yes
+Mouse,O54732,1 - high confidence,Matrix metalloproteinase-15,MMP15_MOUSE,no,17388,Mmp15,1,13,1,1,0,yes
+Mouse,O54991,1 - high confidence,Contactin-associated protein 1,CNTP1_MOUSE,no,53321,Cntnap1,1,5,1,1,0,yes
+Mouse,O70174,1 - high confidence,Neuronal acetylcholine receptor subunit alpha-4,ACHA4_MOUSE,no,11438,Chrna4,1,3,1,4,0,yes
+Mouse,O70255,1 - high confidence,Myelin protein zero-like protein 2,MPZL2_MOUSE,no,14012,Mpzl2,1,6,1,1,0,yes
+Mouse,O70309,1 - high confidence,Integrin beta-5,ITB5_MOUSE,no,16419,Itgb5,1,12,1,1,0,yes
+Mouse,O70458,1 - high confidence,Oncostatin-M-specific receptor subunit beta,OSMR_MOUSE,no,18414,Osmr,1,10,1,1,0,yes
+Mouse,O88307,1 - high confidence,Sortilin-related receptor,SORL_MOUSE,no,20660,Sorl1,1,10,1,1,0,yes
+Mouse,O88393,1 - high confidence,Transforming growth factor beta receptor type 3,TGBR3_MOUSE,no,21814,Tgfbr3,1,6,1,1,0,yes
+Mouse,O89001,1 - high confidence,Carboxypeptidase D,CBPD_MOUSE,no,12874,Cpd,1,21,1,1,0,yes
+Mouse,P01899,1 - high confidence,"H-2 class I histocompatibility antigen, D-B alpha chain",HA11_MOUSE,no,14964,H2-D1,1,10,1,1,0,yes
+Mouse,P01902,1 - high confidence,"H-2 class I histocompatibility antigen, K-D alpha chain",HA1D_MOUSE,no,14972,H2-K1,1,2,1,1,0,yes
+Mouse,P01904,1 - high confidence,"H-2 class II histocompatibility antigen, E-D alpha chain",HA21_MOUSE,no,14968,H2-Ea,1,1,1,1,0,yes
+Mouse,P01910,1 - high confidence,"H-2 class II histocompatibility antigen, A-K alpha chain",HA2K_MOUSE,no,14960,H2-Aa,1,2,1,1,0,yes
+Mouse,P03991,1 - high confidence,"H-2 class I histocompatibility antigen, K-W28 alpha chain",HA1W_MOUSE,no,14972,H2-K1,1,7,1,1,0,yes
+Mouse,P04223,1 - high confidence,"H-2 class I histocompatibility antigen, K-K alpha chain",HA1K_MOUSE,no,14972,H2-K1,1,1,1,1,0,yes
+Mouse,P07141,1 - high confidence,Macrophage colony-stimulating factor 1,CSF1_MOUSE,no,12977,Csf1,1,13,1,1,0,yes
+Mouse,P0C192,1 - high confidence,Leucine-rich repeat-containing protein 4B,LRC4B_MOUSE,no,272381,Lrrc4b,1,7,1,1,0,yes
+Mouse,P10287,1 - high confidence,Cadherin-3,CADH3_MOUSE,no,12560,Cdh3,1,2,1,1,0,yes
+Mouse,P10404,1 - high confidence,MLV-related proviral Env polyprotein [Cleaved into: Surface protein,ENV1_MOUSE,no,,0,1,19,1,2,0,yes
+Mouse,P14094,1 - high confidence,Sodium/potassium-transporting ATPase subunit beta-1,AT1B1_MOUSE,no,11931,Atp1b1,1,27,1,1,0,yes
+Mouse,P14231,1 - high confidence,Sodium/potassium-transporting ATPase subunit beta-2,AT1B2_MOUSE,no,11932,Atp1b2,1,21,1,1,0,yes
+Mouse,P14426,1 - high confidence,"H-2 class I histocompatibility antigen, D-K alpha chain",HA13_MOUSE,no,14964,H2-D1,1,3,1,1,0,yes
+Mouse,P14429,1 - high confidence,"H-2 class I histocompatibility antigen, Q7 alpha chain",HA17_MOUSE,no,15018,H2-Q7,1,7,1,1,0,yes
+Mouse,P15209,1 - high confidence,BDNF/NT-3 growth factors receptor,NTRK2_MOUSE,no,18212,Ntrk2,1,13,1,1,0,yes
+Mouse,P15920,1 - high confidence,V-type proton ATPase 116 kDa subunit a isoform 2,VPP2_MOUSE,no,21871,Atp6v0a2,1,11,1,7,0,yes
+Mouse,P16056,1 - high confidence,Hepatocyte growth factor receptor,MET_MOUSE,no,17295,Met,1,2,1,1,0,yes
+Mouse,P16305,1 - high confidence,Gamma-aminobutyric acid receptor subunit alpha-6,GBRA6_MOUSE,no,14399,Gabra6,1,1,1,4,0,yes
+Mouse,P17809,1 - high confidence,"Solute carrier family 2, facilitated glucose transporter member 1",GTR1_MOUSE,no,20525,Slc2a1,1,30,1,12,0,yes
+Mouse,P21995,1 - high confidence,Embigin,EMB_MOUSE,no,13723,Emb,1,29,1,1,0,yes
+Mouse,P23818,1 - high confidence,Glutamate receptor 1,GRIA1_MOUSE,no,14799,Gria1,1,1,1,3,0,yes
+Mouse,P26049,1 - high confidence,Gamma-aminobutyric acid receptor subunit alpha-3,GBRA3_MOUSE,no,14396,Gabra3,1,1,1,4,0,yes
+Mouse,P27038,1 - high confidence,Activin receptor type-2A,AVR2A_MOUSE,no,11480,Acvr2a,1,13,1,1,0,yes
+Mouse,P27573,1 - high confidence,Myelin protein P0,MYP0_MOUSE,no,17528,Mpz,1,2,1,1,0,yes
+Mouse,P28828,1 - high confidence,Receptor-type tyrosine-protein phosphatase mu,PTPRM_MOUSE,no,19274,Ptprm,1,14,1,1,0,yes
+Mouse,P30558,1 - high confidence,Proteinase-activated receptor 1,PAR1_MOUSE,no,14062,F2r,1,9,1,7,0,yes
+Mouse,P32299,1 - high confidence,B2 bradykinin receptor,BKRB2_MOUSE,no,12062,Bdkrb2,1,2,1,7,0,yes
+Mouse,P33146,1 - high confidence,Cadherin-15,CAD15_MOUSE,no,12555,Cdh15,1,1,1,1,0,yes
+Mouse,P35347,1 - high confidence,Corticotropin-releasing factor receptor 1,CRFR1_MOUSE,no,12921,Crhr1,1,2,1,7,0,yes
+Mouse,P35374,1 - high confidence,Type-2 angiotensin II receptor,AGTR2_MOUSE,no,11609,Agtr2,1,1,1,7,0,yes
+Mouse,P35438,1 - high confidence,Glutamate [NMDA] receptor subunit zeta-1,NMDZ1_MOUSE,no,14810,Grin1,1,2,1,3,0,yes
+Mouse,P35803,1 - high confidence,Neuronal membrane glycoprotein M6-b,GPM6B_MOUSE,no,14758,Gpm6b,1,13,1,4,0,yes
+Mouse,P35822,1 - high confidence,Receptor-type tyrosine-protein phosphatase kappa,PTPRK_MOUSE,no,19272,Ptprk,1,10,1,1,0,yes
+Mouse,P35969,1 - high confidence,Vascular endothelial growth factor receptor 1,VGFR1_MOUSE,no,14254,Flt1,1,6,1,1,0,yes
+Mouse,P41593,1 - high confidence,Parathyroid hormone/parathyroid hormone-related peptide receptor,PTH1R_MOUSE,no,19228,Pth1r,1,3,1,7,0,yes
+Mouse,P47746,1 - high confidence,Cannabinoid receptor 1,CNR1_MOUSE,no,12801,Cnr1,1,1,1,7,0,yes
+Mouse,P52592,1 - high confidence,Sphingosine 1-phosphate receptor 2,S1PR2_MOUSE,no,14739,S1pr2,1,28,1,7,0,yes
+Mouse,P54761,1 - high confidence,Ephrin type-B receptor 4,EPHB4_MOUSE,no,13846,Ephb4,1,22,1,1,0,yes
+Mouse,P54763,1 - high confidence,Ephrin type-B receptor 2,EPHB2_MOUSE,no,13844,Ephb2,1,24,1,1,0,yes
+Mouse,P55292,1 - high confidence,Desmocollin-2,DSC2_MOUSE,no,13506,Dsc2,1,5,1,1,0,yes
+Mouse,P57716,1 - high confidence,Nicastrin,NICA_MOUSE,no,59287,Ncstn,1,24,1,1,0,yes
+Mouse,P70205,1 - high confidence,Pituitary adenylate cyclase-activating polypeptide type I receptor,PACR_MOUSE,no,11517,Adcyap1r1,1,2,1,7,0,yes
+Mouse,P70206,1 - high confidence,Plexin-A1,PLXA1_MOUSE,no,18844,Plxna1,1,29,1,1,0,yes
+Mouse,P70207,1 - high confidence,Plexin-A2,PLXA2_MOUSE,no,18845,Plxna2,1,4,1,1,0,yes
+Mouse,P70232,1 - high confidence,Neural cell adhesion molecule L1-like protein,CHL1_MOUSE,no,12661,Chl1,1,10,1,1,0,yes
+Mouse,P70302,1 - high confidence,Stromal interaction molecule 1,STIM1_MOUSE,no,20866,Stim1,1,14,1,1,0,yes
+Mouse,P70408,1 - high confidence,Cadherin-10,CAD10_MOUSE,no,320873,Cdh10,1,3,1,1,0,yes
+Mouse,P70414,1 - high confidence,Sodium/calcium exchanger 1,NAC1_MOUSE,no,20541,Slc8a1,1,10,1,10,0,yes
+Mouse,P80560,1 - high confidence,Receptor-type tyrosine-protein phosphatase N2,PTPR2_MOUSE,no,19276,Ptprn2,1,1,1,1,0,yes
+Mouse,P83626,1 - high confidence,Tumor necrosis factor receptor superfamily member 26,TNR26_MOUSE,no,244237,Tnfrsf26,1,4,1,1,0,yes
+Mouse,P86044,1 - high confidence,Anoctamin-9,ANO9_MOUSE,no,71345,Ano9,1,6,1,8,0,yes
+Mouse,P97300,1 - high confidence,Neuroplastin,NPTN_MOUSE,no,20320,Nptn,1,31,1,1,0,yes
+Mouse,P97378,1 - high confidence,Interleukin-12 receptor subunit beta-2,I12R2_MOUSE,no,16162,Il12rb2,1,2,1,1,0,yes
+Mouse,P97792,1 - high confidence,Coxsackievirus and adenovirus receptor homolog,CXAR_MOUSE,no,13052,Cxadr,1,10,1,1,0,yes
+Mouse,P97798,1 - high confidence,Neogenin,NEO1_MOUSE,no,18007,Neo1,1,23,1,1,0,yes
+Mouse,Q00993,1 - high confidence,Tyrosine-protein kinase receptor UFO,UFO_MOUSE,no,26362,Axl,1,9,1,1,0,yes
+Mouse,Q01097,1 - high confidence,Glutamate [NMDA] receptor subunit epsilon-2,NMDE2_MOUSE,no,14812,Grin2b,1,1,1,4,0,yes
+Mouse,Q01279,1 - high confidence,Epidermal growth factor receptor,EGFR_MOUSE,no,13649,Egfr,1,16,1,1,0,yes
+Mouse,Q01338,1 - high confidence,Alpha-2A adrenergic receptor,ADA2A_MOUSE,no,11551,Adra2a,1,1,1,7,0,yes
+Mouse,Q01705,1 - high confidence,Neurogenic locus notch homolog protein 1,NOTC1_MOUSE,no,18128,Notch1,1,7,1,1,0,yes
+Mouse,Q01815,1 - high confidence,Voltage-dependent L-type calcium channel subunit alpha-1C,CAC1C_MOUSE,no,12288,Cacna1c,1,2,1,20,0,yes
+Mouse,Q03145,1 - high confidence,Ephrin type-A receptor 2,EPHA2_MOUSE,no,13836,Epha2,1,22,1,1,0,yes
+Mouse,Q05909,1 - high confidence,Receptor-type tyrosine-protein phosphatase gamma,PTPRG_MOUSE,no,19270,Ptprg,1,17,1,2,0,yes
+Mouse,Q05BQ1,1 - high confidence,Protein turtle homolog A,TUTLA_MOUSE,no,93842,Igsf9,1,1,1,1,0,yes
+Mouse,Q2EY15,1 - high confidence,Protogenin,PRTG_MOUSE,no,235472,Prtg,1,9,1,1,0,yes
+Mouse,Q2MV57,1 - high confidence,Tectonic-2,TECT2_MOUSE,no,67978,Tctn2,1,6,1,1,0,yes
+Mouse,Q2PZL6,1 - high confidence,Protocadherin Fat 4,FAT4_MOUSE,no,329628,Fat4,1,7,1,1,0,yes
+Mouse,Q2YFS1,1 - high confidence,Paired immunoglobulin-like type 2 receptor beta-2,PILB2_MOUSE,no,545812,Pilrb2,1,5,1,1,0,yes
+Mouse,Q32M26,1 - high confidence,Uncharacterized protein C11orf87 homolog,CK087_MOUSE,no,330941,0,1,2,1,1,0,yes
+Mouse,Q3TEW6,1 - high confidence,Myelin protein zero-like protein 1,MPZL1_MOUSE,no,68481,Mpzl1,1,23,1,1,0,yes
+Mouse,Q3TH73,1 - high confidence,Protein tweety homolog 2,TTYH2_MOUSE,no,117160,Ttyh2,1,7,1,5,0,yes
+Mouse,Q3TMX7,1 - high confidence,Sulfhydryl oxidase 2,QSOX2_MOUSE,no,227638,Qsox2,1,7,1,1,0,yes
+Mouse,Q3U1J0,1 - high confidence,Sodium-coupled neutral amino acid transporter 5,S38A5_MOUSE,no,209837,Slc38a5,1,1,1,11,0,yes
+Mouse,Q3UH53,1 - high confidence,Protein sidekick-1,SDK1_MOUSE,no,330222,Sdk1,1,3,1,1,0,yes
+Mouse,Q3UVX5,1 - high confidence,Metabotropic glutamate receptor 5,GRM5_MOUSE,no,108071,Grm5,1,3,1,7,0,yes
+Mouse,Q3UZV7,1 - high confidence,UPF0577 protein KIAA1324-like homolog,K132L_MOUSE,no,231014,0,1,4,1,1,0,yes
+Mouse,Q4PZA2,1 - high confidence,Endothelin-converting enzyme 1,ECE1_MOUSE,no,230857,Ece1,1,26,1,1,0,yes
+Mouse,Q4V9Z5,1 - high confidence,Seizure 6-like protein 2,SE6L2_MOUSE,no,233878,Sez6l2,1,3,1,1,0,yes
+Mouse,Q4VAH7,1 - high confidence,HEPACAM family member 2,HECA2_MOUSE,no,101202,Hepacam2,1,1,1,1,0,yes
+Mouse,Q56A07,1 - high confidence,Sodium channel subunit beta-2,SCN2B_MOUSE,no,72821,Scn2b,1,6,1,1,0,yes
+Mouse,Q5DTL9,1 - high confidence,Sodium-driven chloride bicarbonate exchanger,S4A10_MOUSE,no,94229,Slc4a10,1,3,1,11,0,yes
+Mouse,Q60673,1 - high confidence,Receptor-type tyrosine-protein phosphatase-like N,PTPRN_MOUSE,no,19275,Ptprn,1,1,1,1,0,yes
+Mouse,Q60738,1 - high confidence,Zinc transporter 1,ZNT1_MOUSE,no,22782,Slc30a1,1,25,1,6,0,yes
+Mouse,Q60755,1 - high confidence,Calcitonin receptor,CALCR_MOUSE,no,12311,Calcr,1,9,1,7,0,yes
+Mouse,Q61009,1 - high confidence,Scavenger receptor class B member 1,SCRB1_MOUSE,no,20778,Scarb1,1,17,1,2,0,yes
+Mouse,Q61137,1 - high confidence,Astrotactin-1,ASTN1_MOUSE,no,11899,Astn1,1,7,1,2,0,yes
+Mouse,Q61450,1 - high confidence,Mast cell surface glycoprotein Gp49A,GP49A_MOUSE,no,14727,Gp49a,1,2,1,1,0,yes
+Mouse,Q61469,1 - high confidence,Lipid phosphate phosphohydrolase 1,LPP1_MOUSE,no,19012,Ppap2a,1,13,1,5,0,yes
+Mouse,Q61527,1 - high confidence,Receptor tyrosine-protein kinase erbB-4,ERBB4_MOUSE,no,13869,Erbb4,1,3,1,1,0,yes
+Mouse,Q61543,1 - high confidence,Golgi apparatus protein 1,GSLG1_MOUSE,no,20340,Glg1,1,23,1,1,0,yes
+Mouse,Q61549,1 - high confidence,EGF-like module-containing mucin-like hormone receptor-like 1,EMR1_MOUSE,no,13733,Emr1,1,4,1,7,0,yes
+Mouse,Q61738,1 - high confidence,Integrin alpha-7 [Cleaved into: Integrin alpha-7 heavy chain; Integrin alpha-7 light chain],ITA7_MOUSE,no,16404,Itga7,1,6,1,1,0,yes
+Mouse,Q61809,1 - high confidence,Leucine-rich repeat neuronal protein 1,LRRN1_MOUSE,no,16979,Lrrn1,1,7,1,1,0,yes
+Mouse,Q62179,1 - high confidence,Semaphorin-4B,SEM4B_MOUSE,no,20352,Sema4b,1,18,1,1,0,yes
+Mouse,Q62313,1 - high confidence,Trans-Golgi network integral membrane protein 1,TGON1_MOUSE,no,22134,Tgoln1,1,23,1,1,0,yes
+Mouse,Q64735,1 - high confidence,Complement regulatory protein Crry,CRRY_MOUSE,no,12946,Crry,1,27,1,1,0,yes
+Mouse,Q68ED2,1 - high confidence,Metabotropic glutamate receptor 7,GRM7_MOUSE,no,108073,Grm7,1,1,1,7,0,yes
+Mouse,Q68FM6,1 - high confidence,Leucine-rich repeat and fibronectin type-III domain-containing protein 6,LRFN6_MOUSE,no,207393,Elfn2,1,3,1,1,0,yes
+Mouse,Q69ZU6,1 - high confidence,Thrombospondin type-1 domain-containing protein 7A,THS7A_MOUSE,no,330267,Thsd7a,1,4,1,1,0,yes
+Mouse,Q6DIB5,1 - high confidence,Multiple epidermal growth factor-like domains protein 10,MEG10_MOUSE,no,70417,Megf10,1,3,1,1,0,yes
+Mouse,Q6F3F9,1 - high confidence,G-protein coupled receptor 126,GP126_MOUSE,no,215798,Gpr126,1,5,1,7,0,yes
+Mouse,Q6GQU6,1 - high confidence,Leucine-rich repeat and immunoglobulin-like domain-containing nogo receptor-interacting protein 3,LIGO3_MOUSE,no,237403,Lingo3,1,1,1,1,0,yes
+Mouse,Q6IEE6,1 - high confidence,Transmembrane protein 132E,T132E_MOUSE,no,270893,Tmem132e,1,4,1,1,0,yes
+Mouse,Q6NVD0,1 - high confidence,FRAS1-related extracellular matrix protein 2,FREM2_MOUSE,no,242022,Frem2,1,11,1,1,0,yes
+Mouse,Q6P1D5,1 - high confidence,Seizure 6-like protein,SE6L1_MOUSE,no,56747,Sez6l,1,4,1,1,0,yes
+Mouse,Q6P5F6,1 - high confidence,Zinc transporter ZIP10,S39AA_MOUSE,no,227059,Slc39a10,1,25,1,6,0,yes
+Mouse,Q6P6J9,1 - high confidence,Thioredoxin domain-containing protein 15,TXD15_MOUSE,no,69672,Txndc15,1,17,1,1,0,yes
+Mouse,Q6P9J9,1 - high confidence,Anoctamin-6,ANO6_MOUSE,no,105722,Ano6,1,29,1,8,0,yes
+Mouse,Q6PGD0,1 - high confidence,Apoptosis-related protein 3,APR3_MOUSE,no,381629,4/3/2010,1,8,1,1,0,yes
+Mouse,Q6PHU5,1 - high confidence,Sortilin,SORT_MOUSE,no,20661,Sort1,1,15,1,1,0,yes
+Mouse,Q6PIC6,1 - high confidence,Sodium/potassium-transporting ATPase subunit alpha-3,AT1A3_MOUSE,no,232975,Atp1a3,1,4,1,8,0,yes
+Mouse,Q6R5N8,1 - high confidence,Toll-like receptor 13,TLR13_MOUSE,no,279572,Tlr13,1,3,1,1,0,yes
+Mouse,Q6V4S5,1 - high confidence,Protein sidekick-2,SDK2_MOUSE,no,237979,Sdk2,1,6,1,1,0,yes
+Mouse,Q6VNS1,1 - high confidence,NT-3 growth factor receptor,NTRK3_MOUSE,no,18213,Ntrk3,1,6,1,1,0,yes
+Mouse,Q6ZQA6,1 - high confidence,Immunoglobulin superfamily member 3,IGSF3_MOUSE,no,78908,Igsf3,1,18,1,1,0,yes
+Mouse,Q71M36,1 - high confidence,Chondroitin sulfate proteoglycan 5,CSPG5_MOUSE,no,29873,Cspg5,1,10,1,1,0,yes
+Mouse,Q75N73,1 - high confidence,Zinc transporter ZIP14,S39AE_MOUSE,no,213053,Slc39a14,1,30,1,6,0,yes
+Mouse,Q7TN73,1 - high confidence,CAS1 domain-containing protein 1,CASD1_MOUSE,no,213819,Casd1,1,12,1,14,0,yes
+Mouse,Q80T14,1 - high confidence,Extracellular matrix protein FRAS1,FRAS1_MOUSE,no,231470,Fras1,1,2,1,1,0,yes
+Mouse,Q80T41,1 - high confidence,Gamma-aminobutyric acid type B receptor subunit 2,GABR2_MOUSE,no,242425,Gabbr2,1,3,1,7,0,yes
+Mouse,Q80TR1,1 - high confidence,Latrophilin-1,LPHN1_MOUSE,no,330814,Lphn1,1,2,1,7,0,yes
+Mouse,Q80TS3,1 - high confidence,Latrophilin-3,LPHN3_MOUSE,no,319387,Lphn3,1,5,1,7,0,yes
+Mouse,Q80UG2,1 - high confidence,Plexin-A4,PLXA4_MOUSE,no,243743,Plxna4,1,1,1,1,0,yes
+Mouse,Q80UL9,1 - high confidence,Junctional adhesion molecule-like,JAML1_MOUSE,no,270152,Amica1,1,3,1,1,0,yes
+Mouse,Q80WT4,1 - high confidence,Probable G-protein coupled receptor 176,GP176_MOUSE,no,381413,Gpr176,1,4,1,7,0,yes
+Mouse,Q80YA8,1 - high confidence,Crumbs homolog 2,CRUM2_MOUSE,no,241324,Crb2,1,6,1,1,0,yes
+Mouse,Q80ZF8,1 - high confidence,Brain-specific angiogenesis inhibitor 3,BAI3_MOUSE,no,210933,Bai3,1,4,1,8,0,yes
+Mouse,Q810C0,1 - high confidence,SLIT and NTRK-like protein 2,SLIK2_MOUSE,no,245450,Slitrk2,1,5,1,1,0,yes
+Mouse,Q810U3,1 - high confidence,Neurofascin,NFASC_MOUSE,no,269116,Nfasc,1,7,1,1,0,yes
+Mouse,Q810U4,1 - high confidence,Neuronal cell adhesion molecule,NRCAM_MOUSE,no,319504,Nrcam,1,17,1,1,0,yes
+Mouse,Q8BH27,1 - high confidence,Multiple epidermal growth factor-like domains protein 9,MEGF9_MOUSE,no,230316,Megf9,1,2,1,1,0,yes
+Mouse,Q8BHA1,1 - high confidence,Leucine-rich repeat-containing protein 24,LRC24_MOUSE,no,378937,Lrrc24,1,2,1,1,0,yes
+Mouse,Q8BJ83,1 - high confidence,TM2 domain-containing protein 3,TM2D3_MOUSE,no,68634,Tm2d3,1,15,1,1,0,yes
+Mouse,Q8BKG3,1 - high confidence,Tyrosine-protein kinase-like 7,PTK7_MOUSE,no,71461,Ptk7,1,25,1,1,0,yes
+Mouse,Q8BLI4,1 - high confidence,Dermatan-sulfate epimerase,DSE_MOUSE,no,212898,Dse,1,4,1,2,0,yes
+Mouse,Q8BLQ9,1 - high confidence,Cell adhesion molecule 2,CADM2_MOUSE,no,239857,Cadm2,1,13,1,1,0,yes
+Mouse,Q8BMC0,1 - high confidence,Lysophosphatidic acid receptor 6,LPAR6_MOUSE,no,67168,Lpar6,1,11,1,7,0,yes
+Mouse,Q8BQC3,1 - high confidence,Immunoglobulin superfamily DCC subclass member 3,IGDC3_MOUSE,no,19289,Igdcc3,1,4,1,1,0,yes
+Mouse,Q8BR76,1 - high confidence,Meckelin,MKS3_MOUSE,no,329795,Tmem67,1,4,1,5,0,yes
+Mouse,Q8BTJ4,1 - high confidence,Ectonucleotide pyrophosphatase/phosphodiesterase family member 4,ENPP4_MOUSE,no,224794,Enpp4,1,13,1,1,0,yes
+Mouse,Q8BTY2,1 - high confidence,Sodium bicarbonate cotransporter 3,S4A7_MOUSE,no,218756,Slc4a7,1,27,1,9,0,yes
+Mouse,Q8BXN9,1 - high confidence,Transmembrane protein 87A,TM87A_MOUSE,no,211499,Tmem87a,1,30,1,7,0,yes
+Mouse,Q8C129,1 - high confidence,Leucyl-cystinyl aminopeptidase,LCAP_MOUSE,no,240028,Lnpep,1,31,1,1,0,yes
+Mouse,Q8C145,1 - high confidence,Zinc transporter ZIP6,S39A6_MOUSE,no,106957,Slc39a6,1,29,1,6,0,yes
+Mouse,Q8C341,1 - high confidence,Protein C1orf9 homolog,CA009_MOUSE,no,0,0,1,4,1,1,0,yes
+Mouse,Q8C419,1 - high confidence,Probable G-protein coupled receptor 158,GP158_MOUSE,no,241263,Gpr158,1,1,1,7,0,yes
+Mouse,Q8CBF3,1 - high confidence,Ephrin type-B receptor 1,EPHB1_MOUSE,no,270190,Ephb1,1,2,1,1,0,yes
+Mouse,Q8CEF9,1 - high confidence,Transmembrane protein 132C,T132C_MOUSE,no,208213,Tmem132c,1,2,1,1,0,yes
+Mouse,Q8CFE6,1 - high confidence,Sodium-coupled neutral amino acid transporter 2,S38A2_MOUSE,no,67760,Slc38a2,1,18,1,11,0,yes
+Mouse,Q8CGQ8,1 - high confidence,Sodium/potassium/calcium exchanger 4,NCKX4_MOUSE,no,238384,Slc24a4,1,2,1,10,0,yes
+Mouse,Q8CJH3,1 - high confidence,Plexin-B1,PLXB1_MOUSE,no,235611,Plxnb1,1,21,1,1,0,yes
+Mouse,Q8JZM4,1 - high confidence,Delta and Notch-like epidermal growth factor-related receptor,DNER_MOUSE,no,227325,Dner,1,3,1,1,0,yes
+Mouse,Q8JZZ7,1 - high confidence,Latrophilin-2,LPHN2_MOUSE,no,99633,Lphn2,1,16,1,7,0,yes
+Mouse,Q8K1S3,1 - high confidence,Netrin receptor UNC5B,UNC5B_MOUSE,no,107449,Unc5b,1,6,1,1,0,yes
+Mouse,Q8K209,1 - high confidence,G-protein coupled receptor 56,GPR56_MOUSE,no,14766,Gpr56,1,16,1,7,0,yes
+Mouse,Q8K2P7,1 - high confidence,Sodium-coupled neutral amino acid transporter 1,S38A1_MOUSE,no,105727,Slc38a1,1,8,1,11,0,yes
+Mouse,Q8R0I0,1 - high confidence,Angiotensin-converting enzyme 2,ACE2_MOUSE,no,70008,Ace2,1,1,1,1,0,yes
+Mouse,Q8R373,1 - high confidence,Adipocyte adhesion molecule,ACAM_MOUSE,no,71566,Acam,1,9,1,1,0,yes
+Mouse,Q8R3L5,1 - high confidence,Solute carrier organic anion transporter family member 3A1,SO3A1_MOUSE,no,108116,Slco3a1,1,14,1,12,0,yes
+Mouse,Q8R464,1 - high confidence,Cell adhesion molecule 4,CADM4_MOUSE,no,260299,Cadm4,1,19,1,1,0,yes
+Mouse,Q8R4Y4,1 - high confidence,Stabilin-1,STAB1_MOUSE,no,192187,Stab1,1,2,1,3,0,yes
+Mouse,Q8R5M8,1 - high confidence,Cell adhesion molecule 1,CADM1_MOUSE,no,54725,Cadm1,1,28,1,1,0,yes
+Mouse,Q8VDN2,1 - high confidence,Sodium/potassium-transporting ATPase subunit alpha-1,AT1A1_MOUSE,no,11928,Atp1a1,1,4,1,8,0,yes
+Mouse,Q8VHN7,1 - high confidence,G-protein coupled receptor 98,GPR98_MOUSE,no,110789,Gpr98,1,2,1,7,0,yes
+Mouse,Q8VHW2,1 - high confidence,Voltage-dependent calcium channel gamma-8 subunit,CCG8_MOUSE,no,81905,Cacng8,1,6,1,4,0,yes
+Mouse,Q8VHY0,1 - high confidence,Chondroitin sulfate proteoglycan 4,CSPG4_MOUSE,no,121021,Cspg4,1,14,1,1,0,yes
+Mouse,Q91V08,1 - high confidence,C-type lectin domain family 2 member D,CLC2D_MOUSE,no,93694,Clec2d,1,11,1,1,0,yes
+Mouse,Q91V14,1 - high confidence,Solute carrier family 12 member 5,S12A5_MOUSE,no,57138,Slc12a5,1,14,1,11,0,yes
+Mouse,Q91V24,1 - high confidence,ATP-binding cassette sub-family A member 7,ABCA7_MOUSE,no,27403,Abca7,1,9,1,13,0,yes
+Mouse,Q91V87,1 - high confidence,Fibroblast growth factor receptor-like 1,FGRL1_MOUSE,no,116701,Fgfrl1,1,7,1,1,0,yes
+Mouse,Q91YY5,1 - high confidence,Solute carrier organic anion transporter family member 1A5,SO1A5_MOUSE,no,108096,Slco1a5,1,1,1,12,0,yes
+Mouse,Q91ZI0,1 - high confidence,Cadherin EGF LAG seven-pass G-type receptor 3,CELR3_MOUSE,no,107934,Celsr3,1,2,1,7,0,yes
+Mouse,Q91ZV7,1 - high confidence,Plexin domain-containing protein 1,PXDC1_MOUSE,no,72324,Plxdc1,1,2,1,1,0,yes
+Mouse,Q91ZV8,1 - high confidence,Probable G-protein coupled receptor 124,GP124_MOUSE,no,78560,Gpr124,1,3,1,7,0,yes
+Mouse,Q923B6,1 - high confidence,Metalloreductase STEAP4,STEA4_MOUSE,no,117167,Steap4,1,4,1,6,0,yes
+Mouse,Q923L3,1 - high confidence,CUB and sushi domain-containing protein 1,CSMD1_MOUSE,no,94109,Csmd1,1,4,1,1,0,yes
+Mouse,Q924N4,1 - high confidence,Solute carrier family 12 member 6,S12A6_MOUSE,no,107723,Slc12a6,1,25,1,14,0,yes
+Mouse,Q99J21,1 - high confidence,Mucolipin-1,MCLN1_MOUSE,no,94178,Mcoln1,1,19,1,6,0,yes
+Mouse,Q99K10,1 - high confidence,Neuroligin-1,NLGN1_MOUSE,no,192167,Nlgn1,1,5,1,1,0,yes
+Mouse,Q99MB3,1 - high confidence,TM2 domain-containing protein 1,TM2D1_MOUSE,no,94043,Tm2d1,1,19,1,2,0,yes
+Mouse,Q99MR3,1 - high confidence,Solute carrier family 12 member 9,S12A9_MOUSE,no,83704,Slc12a9,1,21,1,13,0,yes
+Mouse,Q99N28,1 - high confidence,Cell adhesion molecule 3,CADM3_MOUSE,no,94332,Cadm3,1,4,1,1,0,yes
+Mouse,Q99P47,1 - high confidence,Contactin-associated protein-like 4,CNTP4_MOUSE,no,170571,Cntnap4,1,1,1,1,0,yes
+Mouse,Q99PD7,1 - high confidence,Sodium/potassium/calcium exchanger 3,NCKX3_MOUSE,no,94249,Slc24a3,1,5,1,11,0,yes
+Mouse,Q99PH1,1 - high confidence,Leucine-rich repeat-containing protein 4,LRRC4_MOUSE,no,192198,Lrrc4,1,5,1,2,0,yes
+Mouse,Q9CS84,1 - high confidence,Neurexin-1-alpha,NRX1A_MOUSE,no,18189,Nrxn1,1,5,1,1,0,yes
+Mouse,Q9CZ52,1 - high confidence,Anthrax toxin receptor 1,ANTR1_MOUSE,no,69538,Antxr1,1,17,1,1,0,yes
+Mouse,Q9CZT5,1 - high confidence,Vasorin,VASN_MOUSE,no,246154,Vasn,1,9,1,1,0,yes
+Mouse,Q9D1T0,1 - high confidence,Leucine-rich repeat and immunoglobulin-like domain-containing nogo receptor-interacting protein 1,LIGO1_MOUSE,no,235402,Lingo1,1,5,1,1,0,yes
+Mouse,Q9D387,1 - high confidence,LAMP family protein C20orf103 homolog,CT103_MOUSE,no,76161,0,1,1,1,1,0,yes
+Mouse,Q9D3X9,1 - high confidence,Microfibrillar-associated protein 3-like,MFA3L_MOUSE,no,71306,Mfap3l,1,2,1,1,0,yes
+Mouse,Q9D8B7,1 - high confidence,Junctional adhesion molecule C,JAM3_MOUSE,no,83964,Jam3,1,15,1,1,0,yes
+Mouse,Q9D8F3,1 - high confidence,Porcine endogenous retrovirus A receptor 2 homolog,PEVR2_MOUSE,no,52710,Gpr172b,1,18,1,10,0,yes
+Mouse,Q9DA75,1 - high confidence,Major facilitator superfamily domain-containing protein 2A,MFS2A_MOUSE,no,76574,Mfsd2a,1,13,1,9,0,yes
+Mouse,Q9DBV4,1 - high confidence,Matrix-remodeling-associated protein 8,MXRA8_MOUSE,no,74761,Mxra8,1,7,1,1,0,yes
+Mouse,Q9DBX3,1 - high confidence,Sushi domain-containing protein 2,SUSD2_MOUSE,no,71733,Susd2,1,12,1,1,0,yes
+Mouse,Q9DCP2,1 - high confidence,Sodium-coupled neutral amino acid transporter 3,S38A3_MOUSE,no,76257,Slc38a3,1,9,1,11,0,yes
+Mouse,Q9EP96,1 - high confidence,Solute carrier organic anion transporter family member 1A4,SO1A4_MOUSE,no,28250,Slco1a4,1,1,1,12,0,yes
+Mouse,Q9EPR4,1 - high confidence,Solute carrier family 23 member 2,S23A2_MOUSE,no,54338,Slc23a2,1,3,1,12,0,yes
+Mouse,Q9EPR5,1 - high confidence,VPS10 domain-containing receptor SorCS2,SORC2_MOUSE,no,81840,Sorcs2,1,6,1,1,0,yes
+Mouse,Q9EPT5,1 - high confidence,Solute carrier organic anion transporter family member 2A1,SO2A1_MOUSE,no,24059,Slco2a1,1,1,1,12,0,yes
+Mouse,Q9EQS9,1 - high confidence,Immunoglobulin superfamily DCC subclass member 4,IGDC4_MOUSE,no,56741,Igdcc4,1,15,1,1,0,yes
+Mouse,Q9ERB5,1 - high confidence,Solute carrier organic anion transporter family member 1C1,SO1C1_MOUSE,no,58807,Slco1c1,1,1,1,11,0,yes
+Mouse,Q9ES57,1 - high confidence,Cell surface glycoprotein CD200 receptor 1,MO2R1_MOUSE,no,57781,Cd200r1,1,1,1,1,0,yes
+Mouse,Q9ESG4,1 - high confidence,Collectrin,TMM27_MOUSE,no,57394,Tmem27,1,1,1,1,0,yes
+Mouse,Q9ESM6,1 - high confidence,Glycerophosphoinositol inositolphosphodiesterase GDPD2,GDPD2_MOUSE,no,71584,Gdpd2,1,11,1,6,0,yes
+Mouse,Q9JI18,1 - high confidence,Low-density lipoprotein receptor-related protein 1B,LRP1B_MOUSE,no,94217,Lrp1b,1,3,1,1,0,yes
+Mouse,Q9JIM1,1 - high confidence,Equilibrative nucleoside transporter 1,S29A1_MOUSE,no,63959,Slc29a1,1,27,1,11,0,yes
+Mouse,Q9JJF9,1 - high confidence,Signal peptide peptidase-like 2A,PSL2_MOUSE,no,66552,Sppl2a,1,3,1,9,0,yes
+Mouse,Q9JLL0,1 - high confidence,Cysteine-rich motor neuron 1 protein,CRIM1_MOUSE,no,50766,Crim1,1,1,1,1,0,yes
+Mouse,Q9JMG4,1 - high confidence,Sodium/potassium-transporting ATPase subunit beta-1-interacting protein 4,NKAI4_MOUSE,no,58237,Nkain4,1,3,1,3,0,yes
+Mouse,Q9QY40,1 - high confidence,Plexin-B3,PLXB3_MOUSE,no,140571,Plxnb3,1,2,1,1,0,yes
+Mouse,Q9R0M4,1 - high confidence,Podocalyxin-like protein 1,PODXL_MOUSE,no,27205,Podxl,1,1,1,1,0,yes
+Mouse,Q9R0Y8,1 - high confidence,Gamma-aminobutyric acid receptor subunit gamma-1,GBRG1_MOUSE,no,14405,Gabrg1,1,2,1,4,0,yes
+Mouse,Q9R100,1 - high confidence,Cadherin-17,CAD17_MOUSE,no,12557,Cdh17,1,3,1,1,0,yes
+Mouse,Q9R1W5,1 - high confidence,Calcitonin gene-related peptide type 1 receptor,CALRL_MOUSE,no,54598,Calcrl,1,22,1,7,0,yes
+Mouse,Q9WTR1,1 - high confidence,Transient receptor potential cation channel subfamily V member 2,TRPV2_MOUSE,no,22368,Trpv2,1,8,1,6,0,yes
+Mouse,Q9WU60,1 - high confidence,Attractin,ATRN_MOUSE,no,11990,Atrn,1,21,1,1,0,yes
+Mouse,Q9WUH7,1 - high confidence,Semaphorin-4G,SEM4G_MOUSE,no,26456,Sema4g,1,3,1,1,0,yes
+Mouse,Q9WV18,1 - high confidence,Gamma-aminobutyric acid type B receptor subunit 1,GABR1_MOUSE,no,54393,Gabbr1,1,3,1,7,0,yes
+Mouse,Q9WVD4,1 - high confidence,H(+)/Cl(-) exchange transporter 5,CLCN5_MOUSE,no,12728,Clcn5,1,18,1,11,0,yes
+Mouse,Q9WVL3,1 - high confidence,Solute carrier family 12 member 7,S12A7_MOUSE,no,20499,Slc12a7,1,29,1,12,0,yes
+Mouse,Q9Z0E8,1 - high confidence,Solute carrier family 22 member 5,S22A5_MOUSE,no,20520,Slc22a5,1,7,1,12,0,yes
+Mouse,Q9Z0L0,1 - high confidence,Trophoblast glycoprotein,TPBG_MOUSE,no,21983,Tpbg,1,18,1,1,0,yes
+Mouse,Q9Z0L1,1 - high confidence,Sphingosine 1-phosphate receptor 4,S1PR4_MOUSE,no,13611,S1pr4,1,1,1,8,0,yes
+Mouse,Q9Z138,1 - high confidence,Tyrosine-protein kinase transmembrane receptor ROR2,ROR2_MOUSE,no,26564,Ror2,1,13,1,1,0,yes
+Mouse,Q9Z1M0,1 - high confidence,P2X purinoceptor 7,P2RX7_MOUSE,no,18439,P2rx7,1,23,1,2,0,yes
+Mouse,Q9Z2W8,1 - high confidence,Glutamate receptor 4,GRIA4_MOUSE,no,14802,Gria4,1,5,1,3,0,yes
+Mouse,Q9Z2W9,1 - high confidence,Glutamate receptor 3,GRIA3_MOUSE,no,53623,Gria3,1,5,1,3,0,yes
+Mouse,P35436,1 - high confidence,Glutamate [NMDA] receptor subunit epsilon-1,NMDE1_MOUSE,no,14811,Grin2a,0.9999,1,1,4,0,yes
+Mouse,Q8K1G2,1 - high confidence,Limbin,LBN_MOUSE,no,68525,Evc2,0.9999,13,1,2,0,yes
+Mouse,Q8K1S4,1 - high confidence,Netrin receptor UNC5A,UNC5A_MOUSE,no,107448,Unc5a,0.9999,3,1,1,0,yes
+Mouse,Q8VIM0,1 - high confidence,Hepatitis A virus cellular receptor 2 homolog,TIMD3_MOUSE,no,171285,Havcr2,0.9999,5,1,1,0,yes
+Mouse,P01897,1 - high confidence,"H-2 class I histocompatibility antigen, L-D alpha chain",HA1L_MOUSE,no,14980,H2-L,0.9998,11,1,1,0,yes
+Mouse,Q80UP8,1 - high confidence,Sodium-dependent phosphate transporter 2,S20A2_MOUSE,no,20516,Slc20a2,0.9997,2,1,8,0,yes
+Mouse,Q61559,1 - high confidence,IgG receptor FcRn large subunit p51,FCGRN_MOUSE,no,14132,Fcgrt,0.9995,1,1,1,0,yes
+Mouse,P06339,1 - high confidence,"H-2 class I histocompatibility antigen, D-37 alpha chain",HA15_MOUSE,no,15040,H2-T23,0.999,6,1,1,0,yes
+Mouse,P01901,1 - high confidence,"H-2 class I histocompatibility antigen, K-B alpha chain",HA1B_MOUSE,no,14972,H2-K1,0.9986,22,1,1,0,yes
+Mouse,Q62312,1 - high confidence,TGF-beta receptor type-2,TGFR2_MOUSE,no,21813,Tgfbr2,0.9984,3,1,1,0,yes
+Mouse,O35607,1 - high confidence,Bone morphogenetic protein receptor type-2,BMPR2_MOUSE,no,12168,Bmpr2,0.9981,17,1,1,0,yes
+Mouse,P98154,1 - high confidence,Integral membrane protein DGCR2/IDD,IDD_MOUSE,no,13356,Dgcr2,0.9979,1,1,1,0,yes
+Mouse,Q03137,1 - high confidence,Ephrin type-A receptor 4,EPHA4_MOUSE,no,13838,Epha4,0.9979,6,1,1,0,yes
+Mouse,Q8BGD4,1 - high confidence,Solute carrier organic anion transporter family member 4C1,SO4C1_MOUSE,no,227394,Slco4c1,0.9979,5,1,12,0,yes
+Mouse,Q8R139,1 - high confidence,Equilibrative nucleoside transporter 4,S29A4_MOUSE,no,243328,Slc29a4,0.9979,2,1,10,0,yes
+Mouse,Q91WN2,1 - high confidence,Transmembrane protein 150A,T150A_MOUSE,no,232086,Tmem150A,0.9979,3,1,5,0,yes
+Mouse,Q91ZV3,1 - high confidence,"Discoidin, CUB and LCCL domain-containing protein 2",DCBD2_MOUSE,no,73379,Dcbld2,0.9979,10,1,1,0,yes
+Mouse,Q925Q3,1 - high confidence,Sodium/potassium/calcium exchanger 6,NCKX6_MOUSE,no,170756,Slc24a6,0.9979,4,1,12,0,yes
+Mouse,Q9R1V7,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 23,ADA23_MOUSE,no,23792,Adam23,0.9979,5,1,1,0,yes
+Mouse,Q61526,1 - high confidence,Receptor tyrosine-protein kinase erbB-3,ERBB3_MOUSE,no,13867,Erbb3,0.9975,11,1,1,0,yes
+Mouse,Q9Z2I4,1 - high confidence,Roundabout homolog 3,ROBO3_MOUSE,no,19649,Robo3,0.9974,1,1,1,0,yes
+Mouse,P22723,1 - high confidence,Gamma-aminobutyric acid receptor subunit gamma-2,GBRG2_MOUSE,no,14406,Gabrg2,0.9973,1,1,4,0,yes
+Mouse,P34968,1 - high confidence,5-hydroxytryptamine receptor 2C,5HT2C_MOUSE,no,15560,Htr2c,0.9973,1,1,7,0,yes
+Mouse,P63080,1 - high confidence,Gamma-aminobutyric acid receptor subunit beta-3,GBRB3_MOUSE,no,14402,Gabrb3,0.9973,1,1,4,0,yes
+Mouse,P97717,1 - high confidence,Alpha-1B adrenergic receptor,ADA1B_MOUSE,no,11548,Adra1b,0.9973,1,1,7,0,yes
+Mouse,Q64326,1 - high confidence,Adrenocorticotropic hormone receptor,ACTHR_MOUSE,no,17200,Mc2r,0.9973,1,1,7,0,yes
+Mouse,Q69ZK9,1 - high confidence,Neuroligin-2,NLGN2_MOUSE,no,216856,Nlgn2,0.9973,2,1,1,0,yes
+Mouse,Q7TSK2,1 - high confidence,Seizure protein 6,SEZ6_MOUSE,no,20370,Sez6,0.9973,1,1,1,0,yes
+Mouse,Q80Z10,1 - high confidence,Astrotactin-2,ASTN2_MOUSE,no,56079,Astn2,0.9973,1,1,2,0,yes
+Mouse,Q80ZD8,1 - high confidence,Amphoterin-induced protein 1,AMGO1_MOUSE,no,229715,Amigo1,0.9973,2,1,1,0,yes
+Mouse,Q810B8,1 - high confidence,SLIT and NTRK-like protein 4,SLIK4_MOUSE,no,245446,Slitrk4,0.9973,2,1,1,0,yes
+Mouse,Q8BYG9,1 - high confidence,Ephrin type-A receptor 10,EPHAA_MOUSE,no,230735,Epha10,0.9973,2,1,1,0,yes
+Mouse,Q8CAE9,1 - high confidence,Podocalyxin-like protein 2,PDXL2_MOUSE,no,319655,Podxl2,0.9973,1,1,1,0,yes
+Mouse,Q8VI51,1 - high confidence,VPS10 domain-containing receptor SorCS3,SORC3_MOUSE,no,66673,Sorcs3,0.9973,2,1,1,0,yes
+Mouse,Q60614,1 - high confidence,Adenosine receptor A2b,AA2BR_MOUSE,no,11541,Adora2b,0.9972,1,1,7,0,yes
+Mouse,Q61627,1 - high confidence,Glutamate receptor delta-1 subunit,GRID1_MOUSE,no,14803,Grid1,0.9972,2,1,4,0,yes
+Mouse,Q8BH24,1 - high confidence,Transmembrane 9 superfamily member 4,TM9S4_MOUSE,no,99237,Tm9sf4,0.9972,2,1,9,0,yes
+Mouse,Q99PJ1,1 - high confidence,Protocadherin-15,PCD15_MOUSE,no,11994,Pcdh15,0.9972,2,1,1,0,yes
+Mouse,Q9Z0M3,1 - high confidence,Cadherin-20,CAD20_MOUSE,no,23836,Cdh20,0.9972,2,1,1,0,yes
+Mouse,P29319,1 - high confidence,Ephrin type-A receptor 3,EPHA3_MOUSE,no,13837,Epha3,0.9971,1,1,1,0,yes
+Mouse,P29754,1 - high confidence,Type-1A angiotensin II receptor,AGTRA_MOUSE,no,11607,Agtr1a,0.9971,3,1,7,0,yes
+Mouse,P32211,1 - high confidence,Muscarinic acetylcholine receptor M4,ACM4_MOUSE,no,12672,Chrm4,0.9971,2,1,6,0,yes
+Mouse,P70211,1 - high confidence,Netrin receptor DCC,DCC_MOUSE,no,13176,Dcc,0.9971,4,1,1,0,yes
+Mouse,Q32MD9,1 - high confidence,Cell adhesion molecule-related/down-regulated by oncogenes,CDON_MOUSE,no,57810,Cdon,0.9971,2,1,1,0,yes
+Mouse,Q64487,1 - high confidence,Receptor-type tyrosine-protein phosphatase delta,PTPRD_MOUSE,no,19266,Ptprd,0.9971,4,1,1,0,yes
+Mouse,Q6AZB0,1 - high confidence,Brother of CDO,BOC_MOUSE,no,117606,Boc,0.9971,2,1,1,0,yes
+Mouse,Q8BZ81,1 - high confidence,Leucine-rich repeat transmembrane neuronal protein 3,LRRT3_MOUSE,no,216028,Lrrtm3,0.997,3,1,1,0,yes
+Mouse,A2A699,1 - high confidence,Protein FAM171A2,F1712_MOUSE,no,217219,Fam171a2,0.9969,7,1,2,0,yes
+Mouse,P33896,1 - high confidence,Interferon alpha/beta receptor 1,INAR1_MOUSE,no,15975,Ifnar1,0.9968,10,1,1,0,yes
+Mouse,Q9JL06,1 - high confidence,Lysophosphatidic acid receptor 2,LPAR2_MOUSE,no,53978,Lpar2,0.9968,4,1,6,0,yes
+Mouse,O35375,1 - high confidence,Neuropilin-2,NRP2_MOUSE,no,18187,Nrp2,0.9966,14,1,1,0,yes
+Mouse,O35379,1 - high confidence,Multidrug resistance-associated protein 1,MRP1_MOUSE,no,17250,Abcc1,0.9966,11,1,17,0,yes
+Mouse,P10761,1 - high confidence,Zona pellucida sperm-binding protein 3,ZP3_MOUSE,no,22788,Zp3,0.9966,2,1,1,0,yes
+Mouse,P35951,1 - high confidence,Low-density lipoprotein receptor,LDLR_MOUSE,no,16835,Ldlr,0.9966,15,1,1,0,yes
+Mouse,P37172,1 - high confidence,Activin receptor type-1,ACVR1_MOUSE,no,11477,Acvr1,0.9966,5,1,1,0,yes
+Mouse,P52795,1 - high confidence,Ephrin-B1,EFNB1_MOUSE,no,13641,Efnb1,0.9966,10,1,1,0,yes
+Mouse,P54754,1 - high confidence,Ephrin type-B receptor 3,EPHB3_MOUSE,no,13845,Ephb3,0.9966,1,1,1,0,yes
+Mouse,P59383,1 - high confidence,Leucine-rich repeat neuronal protein 4,LRRN4_MOUSE,no,320974,Lrrn4,0.9966,14,1,1,0,yes
+Mouse,P61622,1 - high confidence,Integrin alpha-11,ITA11_MOUSE,no,319480,Itga11,0.9966,5,1,1,0,yes
+Mouse,P82347,1 - high confidence,Delta-sarcoglycan,SGCD_MOUSE,no,24052,Sgcd,0.9966,1,1,1,0,yes
+Mouse,P82349,1 - high confidence,Beta-sarcoglycan,SGCB_MOUSE,no,24051,Sgcb,0.9966,16,1,1,0,yes
+Mouse,Q3TWN3,1 - high confidence,Metal transporter CNNM2,CNNM2_MOUSE,no,94219,Cnnm2,0.9966,19,1,4,0,yes
+Mouse,Q60750,1 - high confidence,Ephrin type-A receptor 1,EPHA1_MOUSE,no,13835,Epha1,0.9966,6,1,1,0,yes
+Mouse,Q62165,1 - high confidence,Dystroglycan,DAG1_MOUSE,no,13138,Dag1,0.9966,12,1,1,0,yes
+Mouse,Q64151,1 - high confidence,Semaphorin-4C,SEM4C_MOUSE,no,20353,Sema4c,0.9966,15,1,1,0,yes
+Mouse,Q69ZF7,1 - high confidence,Metal transporter CNNM4,CNNM4_MOUSE,no,94220,Cnnm4,0.9966,11,1,4,0,yes
+Mouse,Q6P5F7,1 - high confidence,Protein tweety homolog 3,TTYH3_MOUSE,no,78339,Ttyh3,0.9966,21,1,5,0,yes
+Mouse,Q6PEM8,1 - high confidence,Proton-coupled folate transporter,PCFT_MOUSE,no,52466,Slc46a1,0.9966,23,1,12,0,yes
+Mouse,Q6PFE7,1 - high confidence,Tomoregulin-1,TEFF1_MOUSE,no,230157,Tmeff1,0.9966,11,1,1,0,yes
+Mouse,Q6VVW5,1 - high confidence,Atrial natriuretic peptide receptor 2,ANPRB_MOUSE,no,230103,Npr2,0.9966,6,1,1,0,yes
+Mouse,Q7TT36,1 - high confidence,Probable G-protein coupled receptor 125,GP125_MOUSE,no,70693,Gpr125,0.9966,3,1,7,0,yes
+Mouse,Q80W68,1 - high confidence,Kin of IRRE-like protein 1,KIRR1_MOUSE,no,170643,Kirrel,0.9966,17,1,2,0,yes
+Mouse,Q8BKU8,1 - high confidence,Transmembrane protein 87B,TM87B_MOUSE,no,72477,Tmem87b,0.9966,6,1,7,0,yes
+Mouse,Q8BLG2,1 - high confidence,Lysophosphatidic acid receptor 4,LPAR4_MOUSE,no,78134,Lpar4,0.9966,19,1,7,0,yes
+Mouse,Q8C6Z1,1 - high confidence,Mucin-15,MUC15_MOUSE,no,269328,Muc15,0.9966,1,1,1,0,yes
+Mouse,Q8C7X2,1 - high confidence,Uncharacterized protein KIAA0090,K0090_MOUSE,no,230866,Kiaa0090,0.9966,26,1,1,0,yes
+Mouse,Q8K078,1 - high confidence,Solute carrier organic anion transporter family member 4A1,SO4A1_MOUSE,no,108115,Slco4a1,0.9966,11,1,12,0,yes
+Mouse,Q8VI56,1 - high confidence,Low-density lipoprotein receptor-related protein 4,LRP4_MOUSE,no,228357,Lrp4,0.9966,12,1,1,0,yes
+Mouse,Q91WR6,1 - high confidence,Uncharacterized protein C6orf72 homolog,CF072_MOUSE,no,215751,0,0.9966,2,1,1,0,yes
+Mouse,Q9DC11,1 - high confidence,Plexin domain-containing protein 2,PXDC2_MOUSE,no,67448,Plxdc2,0.9966,2,1,1,0,yes
+Mouse,Q9ET30,1 - high confidence,Transmembrane 9 superfamily member 3,TM9S3_MOUSE,no,107358,Tm9sf3,0.9966,31,1,9,0,yes
+Mouse,Q9R069,1 - high confidence,Basal cell adhesion molecule,BCAM_MOUSE,no,57278,Bcam,0.9966,10,1,1,0,yes
+Mouse,Q9R0M0,1 - high confidence,Cadherin EGF LAG seven-pass G-type receptor 2,CELR2_MOUSE,no,53883,Celsr2,0.9966,4,1,7,0,yes
+Mouse,O55111,1 - high confidence,Desmoglein-2,DSG2_MOUSE,no,13511,Dsg2,0.9965,10,1,1,0,yes
+Mouse,P97326,1 - high confidence,Cadherin-6,CADH6_MOUSE,no,12563,Cdh6,0.9965,5,1,1,0,yes
+Mouse,Q61625,1 - high confidence,Glutamate receptor delta-2 subunit,GRID2_MOUSE,no,14804,Grid2,0.9965,3,1,4,0,yes
+Mouse,Q61730,1 - high confidence,Interleukin-1 receptor accessory protein,IL1AP_MOUSE,no,16180,Il1rap,0.9965,18,1,1,0,yes
+Mouse,Q61824,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 12,ADA12_MOUSE,no,11489,Adam12,0.9965,1,1,1,0,yes
+Mouse,Q6NXK8,1 - high confidence,"Amiloride-sensitive cation channel 2, neuronal",ACCN2_MOUSE,no,11419,Accn2,0.9965,2,1,1,0,yes
+Mouse,Q9DBY4,1 - high confidence,Leucine-rich repeat-containing protein KIAA0644,K0644_MOUSE,no,66873,KIAA0644,0.9965,1,1,1,0,yes
+Mouse,Q80TF3,1 - high confidence,Protocadherin-19,PCD19_MOUSE,no,279653,Pcdh19,0.9963,2,1,1,0,yes
+Mouse,Q8JZL1,1 - high confidence,Interleukin-17 receptor D,I17RD_MOUSE,no,171463,Il17rd,0.9963,6,1,1,0,yes
+Mouse,Q9D8N1,1 - high confidence,Uncharacterized protein C11orf24 homolog,CK024_MOUSE,no,72056,0,0.9963,7,1,1,0,yes
+Mouse,Q8BHY3,1 - high confidence,Anoctamin-1,ANO1_MOUSE,no,101772,Ano1,0.996,4,1,8,0,yes
+Mouse,Q91VN0,1 - high confidence,Low-density lipoprotein receptor-related protein 5,LRP5_MOUSE,no,16973,Lrp5,0.996,4,1,1,0,yes
+Mouse,Q9Z0U9,1 - high confidence,Sphingosine 1-phosphate receptor 3,S1PR3_MOUSE,no,13610,S1pr3,0.9959,3,1,7,0,yes
+Mouse,P20489,1 - high confidence,High affinity immunoglobulin epsilon receptor subunit alpha,FCERA_MOUSE,no,14125,Fcer1a,0.9956,1,1,1,0,yes
+Mouse,Q9EPK8,1 - high confidence,Transient receptor potential cation channel subfamily V member 4,TRPV4_MOUSE,no,63873,Trpv4,0.9956,1,1,6,0,yes
+Mouse,Q8VD31,1 - high confidence,Tapasin-related protein,TPSNR_MOUSE,no,213233,Tapbpl,0.9954,1,1,1,0,yes
+Mouse,Q3UUY6,1 - high confidence,Prominin-2,PROM2_MOUSE,no,192212,Prom2,0.9951,2,1,5,0,yes
+Mouse,Q8BGV3,1 - high confidence,Tumor-associated calcium signal transducer 2,TACD2_MOUSE,no,56753,Tacstd2,0.9951,5,1,1,0,yes
+Mouse,Q9Z0Z4,1 - high confidence,Hephaestin,HEPH_MOUSE,no,15203,Heph,0.9951,5,1,1,0,yes
+Mouse,P26011,1 - high confidence,Integrin beta-7,ITB7_MOUSE,no,16421,Itgb7,0.9949,5,1,1,0,yes
+Mouse,P30987,1 - high confidence,Thromboxane A2 receptor,TA2R_MOUSE,no,21390,Tbxa2r,0.9949,2,1,7,0,yes
+Mouse,P47936,1 - high confidence,Cannabinoid receptor 2,CNR2_MOUSE,no,12802,Cnr2,0.9949,1,1,7,0,yes
+Mouse,Q6AXF6,1 - high confidence,SID1 transmembrane family member 1,SIDT1_MOUSE,no,320007,Sidt1,0.9949,1,1,11,0,yes
+Mouse,O70394,1 - high confidence,Interleukin-27 receptor subunit alpha,I27RA_MOUSE,no,50931,Il27ra,0.9946,4,1,1,0,yes
+Mouse,Q9JHX3,1 - high confidence,Interleukin-21 receptor,IL21R_MOUSE,no,60504,Il21r,0.9946,2,1,1,0,yes
+Mouse,O35664,1 - high confidence,Interferon alpha/beta receptor 2,INAR2_MOUSE,no,15976,Ifnar2,0.9945,4,1,1,0,yes
+Mouse,O70258,1 - high confidence,Epsilon-sarcoglycan,SGCE_MOUSE,no,20392,Sgce,0.9945,7,1,1,0,yes
+Mouse,P39038,1 - high confidence,Cadherin-4,CADH4_MOUSE,no,12561,Cdh4,0.9945,3,1,1,0,yes
+Mouse,P48302,1 - high confidence,Endothelin B receptor,EDNRB_MOUSE,no,13618,Ednrb,0.9945,2,1,7,0,yes
+Mouse,P56481,1 - high confidence,Gastrin/cholecystokinin type B receptor,GASR_MOUSE,no,12426,Cckbr,0.9945,2,1,7,0,yes
+Mouse,P56485,1 - high confidence,C-X-C chemokine receptor type 7,CXCR7_MOUSE,no,12778,Cxcr7,0.9945,5,1,7,0,yes
+Mouse,P56726,1 - high confidence,Smoothened homolog,SMO_MOUSE,no,319757,Smo,0.9945,8,1,7,0,yes
+Mouse,P58659,1 - high confidence,Uncharacterized protein C21orf63 homolog,CU063_MOUSE,no,70967,0,0.9945,1,1,1,0,yes
+Mouse,P60882,1 - high confidence,Multiple epidermal growth factor-like domains protein 8,MEGF8_MOUSE,no,269878,Megf8,0.9945,7,1,1,0,yes
+Mouse,P61793,1 - high confidence,Lysophosphatidic acid receptor 1,LPAR1_MOUSE,no,14745,Lpar1,0.9945,1,1,6,0,yes
+Mouse,P70387,1 - high confidence,Hereditary hemochromatosis protein homolog,HFE_MOUSE,no,15216,Hfe,0.9945,2,1,1,0,yes
+Mouse,P97468,1 - high confidence,Chemokine receptor-like 1,CML1_MOUSE,no,14747,Cmklr1,0.9945,2,1,7,0,yes
+Mouse,Q3TR08,1 - high confidence,Fibronectin type III domain-containing protein 4,FNDC4_MOUSE,no,64339,Fndc4,0.9945,1,1,1,0,yes
+Mouse,Q3U284,1 - high confidence,UPF0513 transmembrane protein,U513_MOUSE,no,234740,0,0.9945,1,1,2,0,yes
+Mouse,Q61072,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 9,ADAM9_MOUSE,no,11502,Adam9,0.9945,10,1,1,0,yes
+Mouse,Q62011,1 - high confidence,Podoplanin,PDPN_MOUSE,no,14726,Pdpn,0.9945,10,1,1,0,yes
+Mouse,Q6DFX2,1 - high confidence,Anthrax toxin receptor 2,ANTR2_MOUSE,no,71914,Antxr2,0.9945,2,1,1,0,yes
+Mouse,Q6XJV4,1 - high confidence,Cell surface glycoprotein CD200 receptor 4,MO2R4_MOUSE,no,239849,Cd200r4,0.9945,2,1,1,0,yes
+Mouse,Q8BNA6,1 - high confidence,Protocadherin Fat 3,FAT3_MOUSE,no,270120,Fat3,0.9945,8,1,1,0,yes
+Mouse,Q8C8T7,1 - high confidence,Extracellular leucine-rich repeat and fibronectin type-III domain-containing protein 1,ELFN1_MOUSE,no,243312,Elfn1,0.9945,6,1,1,0,yes
+Mouse,Q8CIF6,1 - high confidence,SID1 transmembrane family member 2,SIDT2_MOUSE,no,214597,Sidt2,0.9945,9,1,11,0,yes
+Mouse,Q8K1T1,1 - high confidence,Leucine-rich repeat-containing protein 25,LRC25_MOUSE,no,211228,Lrrc25,0.9945,3,1,1,0,yes
+Mouse,Q8R2Q6,1 - high confidence,Tectonic-3,TECT3_MOUSE,no,67590,Tctn3,0.9945,2,1,1,0,yes
+Mouse,Q99JG2,1 - high confidence,Endothelin B receptor-like protein 2,ETBR2_MOUSE,no,171469,Gpr37l1,0.9945,2,1,5,0,yes
+Mouse,Q9JHE3,1 - high confidence,Neutral ceramidase,ASAH2_MOUSE,no,54447,Asah2,0.9945,1,1,1,0,yes
+Mouse,Q9R1V6,1 - high confidence,Disintegrin and metalloproteinase domain-containing protein 22,ADA22_MOUSE,no,11496,Adam22,0.9945,4,1,1,0,yes
+Mouse,Q9Z139,1 - high confidence,Tyrosine-protein kinase transmembrane receptor ROR1,ROR1_MOUSE,no,26563,Ror1,0.9945,1,1,2,0,yes
+Mouse,P41047,1 - high confidence,Tumor necrosis factor ligand superfamily member 6,TNFL6_MOUSE,no,14103,Faslg,0.994,1,1,1,0,yes
+Mouse,P50284,1 - high confidence,Tumor necrosis factor receptor superfamily member 3,TNR3_MOUSE,no,17000,Ltbr,0.9938,8,1,1,0,yes
+Mouse,Q5U431,1 - high confidence,G-protein coupled receptor 39,GPR39_MOUSE,no,71111,Gpr39,0.9938,6,1,7,0,yes
+Mouse,Q8R143,1 - high confidence,Pituitary tumor-transforming gene 1 protein-interacting protein,PTTG_MOUSE,no,108705,Pttg1ip,0.9938,16,1,1,0,yes
+Mouse,Q8VHP6,1 - high confidence,Protocadherin-21,PCD21_MOUSE,no,170677,Pcdh21,0.9938,1,1,1,0,yes
+Mouse,Q9QY96,1 - high confidence,Extracellular calcium-sensing receptor,CASR_MOUSE,no,12374,Casr,0.9938,2,1,7,0,yes
+Mouse,Q64729,1 - high confidence,TGF-beta receptor type-1,TGFR1_MOUSE,no,21812,Tgfbr1,0.9937,2,1,1,0,yes
+Mouse,Q9WTS5,1 - high confidence,Teneurin-2,TEN2_MOUSE,no,23964,Odz2,0.9937,7,1,1,0,yes
+Mouse,Q01887,1 - high confidence,Tyrosine-protein kinase RYK,RYK_MOUSE,no,20187,Ryk,0.9935,7,1,1,0,yes
+Mouse,P21447,1 - high confidence,Multidrug resistance protein 3,MDR3_MOUSE,no,18671,Abcb1a,0.9932,2,1,12,0,yes
+Mouse,Q9WUP1,1 - high confidence,Receptor activity-modifying protein 3,RAMP3_MOUSE,no,56089,Ramp3,0.9932,5,1,1,0,yes
+Mouse,Q60805,1 - high confidence,Tyrosine-protein kinase Mer,MERTK_MOUSE,no,17289,Mertk,0.9931,2,1,1,0,yes
+Mouse,Q8BYM5,1 - high confidence,Neuroligin-3,NLGN3_MOUSE,no,245537,Nlgn3,0.9931,3,1,1,0,yes
+Mouse,Q9D3A9,1 - high confidence,Protein tweety homolog 1,TTYH1_MOUSE,no,57776,Ttyh1,0.9931,2,1,5,0,yes
+Mouse,Q9JIP4,1 - high confidence,Pannexin-1,PANX1_MOUSE,no,55991,Panx1,0.9931,14,1,4,0,yes
+Mouse,Q9QYS2,1 - high confidence,Metabotropic glutamate receptor 3,GRM3_MOUSE,no,108069,Grm3,0.9931,4,1,7,0,yes
+Mouse,Q14B62,1 - high confidence,Patched domain-containing protein 1,PTHD1_MOUSE,no,211612,Ptchd1,0.9929,3,1,12,0,yes
+Mouse,Q9JJR8,1 - high confidence,Transmembrane protein 9B,TMM9B_MOUSE,no,56786,Tmem9b,0.9929,6,1,1,0,yes
+Mouse,P55144,1 - high confidence,Tyrosine-protein kinase receptor TYRO3,TYRO3_MOUSE,no,22174,Tyro3,0.9925,13,1,1,0,yes
+Mouse,P70193,1 - high confidence,Leucine-rich repeats and immunoglobulin-like domains protein 1,LRIG1_MOUSE,no,16206,Lrig1,0.9924,7,1,1,0,yes
+Mouse,B0V2N1,1 - high confidence,Receptor-type tyrosine-protein phosphatase S,PTPRS_MOUSE,no,19280,Ptprs,0.9922,9,1,1,0,yes
+Mouse,P20826,1 - high confidence,Kit ligand,SCF_MOUSE,no,17311,Kitlg,0.9922,1,1,1,0,yes
+Mouse,P55288,1 - high confidence,Cadherin-11,CAD11_MOUSE,no,12552,Cdh11,0.9922,2,1,1,0,yes
+Mouse,Q80XU8,1 - high confidence,Leucine-rich repeat and fibronectin type-III domain-containing protein 4,LRFN4_MOUSE,no,225875,Lrfn4,0.9922,2,1,1,0,yes
+Mouse,Q8BR86,1 - high confidence,Kin of IRRE-like protein 3,KIRR3_MOUSE,no,67703,Kirrel3,0.9922,2,1,1,0,yes
+Mouse,Q9EQD0,1 - high confidence,Frizzled-5,FZD5_MOUSE,no,14367,Fzd5,0.9921,1,1,7,0,yes
+Mouse,Q8BHE4,1 - high confidence,Transmembrane protein 108,TM108_MOUSE,no,81907,Tmem108,0.992,3,1,1,0,yes
+Mouse,O35516,1 - high confidence,Neurogenic locus notch homolog protein 2,NOTC2_MOUSE,no,18129,Notch2,0.9914,2,1,1,0,yes
+Mouse,Q9ER65,1 - high confidence,Calsyntenin-2,CSTN2_MOUSE,no,64085,Clstn2,0.9914,1,1,1,0,yes
+Mouse,Q8CI85,1 - high confidence,Carbonic anhydrase 12,CAH12_MOUSE,no,76459,Ca12,0.9912,1,1,1,0,yes
+Mouse,P35802,1 - high confidence,Neuronal membrane glycoprotein M6-a,GPM6A_MOUSE,no,234267,Gpm6a,0.991,4,1,4,0,yes
+Mouse,A2ARA8,1 - high confidence,Integrin alpha-8 [Cleaved into: Integrin alpha-8 heavy chain; Integrin alpha-8 light chain],ITA8_MOUSE,no,241226,Itga8,0.9906,1,1,1,0,yes
+Mouse,Q8VCJ6,1 - high confidence,Mas-related G-protein coupled receptor member F,MRGRF_MOUSE,no,211577,Mrgprf,0.9906,1,1,7,0,yes
+Mouse,Q7TPD3,1 - high confidence,Roundabout homolog 2,ROBO2_MOUSE,no,268902,Robo2,0.9902,6,1,1,0,yes
+Mouse,P23819,1 - high confidence,Glutamate receptor 2,GRIA2_MOUSE,no,14800,Gria2,0.9901,6,1,3,0,yes
+Mouse,P27040,1 - high confidence,Activin receptor type-2B,AVR2B_MOUSE,no,11481,Acvr2b,0.99,2,1,1,0,yes
+Mouse,Q60519,1 - high confidence,Semaphorin-5B,SEM5B_MOUSE,no,20357,Sema5b,0.9898,13,1,1,0,yes
+Mouse,Q8BGT0,1 - high confidence,Osteopetrosis-associated transmembrane protein 1,OSTM1_MOUSE,no,14628,Ostm1,0.9897,10,1,1,0,yes
+Mouse,Q99NH8,1 - high confidence,Triggering receptor expressed on myeloid cells 2,TREM2_MOUSE,no,83433,Trem2,0.9893,2,1,1,0,yes
+Mouse,Q9D780,1 - high confidence,SLAM family member 9,SLAF9_MOUSE,no,98365,Slamf9,0.9893,1,1,1,0,yes
+Mouse,Q3TYX2,1 - high confidence,LRRN4 C-terminal-like protein,LRN4L_MOUSE,no,68852,Lrrn4cl,0.9889,7,1,1,0,yes
+Mouse,Q8CG64,1 - high confidence,Fukutin-related protein,FKRP_MOUSE,no,243853,Fkrp,0.9887,7,1,1,0,yes
+Mouse,O89026,1 - high confidence,Roundabout homolog 1,ROBO1_MOUSE,no,19876,Robo1,0.9885,6,1,1,0,yes
+Mouse,Q9D4J3,1 - high confidence,"Discoidin, CUB and LCCL domain-containing protein 1",DCBD1_MOUSE,no,66686,Dcbld1,0.9883,4,1,1,0,yes
+Mouse,Q9JIF3,1 - high confidence,"Solute carrier family 2, facilitated glucose transporter member 8",GTR8_MOUSE,no,56017,Slc2a8,0.9882,10,1,12,0,yes
+Mouse,Q52KR2,1 - high confidence,Leucine-rich repeats and immunoglobulin-like domains protein 2,LRIG2_MOUSE,no,269473,Lrig2,0.9881,8,1,1,0,yes
+Mouse,Q6PHS9,1 - high confidence,Voltage-dependent calcium channel subunit alpha-2/delta-2,CA2D2_MOUSE,no,56808,Cacna2d2,0.9871,8,1,1,0,yes
+Mouse,Q75VT8,1 - high confidence,Protein HIDE1,HIDE1_MOUSE,no,382062,Hide1,0.9854,2,1,1,0,yes
+Mouse,Q9JKA5,1 - high confidence,Cell surface A33 antigen,GPA33_MOUSE,no,59290,Gpa33,0.9823,3,1,1,0,yes
+Mouse,Q9D659,1 - high confidence,Platelet receptor Gi24,GI24_MOUSE,no,74048,0,0.9812,21,1,1,0,yes
+Mouse,Q62035,1 - high confidence,Platelet-activating factor receptor,PTAFR_MOUSE,no,19204,Ptafr,0.9774,1,1,7,0,yes
+Mouse,Q78IQ7,1 - high confidence,Zinc transporter ZIP4,S39A4_MOUSE,no,72027,Slc39a4,0.9752,1,1,6,0,yes
+Mouse,Q8CB67,1 - high confidence,Low-density lipoprotein receptor-related protein 11,LRP11_MOUSE,no,237253,Lrp11,0.9743,1,1,1,0,yes
+Mouse,Q8BFU7,1 - high confidence,Putative P2Y purinoceptor 10,P2Y10_MOUSE,no,78826,P2ry10,0.9725,13,1,7,0,yes
+Mouse,Q6PDJ1,1 - high confidence,VWFA and cache domain-containing protein 1,CAHD1_MOUSE,no,320508,Cachd1,0.9713,3,1,1,0,yes
+Mouse,Q61614,1 - high confidence,Endothelin-1 receptor,EDNRA_MOUSE,no,13617,Ednra,0.9683,3,1,7,0,yes
+Mouse,P35917,1 - high confidence,Vascular endothelial growth factor receptor 3,VGFR3_MOUSE,no,14257,Flt4,0.9677,5,1,1,0,yes
+Mouse,Q9ET39,1 - high confidence,SLAM family member 6,SLAF6_MOUSE,no,30925,Slamf6,0.9584,2,1,1,0,yes
+Mouse,P70180,1 - high confidence,Atrial natriuretic peptide receptor 3,ANPRC_MOUSE,no,18162,Npr3,0.9569,1,1,1,0,yes
+Mouse,Q8BMK4,1 - high confidence,Cytoskeleton-associated protein 4,CKAP4_MOUSE,no,216197,Ckap4,0.9507,3,1,1,0,yes
+Mouse,Q80TG9,1 - high confidence,Leucine-rich repeat and fibronectin type-III domain-containing protein 2,LRFN2_MOUSE,no,70530,Lrfn2,0.9383,1,1,1,0,yes
+Mouse,Q504P2,1 - high confidence,C-type lectin domain family 12 member A,CL12A_MOUSE,no,232413,Clec12a,0.9379,1,1,1,0,yes
+Mouse,Q8K5B1,1 - high confidence,Interleukin-31 receptor subunit alpha,IL31R_MOUSE,no,218624,Il31ra,0.9134,4,1,1,0,yes
+Mouse,P39087,1 - high confidence,"Glutamate receptor, ionotropic kainate 2",GRIK2_MOUSE,no,14806,Grik2,0.9008,13,1,3,0,yes
+Mouse,Q9D6W7,1 - high confidence,CD164 sialomucin-like 2 protein,C16L2_MOUSE,no,69655,Cd164l2,0.8915,1,1,1,0,yes
+Mouse,Q925F2,1 - high confidence,Endothelial cell-selective adhesion molecule,ESAM_MOUSE,no,69524,Esam,0.8735,1,1,1,0,yes
+Mouse,O08852,1 - high confidence,Polycystin-1,PKD1_MOUSE,no,18763,Pkd1,0.8349,1,1,11,0,yes
+Mouse,P24638,1 - high confidence,Lysosomal acid phosphatase,PPAL_MOUSE,no,11432,Acp2,1,15,1,1,0,yes
+Mouse,P24668,1 - high confidence,Cation-dependent mannose-6-phosphate receptor,MPRD_MOUSE,no,17113,M6pr,1,31,1,1,0,yes
+Mouse,P28078,1 - high confidence,"Class II histocompatibility antigen, M alpha chain",2DMA_MOUSE,no,14998,H2-DMa,1,4,1,1,0,yes
+Mouse,Q3TB92,1 - high confidence,Mast cell antigen 32,MCA32_MOUSE,no,380732,Mca32,1,13,1,1,0,yes
+Mouse,Q3TD49,1 - high confidence,Signal peptide peptidase-like 2B,PSL1_MOUSE,no,73218,Sppl2b,1,12,1,9,0,yes
+Mouse,Q640R3,1 - high confidence,Hepatocyte cell adhesion molecule,HECAM_MOUSE,no,72927,Hepacam,1,7,1,1,0,yes
+Mouse,Q69ZS6,1 - high confidence,Synaptic vesicle glycoprotein 2C,SV2C_MOUSE,no,75209,Sv2c,1,1,1,12,0,yes
+Mouse,Q6GU68,1 - high confidence,Immunoglobulin superfamily containing leucine-rich repeat protein,ISLR_MOUSE,no,26968,Islr,1,2,1,1,0,yes
+Mouse,Q6NXM3,1 - high confidence,Transmembrane protein 130,TM130_MOUSE,no,243339,Tmem130,1,1,1,1,0,yes
+Mouse,Q7TQA1,1 - high confidence,Immunoglobulin superfamily member 1,IGSF1_MOUSE,no,209268,Igsf1,1,5,1,3,0,yes
+Mouse,Q8BJ48,1 - high confidence,N-acetylglucosamine-1-phosphodiester alpha-N-acetylglucosaminidase,NAGPA_MOUSE,no,27426,Nagpa,1,3,1,1,0,yes
+Mouse,Q8BXZ1,1 - high confidence,Protein disulfide-isomerase TMX3,TMX3_MOUSE,no,67988,Tmx3,1,6,1,1,0,yes
+Mouse,Q8K4Z2,1 - high confidence,Fibronectin type III domain-containing protein 5,FNDC5_MOUSE,no,384061,Fndc5,1,3,1,1,0,yes
+Mouse,Q8R1V4,1 - high confidence,Transmembrane emp24 domain-containing protein 4,TMED4_MOUSE,no,103694,Tmed4,1,16,1,2,0,yes
+Mouse,Q91YQ5,1 - high confidence,Dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit 1,RPN1_MOUSE,no,103963,Rpn1,1,22,1,1,0,yes
+Mouse,Q922P8,1 - high confidence,Transmembrane protein 132A,T132A_MOUSE,no,98170,Tmem132a,1,8,1,1,0,yes
+Mouse,Q99KF1,1 - high confidence,Transmembrane emp24 domain-containing protein 9,TMED9_MOUSE,no,67511,Tmed9,1,20,1,1,0,yes
+Mouse,Q99P91,1 - high confidence,Transmembrane glycoprotein NMB,GPNMB_MOUSE,no,93695,Gpnmb,1,8,1,1,0,yes
+Mouse,Q9CPW5,1 - high confidence,Translocon-associated protein subunit beta,SSRB_MOUSE,no,66256,Ssr2,1,18,1,1,0,yes
+Mouse,Q9CR23,1 - high confidence,Transmembrane protein 9,TMEM9_MOUSE,no,66241,Tmem9,1,10,1,1,0,yes
+Mouse,Q9CXI3,1 - high confidence,DBH-like monooxygenase protein 1,MOXD1_MOUSE,no,59012,Moxd1,1,2,1,1,0,yes
+Mouse,Q9CY50,1 - high confidence,Translocon-associated protein subunit alpha,SSRA_MOUSE,no,107513,Ssr1,1,6,1,1,0,yes
+Mouse,Q9DBG6,1 - high confidence,Dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit 2,RPN2_MOUSE,no,20014,Rpn2,1,15,1,3,0,yes
+Mouse,Q9DBH5,1 - high confidence,Vesicular integral-membrane protein VIP36,LMAN2_MOUSE,no,66890,Lman2,1,20,1,1,0,yes
+Mouse,Q9JHJ3,1 - high confidence,Lysosomal protein NCU-G1,NCUG1_MOUSE,no,56700,0,1,23,1,1,0,yes
+Mouse,Q9JIS5,1 - high confidence,Synaptic vesicle glycoprotein 2A,SV2A_MOUSE,no,64051,Sv2a,1,11,1,12,0,yes
+Mouse,Q9QY81,1 - high confidence,Nuclear pore membrane glycoprotein 210,PO210_MOUSE,no,54563,Nup210,1,10,1,1,0,yes
+Mouse,Q9R1Q9,1 - high confidence,V-type proton ATPase subunit S1,VAS1_MOUSE,no,54411,Atp6ap1,1,18,1,1,0,yes
+Mouse,Q9WTZ2,1 - high confidence,Membrane-bound transcription factor site-1 protease,MBTP1_MOUSE,no,56453,Mbtps1,1,5,1,1,0,yes
+Mouse,Q9EQG7,1 - high confidence,Ectonucleotide pyrophosphatase/phosphodiesterase family member 5,ENPP5_MOUSE,no,83965,Enpp5,0.9999,2,1,1,0,yes
+Mouse,Q9Z2G6,1 - high confidence,Protein sel-1 homolog 1,SE1L1_MOUSE,no,20338,Sel1l,0.9999,19,1,1,0,yes
+Mouse,P59481,1 - high confidence,VIP36-like protein,LMA2L_MOUSE,no,214895,Lman2l,0.9994,10,1,1,0,yes
+Mouse,Q8BXQ2,1 - high confidence,GPI transamidase component PIG-T,PIGT_MOUSE,no,78928,Pigt,0.9966,13,1,1,0,yes
+Mouse,Q9DBU0,1 - high confidence,Transmembrane 9 superfamily member 1,TM9S1_MOUSE,no,74140,Tm9sf1,0.9966,10,1,9,0,yes
+Mouse,O54965,1 - high confidence,RING finger protein 13,RNF13_MOUSE,no,24017,Rnf13,0.996,7,1,1,0,yes
+Mouse,O35604,1 - high confidence,Niemann-Pick C1 protein,NPC1_MOUSE,no,18145,Npc1,0.9953,20,1,13,0,yes
+Mouse,Q3TXX4,1 - high confidence,Vesicular glutamate transporter 1,VGLU1_MOUSE,no,72961,Slc17a7,0.9949,1,1,8,0,yes
+Mouse,Q8BG39,1 - high confidence,Synaptic vesicle glycoprotein 2B,SV2B_MOUSE,no,64176,Sv2b,0.9938,2,1,12,0,yes
+Mouse,O08912,1 - high confidence,Polypeptide N-acetylgalactosaminyltransferase 1,GALT1_MOUSE,no,14423,Galnt1,0.9925,2,1,1,0,yes
+Mouse,Q8VCM8,1 - high confidence,Nicalin,NCLN_MOUSE,no,103425,Ncln,0.9872,5,1,2,0,yes
+Mouse,Q99KW9,1 - high confidence,T-cell immunomodulatory protein,TIP_MOUSE,no,71927,Itfg1,0.9852,17,1,1,0,yes
+Mouse,Q9JL18,1 - high confidence,Beta-secretase 2,BACE2_MOUSE,no,56175,Bace2,0.98,1,1,1,0,yes
+Mouse,Q62277,1 - high confidence,Synaptophysin,SYPH_MOUSE,no,20977,Syp,0.9755,4,1,3,0,yes
+Mouse,Q8BGN8,1 - high confidence,Synaptoporin,SYNPR_MOUSE,no,72003,Synpr,0.9532,1,1,3,0,yes
+Mouse,P14142,1 - high confidence,"Solute carrier family 2, facilitated glucose transporter member 4",GTR4_MOUSE,no,20528,Slc2a4,0.9117,9,1,12,0,yes
+Mouse,O08602,1 - high confidence,Retinoic acid early-inducible protein 1-alpha,RAE1A_MOUSE,no,19368,Raet1a,1,18,1,1,1,yes
+Mouse,O08604,1 - high confidence,Retinoic acid early-inducible protein 1-gamma,RAE1C_MOUSE,no,19370,Raet1c,1,1,1,1,1,yes
+Mouse,O35136,1 - high confidence,Neural cell adhesion molecule 2,NCAM2_MOUSE,no,17968,Ncam2,1,5,1,1,1,yes
+Mouse,P12960,1 - high confidence,Contactin-1,CNTN1_MOUSE,no,12805,Cntn1,1,7,1,1,1,yes
+Mouse,P97785,1 - high confidence,GDNF family receptor alpha-1,GFRA1_MOUSE,no,14585,Gfra1,1,10,1,1,1,yes
+Mouse,Q07409,1 - high confidence,Contactin-3,CNTN3_MOUSE,no,18488,Cntn3,1,3,1,1,1,yes
+Mouse,Q7TSP5,1 - high confidence,V-set domain containing T-cell activation inhibitor 1,VTCN1_MOUSE,no,242122,Vtcn1,1,2,1,2,1,yes
+Mouse,Q80V42,1 - high confidence,Carboxypeptidase M,CBPM_MOUSE,no,70574,Cpm,1,19,1,1,1,yes
+Mouse,Q80Z24,1 - high confidence,Neuronal growth regulator 1,NEGR1_MOUSE,no,320840,Negr1,1,5,1,1,1,yes
+Mouse,Q8CFZ4,1 - high confidence,Glypican-3 [Cleaved into: Secreted glypican-3],GPC3_MOUSE,no,14734,Gpc3,1,8,1,1,1,yes
+Mouse,Q99PI8,1 - high confidence,Reticulon-4 receptor,RTN4R_MOUSE,no,65079,Rtn4r,1,1,1,1,1,yes
+Mouse,Q9CZQ6,1 - high confidence,Retinoic acid early-inducible protein 1-epsilon,RAE1E_MOUSE,no,379043,Raet1e,1,2,1,1,1,yes
+Mouse,Q9QZF2,1 - high confidence,Glypican-1 [Cleaved into: Secreted glypican-1],GPC1_MOUSE,no,14733,Gpc1,1,18,1,1,1,yes
+Mouse,Q9Z0J1,1 - high confidence,Reversion-inducing cysteine-rich protein with Kazal motifs,RECK_MOUSE,no,53614,Reck,1,1,1,1,1,yes
+Mouse,Q9Z0K8,1 - high confidence,Pantetheinase,VNN1_MOUSE,no,22361,Vnn1,1,4,1,1,1,yes
+Mouse,P60755,1 - high confidence,MAM domain-containing glycosylphosphatidylinositol anchor protein 2,MDGA2_MOUSE,no,320772,Mdga2,0.9973,4,1,1,1,yes
+Mouse,O08545,1 - high confidence,Ephrin-A3,EFNA3_MOUSE,no,13638,Efna3,0.9972,3,1,1,1,yes
+Mouse,O08603,1 - high confidence,Retinoic acid early-inducible protein 1-beta,RAE1B_MOUSE,no,19369,Raet1b,0.9966,10,1,1,1,yes
+Mouse,Q9WTR5,1 - high confidence,Cadherin-13,CAD13_MOUSE,no,12554,Cdh13,0.9966,11,1,1,1,yes
+Mouse,Q61468,1 - high confidence,Mesothelin,MSLN_MOUSE,no,56047,Msln,0.9949,1,1,1,1,yes
+Mouse,O35975,1 - high confidence,T-cell ecto-ADP-ribosyltransferase 2,NAR2B_MOUSE,no,11872,Art2b,0.9925,1,1,1,1,yes
+Mouse,Q62086,3 - unspecific,Serum paraoxonase/arylesterase 2,PON2_MOUSE,no,330260,Pon2,1,1,0,0,0,#N/A
+Mouse,P17439,3 - unspecific,Glucosylceramidase,GLCM_MOUSE,no,14466,Gba,1,23,0,0,0,#N/A
+Mouse,Q8CFG0,3 - unspecific,Extracellular sulfatase Sulf-2,SULF2_MOUSE,no,72043,Sulf2,1,8,0,0,0,#N/A
+Mouse,Q8K007,3 - unspecific,Extracellular sulfatase Sulf-1,SULF1_MOUSE,no,240725,Sulf1,1,1,0,0,0,#N/A
+Mouse,Q8R180,3 - unspecific,ERO1-like protein alpha,ERO1A_MOUSE,no,50527,Ero1l,1,9,0,0,0,#N/A
+Mouse,Q8R2E9,3 - unspecific,ERO1-like protein beta,ERO1B_MOUSE,no,67475,Ero1lb,1,5,0,0,0,#N/A
+Mouse,Q9JLB4,3 - unspecific,Cubilin,CUBN_MOUSE,no,65969,Cubn,1,7,0,0,0,#N/A
+Mouse,Q9R0B9,3 - unspecific,"Procollagen-lysine,2-oxoglutarate 5-dioxygenase 2",PLOD2_MOUSE,no,26432,Plod2,1,13,0,0,0,#N/A
+Mouse,Q9R0E2,3 - unspecific,"Procollagen-lysine,2-oxoglutarate 5-dioxygenase 1",PLOD1_MOUSE,no,18822,Plod1,1,11,0,0,0,#N/A
+Mouse,Q9R0E1,3 - unspecific,"Procollagen-lysine,2-oxoglutarate 5-dioxygenase 3",PLOD3_MOUSE,no,26433,Plod3,0.9974,16,0,0,0,#N/A
+Mouse,P55302,3 - unspecific,Alpha-2-macroglobulin receptor-associated protein,AMRP_MOUSE,no,16976,Lrpap1,0.9966,3,0,0,0,#N/A
+Mouse,Q05769,3 - unspecific,Prostaglandin G/H synthase 2,PGH2_MOUSE,no,19225,Ptgs2,0.9928,3,0,0,0,#N/A
+Mouse,P08113,3 - unspecific,Endoplasmin,ENPL_MOUSE,no,22027,Hsp90b1,1,23,0,0,0,#N/A
+Mouse,P16675,3 - unspecific,Lysosomal protective protein,PPGB_MOUSE,no,19025,Ctsa,1,3,0,0,0,#N/A
+Mouse,P21661,3 - unspecific,Neuroendocrine convertase 2,NEC2_MOUSE,no,18549,Pcsk2,1,8,0,0,0,#N/A
+Mouse,P24369,3 - unspecific,Peptidyl-prolyl cis-trans isomerase B,PPIB_MOUSE,no,19035,Ppib,1,9,0,0,0,#N/A
+Mouse,P35441,3 - unspecific,Thrombospondin-1,TSP1_MOUSE,no,21825,Thbs1,1,18,0,0,0,#N/A
+Mouse,P97821,3 - unspecific,Dipeptidyl peptidase 1,CATC_MOUSE,no,13032,Ctsc,1,2,0,0,0,#N/A
+Mouse,Q61576,3 - unspecific,Peptidyl-prolyl cis-trans isomerase FKBP10,FKB10_MOUSE,no,14230,Fkbp10,1,7,0,0,0,#N/A
+Mouse,Q8BFR4,3 - unspecific,N-acetylglucosamine-6-sulfatase,GNS_MOUSE,no,75612,Gns,1,3,0,0,0,#N/A
+Mouse,Q8BH97,3 - unspecific,Reticulocalbin-3,RCN3_MOUSE,no,52377,Rcn3,1,3,0,0,0,#N/A
+Mouse,Q920P3,3 - unspecific,Deleted in bladder cancer protein 1 homolog,DBC1_MOUSE,no,56710,Dbc1,1,2,0,0,0,#N/A
+Mouse,Q9CQF9,3 - unspecific,Prenylcysteine oxidase,PCYOX_MOUSE,no,66881,Pcyox1,1,16,0,0,0,#N/A
+Mouse,Q9D7J6,3 - unspecific,Deoxyribonuclease-1-like 1,DNSL1_MOUSE,no,69537,Dnase1l1,1,6,0,0,0,#N/A
+Mouse,Q9ER41,3 - unspecific,Torsin-1B,TOR1B_MOUSE,no,30934,Tor1b,1,5,0,0,0,#N/A
+Mouse,Q9JHP7,3 - unspecific,KDEL motif-containing protein 1,KDEL1_MOUSE,no,72050,Kdelc1,1,7,0,0,0,#N/A
+Mouse,Q9JKR6,3 - unspecific,Hypoxia up-regulated protein 1,HYOU1_MOUSE,no,12282,Hyou1,1,25,0,0,0,#N/A
+Mouse,Q9QWR8,3 - unspecific,Alpha-N-acetylgalactosaminidase,NAGAB_MOUSE,no,17939,Naga,1,2,0,0,0,#N/A
+Mouse,Q9Z247,3 - unspecific,Peptidyl-prolyl cis-trans isomerase FKBP9,FKBP9_MOUSE,no,27055,Fkbp9,1,4,0,0,0,#N/A
+Mouse,O89023,3 - unspecific,Tripeptidyl-peptidase 1,TPP1_MOUSE,no,12751,Tpp1,0.9979,5,0,0,0,#N/A
+Mouse,Q9ER38,3 - unspecific,Torsin-3A,TOR3A_MOUSE,no,30935,Tor3a,0.9979,6,0,0,0,#N/A
+Mouse,Q9EPL4,3 - unspecific,Methyltransferase-like protein 9,METL9_MOUSE,no,59052,Mettl9,0.9972,4,0,0,0,#N/A
+Mouse,Q9R013,3 - unspecific,Cathepsin F,CATF_MOUSE,no,56464,Ctsf,0.9972,5,0,0,0,#N/A
+Mouse,Q3UMW8,3 - unspecific,Ceroid-lipofuscinosis neuronal protein 5 homolog,CLN5_MOUSE,no,211286,Cln5,0.9971,2,0,0,0,#N/A
+Mouse,P06797,3 - unspecific,Cathepsin L1,CATL1_MOUSE,no,13039,Ctsl1,0.9966,9,0,0,0,#N/A
+Mouse,P15089,3 - unspecific,Mast cell carboxypeptidase A,CBPA3_MOUSE,no,12873,Cpa3,0.9966,1,0,0,0,#N/A
+Mouse,P29416,3 - unspecific,Beta-hexosaminidase subunit alpha,HEXA_MOUSE,no,15211,Hexa,0.9966,10,0,0,0,#N/A
+Mouse,Q60715,3 - unspecific,Prolyl 4-hydroxylase subunit alpha-1,P4HA1_MOUSE,no,18451,P4ha1,0.9966,14,0,0,0,#N/A
+Mouse,Q8K297,3 - unspecific,Procollagen galactosyltransferase 1,GT251_MOUSE,no,234407,Glt25d1,0.9966,14,0,0,0,#N/A
+Mouse,Q8R0F3,3 - unspecific,Sulfatase-modifying factor 1,SUMF1_MOUSE,no,58911,Sumf1,0.9966,7,0,0,0,#N/A
+Mouse,Q9WV54,3 - unspecific,Acid ceramidase,ASAH1_MOUSE,no,11886,Asah1,0.9966,22,0,0,0,#N/A
+Mouse,Q8BM72,3 - unspecific,Heat shock 70 kDa protein 13,HSP13_MOUSE,no,110920,Hspa13,0.9965,1,0,0,0,#N/A
+Mouse,P12265,3 - unspecific,Beta-glucuronidase,BGLR_MOUSE,no,110006,Gusb,0.9962,3,0,0,0,#N/A
+Mouse,O09159,3 - unspecific,Lysosomal alpha-mannosidase,MA2B1_MOUSE,no,17159,Man2b1,0.996,7,0,0,0,#N/A
+Mouse,P04214,3 - unspecific,T-cell receptor beta chain V region E1,TVB6_MOUSE,no,0,0,0.9944,2,0,0,0,#N/A
+Mouse,Q2HXL6,3 - unspecific,ER degradation-enhancing alpha-mannosidase-like 3,EDEM3_MOUSE,no,66967,Edem3,0.994,3,0,0,0,#N/A
+Mouse,Q8BYB9,3 - unspecific,KTEL motif-containing protein 1,KTEL1_MOUSE,no,224143,Ktelc1,0.994,5,0,0,0,#N/A
+Mouse,Q8VHI3,3 - unspecific,GDP-fucose protein O-fucosyltransferase 2,OFUT2_MOUSE,no,80294,Pofut2,0.9931,2,0,0,0,#N/A
+Mouse,P20060,3 - unspecific,Beta-hexosaminidase subunit beta,HEXB_MOUSE,no,15212,Hexb,0.9929,5,0,0,0,#N/A
+Mouse,Q60716,3 - unspecific,Prolyl 4-hydroxylase subunit alpha-2,P4HA2_MOUSE,no,18452,P4ha2,0.9928,2,0,0,0,#N/A
+Mouse,Q9EPK6,3 - unspecific,Nucleotide exchange factor SIL1,SIL1_MOUSE,no,81500,Sil1,0.9908,5,0,0,0,#N/A
+Mouse,P19324,3 - unspecific,Serpin H1,SERPH_MOUSE,no,12406,Serpinh1,0.9862,10,0,0,0,#N/A
+Mouse,O08795,3 - unspecific,Glucosidase 2 subunit beta,GLU2B_MOUSE,no,19089,Prkcsh,0.9435,2,0,0,0,#N/A
+Mouse,O70423,3 - unspecific,Membrane primary amine oxidase,AOC3_MOUSE,no,11754,Aoc3,1,2,0,0,0,#N/A
+Mouse,Q8VDX6,3 - unspecific,Transmembrane protein 5,TMEM5_MOUSE,no,216395,Tmem5,1,4,0,0,0,#N/A
+Mouse,Q99JP7,3 - unspecific,Gamma-glutamyltransferase 7,GGT7_MOUSE,no,207182,Ggt7,1,9,0,0,0,#N/A
+Mouse,Q9Z2A9,3 - unspecific,Gamma-glutamyltransferase 5,GGT5_MOUSE,no,23887,Ggt5,1,7,0,0,0,#N/A
+Mouse,Q99J85,3 - unspecific,Neuronal pentraxin receptor,NPTXR_MOUSE,no,73340,Nptxr,0.9966,8,0,0,0,#N/A
+Mouse,Q9QYK5,3 - unspecific,Heparan-sulfate 6-O-sulfotransferase 1,H6ST1_MOUSE,no,50785,Hs6st1,0.9957,1,0,0,0,#N/A
+Mouse,Q6NSU3,3 - unspecific,Glycosyltransferase 8 domain-containing protein 1,GL8D1_MOUSE,no,76485,Glt8d1,0.9938,10,0,0,0,#N/A
+Mouse,Q3UHH8,3 - unspecific,Glucoside xylosyltransferase 1,GXLT1_MOUSE,no,223827,Gxylt1,0.9361,3,0,0,0,#N/A
+Mouse,Q6A058,3 - unspecific,Armadillo repeat-containing X-linked protein 2,ARMX2_MOUSE,no,67416,Armcx2,0.89,3,0,0,0,#N/A
+Mouse,O09009,3 - unspecific,"Beta-1,3-N-acetylglucosaminyltransferase radical fringe",RFNG_MOUSE,no,19719,Rfng,1,3,0,0,0,#N/A
+Mouse,O09010,3 - unspecific,"Beta-1,3-N-acetylglucosaminyltransferase lunatic fringe",LFNG_MOUSE,no,16848,Lfng,1,3,0,0,0,#N/A
+Mouse,P68372,3 - unspecific,Tubulin beta-2C chain,TBB2C_MOUSE,no,227613,Tubb2c,1,10,0,0,0,#N/A
+Mouse,P99024,3 - unspecific,Tubulin beta-5 chain,TBB5_MOUSE,no,22154,Tubb5,1,17,0,0,0,#N/A
+Mouse,Q09200,3 - unspecific,"Beta-1,4 N-acetylgalactosaminyltransferase 1",B4GN1_MOUSE,no,14421,B4galnt1,1,2,0,0,0,#N/A
+Mouse,Q68FD5,3 - unspecific,Clathrin heavy chain 1,CLH_MOUSE,no,67300,Cltc,1,7,0,0,0,#N/A
+Mouse,Q6ZQ11,3 - unspecific,Chondroitin sulfate synthase 1,CHSS1_MOUSE,no,269941,Chsy1,1,4,0,0,0,#N/A
+Mouse,Q8BLF1,3 - unspecific,Neutral cholesterol ester hydrolase 1,ADCL1_MOUSE,no,320024,Nceh1,1,6,0,0,0,#N/A
+Mouse,Q8VEK3,3 - unspecific,Heterogeneous nuclear ribonucleoprotein U,HNRPU_MOUSE,no,51810,Hnrnpu,1,12,0,0,0,#N/A
+Mouse,Q922F4,3 - unspecific,Tubulin beta-6 chain,TBB6_MOUSE,no,67951,Tubb6,1,1,0,0,0,#N/A
+Mouse,Q9CR89,3 - unspecific,Endoplasmic reticulum-Golgi intermediate compartment protein 2,ERGI2_MOUSE,no,67456,Ergic2,1,7,0,0,0,#N/A
+Mouse,Q9EP78,3 - unspecific,Carbohydrate sulfotransferase 7,CHST7_MOUSE,no,60322,Chst7,1,7,0,0,0,#N/A
+Mouse,Q7TMM9,3 - unspecific,Tubulin beta-2A chain,TBB2A_MOUSE,no,22151,Tubb2a,0.9994,2,0,0,0,#N/A
+Mouse,Q91Z92,3 - unspecific,"Beta-1,3-galactosyltransferase 6",B3GT6_MOUSE,no,117592,B3galt6,0.9979,8,0,0,0,#N/A
+Mouse,Q922Q6,3 - unspecific,Abhydrolase domain-containing protein 14A,ABHEA_MOUSE,no,68644,Abhd14a,0.9979,11,0,0,0,#N/A
+Mouse,P61315,3 - unspecific,Galactose-3-O-sulfotransferase 3,G3ST3_MOUSE,no,545276,Gal3st3,0.9971,5,0,0,0,#N/A
+Mouse,Q5F2L2,3 - unspecific,"Alpha-(1,3)-fucosyltransferase 10",FUT10_MOUSE,no,171167,Fut10,0.9971,2,0,0,0,#N/A
+Mouse,Q9CQ75,3 - unspecific,NADH dehydrogenase [ubiquinone] 1 alpha subcomplex subunit 2,NDUA2_MOUSE,no,17991,Ndufa2,0.997,1,0,0,0,#N/A
+Mouse,Q8BHT6,3 - unspecific,"Beta-1,3-glucosyltransferase",B3GLT_MOUSE,no,381694,B3galtl,0.9969,2,0,0,0,#N/A
+Mouse,Q812F8,3 - unspecific,"Alpha-1,3-mannosyl-glycoprotein 4-beta-N-acetylglucosaminyltransferase B",MGT4B_MOUSE,no,103534,Mgat4b,0.9966,8,0,0,0,#N/A
+Mouse,Q8R3H7,3 - unspecific,Heparan sulfate 2-O-sulfotransferase 1,HS2ST_MOUSE,no,23908,Hs2st1,0.9966,19,0,0,0,#N/A
+Mouse,Q91XA2,3 - unspecific,Golgi membrane protein 1,GOLM1_MOUSE,no,105348,Golm1,0.9966,20,0,0,0,#N/A
+Mouse,Q921V5,3 - unspecific,"Alpha-1,6-mannosyl-glycoprotein 2-beta-N-acetylglucosaminyltransferase",MGAT2_MOUSE,no,217664,Mgat2,0.9966,8,0,0,0,#N/A
+Mouse,Q9EPS3,3 - unspecific,D-glucuronyl C5-epimerase,GLCE_MOUSE,no,93683,Glce,0.9966,3,0,0,0,#N/A
+Mouse,Q91Y74,3 - unspecific,"CMP-N-acetylneuraminate-beta-galactosamide-alpha-2,3-sialyltransferase 4",SIA4C_MOUSE,no,20443,St3gal4,0.9965,4,0,0,0,#N/A
+Mouse,O54904,3 - unspecific,"Beta-1,3-galactosyltransferase 1",B3GT1_MOUSE,no,26877,B3galt1,0.9962,3,0,0,0,#N/A
+Mouse,O35696,3 - unspecific,"Alpha-2,8-sialyltransferase 8B",SIA8B_MOUSE,no,20450,St8sia2,0.996,3,0,0,0,#N/A
+Mouse,Q91YY2,3 - unspecific,"Beta-1,4-galactosyltransferase 3",B4GT3_MOUSE,no,57370,B4galt3,0.9953,4,0,0,0,#N/A
+Mouse,P58158,3 - unspecific,Galactosylgalactosylxylosylprotein 3-beta-glucuronosyltransferase 3,B3GA3_MOUSE,no,72727,B3gat3,0.9951,1,0,0,0,#N/A
+Mouse,Q9QXL1,3 - unspecific,Kinesin-like protein KIF21B,KI21B_MOUSE,no,16565,Kif21b,0.9946,21,0,0,0,#N/A
+Mouse,O88856,3 - unspecific,Protein-tyrosine sulfotransferase 2,TPST2_MOUSE,no,22022,Tpst2,0.9928,4,0,0,0,#N/A
+Mouse,Q9JME2,3 - unspecific,Carbohydrate sulfotransferase 11,CHSTB_MOUSE,no,58250,Chst11,0.9928,4,0,0,0,#N/A
+Mouse,Q9CQA3,3 - unspecific,"Succinate dehydrogenase [ubiquinone] iron-sulfur subunit, mitochondrial",DHSB_MOUSE,no,67680,Sdhb,0.9914,1,0,0,0,#N/A
+Mouse,Q01063,3 - unspecific,"cAMP-specific 3',5'-cyclic phosphodiesterase 4D",PDE4D_MOUSE,no,238871,Pde4d,0.9876,1,0,0,0,#N/A
+Mouse,Q9D620,3 - unspecific,Rab11 family-interacting protein 1,RFIP1_MOUSE,no,75767,Rab11fip1,0.9865,4,0,0,0,#N/A
+Mouse,P00186,3 - unspecific,Cytochrome P450 1A2,CP1A2_MOUSE,no,13077,Cyp1a2,0.9839,3,0,0,0,#N/A
+Mouse,Q91XQ0,3 - unspecific,"Dynein heavy chain 8, axonemal",DYH8_MOUSE,no,13417,Dnahc8,0.8731,1,0,0,0,#N/A
+Mouse,O88477,3 - unspecific,Insulin-like growth factor 2 mRNA-binding protein 1,IF2B1_MOUSE,no,140486,Igf2bp1,1,2,0,0,0,#N/A
+Mouse,P03995,3 - unspecific,Glial fibrillary acidic protein,GFAP_MOUSE,no,14580,Gfap,1,5,0,0,0,#N/A
+Mouse,P07901,3 - unspecific,Heat shock protein HSP 90-alpha,HS90A_MOUSE,no,15519,Hsp90aa1,1,13,0,0,0,#N/A
+Mouse,P11499,3 - unspecific,Heat shock protein HSP 90-beta,HS90B_MOUSE,no,15516,Hsp90ab1,1,14,0,0,0,#N/A
+Mouse,P14115,3 - unspecific,60S ribosomal protein L27a,RL27A_MOUSE,no,26451,Rpl27a,1,17,0,0,0,#N/A
+Mouse,P15864,3 - unspecific,Histone H1.2,H12_MOUSE,no,50708,Hist1h1c,1,17,0,0,0,#N/A
+Mouse,P16858,3 - unspecific,Glyceraldehyde-3-phosphate dehydrogenase,G3P_MOUSE,no,14433,Gapdh,1,24,0,0,0,#N/A
+Mouse,P27659,3 - unspecific,60S ribosomal protein L3,RL3_MOUSE,no,27367,Rpl3,1,14,0,0,0,#N/A
+Mouse,P35980,3 - unspecific,60S ribosomal protein L18,RL18_MOUSE,no,19899,Rpl18,1,20,0,0,0,#N/A
+Mouse,P43277,3 - unspecific,Histone H1.3,H13_MOUSE,no,14957,Hist1h1d,1,7,0,0,0,#N/A
+Mouse,P51410,3 - unspecific,60S ribosomal protein L9,RL9_MOUSE,no,20005,Rpl9,1,20,0,0,0,#N/A
+Mouse,P51880,3 - unspecific,"Fatty acid-binding protein, brain",FABP7_MOUSE,no,12140,Fabp7,1,3,0,0,0,#N/A
+Mouse,P52480,3 - unspecific,Pyruvate kinase isozymes M1/M2,KPYM_MOUSE,no,18746,Pkm2,1,20,0,0,0,#N/A
+Mouse,P58252,3 - unspecific,Elongation factor 2,EF2_MOUSE,no,13629,Eef2,1,17,0,0,0,#N/A
+Mouse,P62317,3 - unspecific,Small nuclear ribonucleoprotein Sm D2,SMD2_MOUSE,no,107686,Snrpd2,1,3,0,0,0,#N/A
+Mouse,P62821,3 - unspecific,Ras-related protein Rab-1A,RAB1A_MOUSE,no,19324,Rab1A,1,2,0,0,0,#N/A
+Mouse,P63017,3 - unspecific,Heat shock cognate 71 kDa protein,HSP7C_MOUSE,no,15481,Hspa8,1,14,0,0,0,#N/A
+Mouse,P63038,3 - unspecific,"60 kDa heat shock protein, mitochondrial",CH60_MOUSE,no,15510,Hspd1,1,14,0,0,0,#N/A
+Mouse,P84104,3 - unspecific,"Splicing factor, arginine/serine-rich 3",SFRS3_MOUSE,no,20383,Sfrs3,1,8,0,0,0,#N/A
+Mouse,P99027,3 - unspecific,60S acidic ribosomal protein P2,RLA2_MOUSE,no,67186,Rplp2,1,11,0,0,0,#N/A
+Mouse,Q8CGC7,3 - unspecific,Bifunctional aminoacyl-tRNA synthetase [Includes: Glutamyl-tRNA synthetase,SYEP_MOUSE,no,107508,Eprs,1,5,0,0,0,#N/A
+Mouse,Q8K2B0,3 - unspecific,Synaptonemal complex protein SC65,SC65_MOUSE,no,66180,Sc65,1,8,0,0,0,#N/A
+Mouse,Q9CPR4,3 - unspecific,60S ribosomal protein L17,RL17_MOUSE,no,319195,Rpl17,1,3,0,0,0,#N/A
+Mouse,Q9D8E6,3 - unspecific,60S ribosomal protein L4,RL4_MOUSE,no,67891,Rpl4,1,12,0,0,0,#N/A
+Mouse,Q9DCX2,3 - unspecific,"ATP synthase subunit d, mitochondrial",ATP5H_MOUSE,no,71679,Atp5h,1,2,0,0,0,#N/A
+Mouse,P09405,3 - unspecific,Nucleolin,NUCL_MOUSE,no,17975,Ncl,0.9999,10,0,0,0,#N/A
+Mouse,P43274,3 - unspecific,Histone H1.4,H14_MOUSE,no,50709,Hist1h1e,0.9999,20,0,0,0,#N/A
+Mouse,P62911,3 - unspecific,60S ribosomal protein L32,RL32_MOUSE,no,19951,Rpl32,0.9999,8,0,0,0,#N/A
+Mouse,Q3THE2,3 - unspecific,Myosin regulatory light chain 12B,ML12B_MOUSE,no,67938,Myl12b,0.9999,1,0,0,0,#N/A
+Mouse,Q6ZWV7,3 - unspecific,60S ribosomal protein L35,RL35_MOUSE,no,66489,Rpl35,0.9999,6,0,0,0,#N/A
+Mouse,Q91V92,3 - unspecific,ATP-citrate synthase,ACLY_MOUSE,no,104112,Acly,0.9999,3,0,0,0,#N/A
+Mouse,Q9Z2C9,3 - unspecific,Myotubularin-related protein 7,MTMR7_MOUSE,no,54384,Mtmr7,0.9994,22,0,0,0,#N/A
+Mouse,P16381,3 - unspecific,Putative ATP-dependent RNA helicase Pl10,DDX3L_MOUSE,no,110957,D1Pas1,0.9992,6,0,0,0,#N/A
+Mouse,P62245,3 - unspecific,40S ribosomal protein S15a,RS15A_MOUSE,no,267019,Rps15a,0.9987,6,0,0,0,#N/A
+Mouse,Q9CQT2,3 - unspecific,RNA-binding protein 7,RBM7_MOUSE,no,67010,Rbm7,0.9974,1,0,0,0,#N/A
+Mouse,Q9CZ42,3 - unspecific,Carbohydrate kinase domain-containing protein,CARKD_MOUSE,no,69225,Carkd,0.9973,3,0,0,0,#N/A
+Mouse,Q8CG48,3 - unspecific,Structural maintenance of chromosomes protein 2,SMC2_MOUSE,no,14211,Smc2,0.9971,2,0,0,0,#N/A
+Mouse,O55142,3 - unspecific,60S ribosomal protein L35a,RL35A_MOUSE,no,57808,Rpl35a,0.9966,8,0,0,0,#N/A
+Mouse,P97315,3 - unspecific,Cysteine and glycine-rich protein 1,CSRP1_MOUSE,no,13007,Csrp1,0.9966,3,0,0,0,#N/A
+Mouse,Q62318,3 - unspecific,Transcription intermediary factor 1-beta,TIF1B_MOUSE,no,21849,Trim28,0.9966,10,0,0,0,#N/A
+Mouse,Q60930,3 - unspecific,Voltage-dependent anion-selective channel protein 2,VDAC2_MOUSE,no,22334,Vdac2,0.9959,17,0,0,0,#N/A
+Mouse,Q9CQN1,3 - unspecific,"Heat shock protein 75 kDa, mitochondrial",TRAP1_MOUSE,no,68015,Trap1,0.9959,4,0,0,0,#N/A
+Mouse,O09167,3 - unspecific,60S ribosomal protein L21,RL21_MOUSE,no,19933,Rpl21,0.9954,5,0,0,0,#N/A
+Mouse,Q9D1M4,3 - unspecific,Eukaryotic translation elongation factor 1 epsilon-1,MCA3_MOUSE,no,66143,Eef1e1,0.9954,1,0,0,0,#N/A
+Mouse,O35129,3 - unspecific,Prohibitin-2,PHB2_MOUSE,no,12034,Phb2,0.995,7,0,0,0,#N/A
+Mouse,Q9ESX5,3 - unspecific,H/ACA ribonucleoprotein complex subunit 4,DKC1_MOUSE,no,245474,Dkc1,0.995,1,0,0,0,#N/A
+Mouse,P06336,3 - unspecific,Ig epsilon chain C region,IGHE_MOUSE,no,0,0,0.9949,1,0,0,0,#N/A
+Mouse,P60335,3 - unspecific,Poly(rC)-binding protein 1,PCBP1_MOUSE,no,23983,Pcbp1,0.9947,2,0,0,0,#N/A
+Mouse,P62267,3 - unspecific,40S ribosomal protein S23,RS23_MOUSE,no,66475,Rps23,0.9941,10,0,0,0,#N/A
+Mouse,P50516,3 - unspecific,V-type proton ATPase catalytic subunit A,VATA_MOUSE,no,11964,Atp6v1a,0.9938,1,0,0,0,#N/A
+Mouse,Q9ESJ0,3 - unspecific,Exportin-4,XPO4_MOUSE,no,57258,Xpo4,0.9938,1,0,0,0,#N/A
+Mouse,Q9D883,3 - unspecific,Splicing factor U2AF 35 kDa subunit,U2AF1_MOUSE,no,108121,U2af1,0.9912,1,0,0,0,#N/A
+Mouse,Q99L45,3 - unspecific,Eukaryotic translation initiation factor 2 subunit 2,IF2B_MOUSE,no,67204,Eif2s2,0.9906,4,0,0,0,#N/A
+Mouse,Q64467,3 - unspecific,"Glyceraldehyde-3-phosphate dehydrogenase, testis-specific",G3PT_MOUSE,no,14447,Gapdhs,0.99,2,0,0,0,#N/A
+Mouse,P50580,3 - unspecific,Proliferation-associated protein 2G4,PA2G4_MOUSE,no,18813,Pa2g4,0.9885,8,0,0,0,#N/A
+Mouse,Q8CG03,3 - unspecific,"cGMP-specific 3',5'-cyclic phosphodiesterase",PDE5A_MOUSE,no,242202,Pde5a,0.9868,1,0,0,0,#N/A
+Mouse,Q8BWT1,3 - unspecific,"3-ketoacyl-CoA thiolase, mitochondrial",THIM_MOUSE,no,52538,Acaa2,0.9817,3,0,0,0,#N/A
+Mouse,A2A6M5,3 - unspecific,Calcium-binding and coiled-coil domain-containing protein 2,CACO2_MOUSE,no,76815,Calcoco2,0.9811,1,0,0,0,#N/A
+Mouse,Q9D1R9,3 - unspecific,60S ribosomal protein L34,RL34_MOUSE,no,68436,Rpl34,0.98,4,0,0,0,#N/A
+Mouse,A2ASS6,3 - unspecific,Titin,TITIN_MOUSE,no,22138,Ttn,0.9717,2,0,0,0,#N/A
+Mouse,P62242,3 - unspecific,40S ribosomal protein S8,RS8_MOUSE,no,20116,Rps8,0.9681,14,0,0,0,#N/A
+Mouse,Q8K3M5,3 - unspecific,CDK5 and ABL1 enzyme substrate 2,CABL2_MOUSE,no,252966,Cables2,0.9615,2,0,0,0,#N/A
+Mouse,Q80TE4,3 - unspecific,Signal-induced proliferation-associated 1-like protein 2,SI1L2_MOUSE,no,244668,Sipa1l2,0.96,21,0,0,0,#N/A
+Mouse,Q64737,3 - unspecific,Trifunctional purine biosynthetic protein adenosine-3 [Includes: Phosphoribosylamine--glycine ligase,PUR2_MOUSE,no,14450,Gart,0.92,4,0,0,0,#N/A
+Mouse,Q99PP2,3 - unspecific,Zinc finger protein 318,ZN318_MOUSE,no,57908,Znf318,0.91,7,0,0,0,#N/A
+Mouse,P42228,3 - unspecific,Signal transducer and activator of transcription 4,STAT4_MOUSE,no,20849,Stat4,0.9077,3,0,0,0,#N/A
+Mouse,Q9D6Z1,3 - unspecific,Nucleolar protein 56,NOP56_MOUSE,no,67134,Nop56,0.9046,5,0,0,0,#N/A
+Mouse,P17918,3 - unspecific,Proliferating cell nuclear antigen,PCNA_MOUSE,no,18538,Pcna,0.9,1,0,0,0,#N/A
+Mouse,P54797,3 - unspecific,Ser/Thr-rich protein T10 in DGCR region,T10_MOUSE,no,0,T10,0.8848,3,0,0,0,#N/A
+Mouse,O35134,3 - unspecific,DNA-directed RNA polymerase I subunit RPA1,RPA1_MOUSE,no,20019,Polr1a,0.88,4,0,0,0,#N/A
+Mouse,Q8CFL8,3 - unspecific,Zinc finger SWIM domain-containing protein 3,ZSWM3_MOUSE,no,67538,Zswim3,0.88,1,0,0,0,#N/A
+Mouse,Q7TT23,3 - unspecific,Uncharacterized protein C20orf194 homolog,CT194_MOUSE,no,228602,0,0.8766,1,0,0,0,#N/A
+Mouse,P97313,3 - unspecific,DNA-dependent protein kinase catalytic subunit,PRKDC_MOUSE,no,19090,Prkdc,0.829,1,0,0,0,#N/A
+Mouse,Q8C310,2 - putative,Roundabout homolog 4,ROBO4_MOUSE,no,74144,Robo4,0.9933,2,1,1,0,#N/A
+Mouse,P70699,2 - putative,Lysosomal alpha-glucosidase,LYAG_MOUSE,no,14387,Gaa,1,14,1,1,0,#N/A
+Mouse,A2AVZ9,2 - putative,Solute carrier family 43 member 3,S43A3_MOUSE,no,58207,Slc43a3,1,8,1,12,0,#N/A
+Mouse,O35874,2 - putative,Neutral amino acid transporter A,SATT_MOUSE,no,55963,Slc1a4,1,28,1,9,0,#N/A
+Mouse,O55026,2 - putative,Ectonucleoside triphosphate diphosphohydrolase 2,ENTP2_MOUSE,no,12496,Entpd2,1,18,1,1,0,#N/A
+Mouse,O55192,2 - putative,Sodium-dependent noradrenaline transporter,SC6A2_MOUSE,no,20538,Slc6a2,1,4,1,12,0,#N/A
+Mouse,O70472,2 - putative,Transmembrane protein 131,TM131_MOUSE,no,56030,Tmem131,1,5,1,2,0,#N/A
+Mouse,O88627,2 - putative,Sodium/nucleoside cotransporter 2,S28A2_MOUSE,no,269346,Slc28a2,1,9,1,13,0,#N/A
+Mouse,P01849,2 - putative,T-cell receptor alpha chain C region,TCA_MOUSE,no,0,0,1,3,1,1,0,#N/A
+Mouse,P01851,2 - putative,T-cell receptor beta-2 chain C region,TCB2_MOUSE,no,0,0,1,4,1,1,0,#N/A
+Mouse,P01895,2 - putative,"H-2 class I histocompatibility antigen, alpha chain",HA1Y_MOUSE,no,14964,H2-D1,1,3,1,1,0,#N/A
+Mouse,P04227,2 - putative,"H-2 class II histocompatibility antigen, A-Q alpha chain",HA2Q_MOUSE,no,14960,H2-Aa,1,1,1,1,0,#N/A
+Mouse,P13808,2 - putative,Anion exchange protein 2,B3A2_MOUSE,no,20535,Slc4a2,1,2,1,13,0,#N/A
+Mouse,P28571,2 - putative,Sodium- and chloride-dependent glycine transporter 1,SC6A9_MOUSE,no,14664,Slc6a9,1,9,1,12,0,#N/A
+Mouse,P31650,2 - putative,Sodium- and chloride-dependent GABA transporter 3,S6A11_MOUSE,no,243616,Slc6a11,1,5,1,11,0,#N/A
+Mouse,P32037,2 - putative,"Solute carrier family 2, facilitated glucose transporter member 3",GTR3_MOUSE,no,20527,Slc2a3,1,29,1,11,0,#N/A
+Mouse,P41155,2 - putative,Lymphotoxin-beta,TNFC_MOUSE,no,16994,Ltb,1,3,1,1,0,#N/A
+Mouse,P41233,2 - putative,ATP-binding cassette sub-family A member 1,ABCA1_MOUSE,no,11303,Abca1,1,21,1,14,0,#N/A
+Mouse,P41234,2 - putative,ATP-binding cassette sub-family A member 2,ABCA2_MOUSE,no,11305,Abca2,1,6,1,14,0,#N/A
+Mouse,P41274,2 - putative,Tumor necrosis factor ligand superfamily member 9,TNFL9_MOUSE,no,21950,Tnfsf9,1,1,1,1,0,#N/A
+Mouse,P43006,2 - putative,Excitatory amino acid transporter 2,EAA2_MOUSE,no,20511,Slc1a2,1,16,1,9,0,#N/A
+Mouse,P47801,2 - putative,Epithelial membrane protein 1,EMP1_MOUSE,no,13730,Emp1,1,16,1,3,0,#N/A
+Mouse,P51830,2 - putative,Adenylate cyclase type 9,ADCY9_MOUSE,no,11515,Adcy9,1,17,1,12,0,#N/A
+Mouse,P51906,2 - putative,Excitatory amino acid transporter 3,EAA3_MOUSE,no,20510,Slc1a1,1,1,1,10,0,#N/A
+Mouse,P55012,2 - putative,Solute carrier family 12 member 2,S12A2_MOUSE,no,20496,Slc12a2,1,26,1,12,0,#N/A
+Mouse,P56564,2 - putative,Excitatory amino acid transporter 1,EAA1_MOUSE,no,20512,Slc1a3,1,17,1,7,0,#N/A
+Mouse,P56677,2 - putative,Suppressor of tumorigenicity 14 protein homolog,ST14_MOUSE,no,19143,St14,1,17,1,1,0,#N/A
+Mouse,Q3TWI9,2 - putative,Transmembrane protein 63B,TM63B_MOUSE,no,224807,Tmem63b,1,18,1,11,0,#N/A
+Mouse,Q3UHH2,2 - putative,Solute carrier family 22 member 23,S22AN_MOUSE,no,73102,Slc22a23,1,10,1,11,0,#N/A
+Mouse,Q3UHK6,2 - putative,Teneurin-4,TEN4_MOUSE,no,23966,Odz4,1,21,1,1,0,#N/A
+Mouse,Q3UP23,2 - putative,Transmembrane protein 26,TMM26_MOUSE,no,327766,Tmem26,1,8,1,7,0,#N/A
+Mouse,Q5FWI3,2 - putative,Transmembrane protein 2,TMEM2_MOUSE,no,83921,Tmem2,1,29,1,1,0,#N/A
+Mouse,Q5XF89,2 - putative,Probable cation-transporting ATPase 13A3,AT133_MOUSE,no,224088,Atp13a3,1,20,1,11,0,#N/A
+Mouse,Q60660,2 - putative,Killer cell lectin-like receptor 2,KLRA2_MOUSE,no,16633,Klra2,1,4,1,1,0,#N/A
+Mouse,Q61115,2 - putative,Protein patched homolog 1,PTC1_MOUSE,no,19206,Ptch1,1,6,1,12,0,#N/A
+Mouse,Q62273,2 - putative,Sulfate transporter,S26A2_MOUSE,no,13521,Slc26a2,1,15,1,12,0,#N/A
+Mouse,Q64302,2 - putative,Transmembrane 4 L6 family member 1,T4S1_MOUSE,no,17112,Tm4sf1,1,8,1,4,0,#N/A
+Mouse,Q68FD9,2 - putative,UPF0606 protein KIAA1549,K1549_MOUSE,no,330286,Kiaa1549,1,13,1,2,0,#N/A
+Mouse,Q69ZQ1,2 - putative,Uncharacterized family 31 glucosidase KIAA1161,K1161_MOUSE,no,329828,Kiaa1161,1,15,1,1,0,#N/A
+Mouse,Q6P2L7,2 - putative,Protein CASC4,CASC4_MOUSE,no,319996,Casc4,1,15,1,1,0,#N/A
+Mouse,Q80UW0,2 - putative,Heparan-sulfate 6-O-sulfotransferase 2,H6ST2_MOUSE,no,50786,Hs6st2,1,1,1,2,0,#N/A
+Mouse,Q80V26,2 - putative,Inositol monophosphatase 3,IMPA3_MOUSE,no,242291,Impad1,1,11,1,1,0,#N/A
+Mouse,Q80WG5,2 - putative,Leucine-rich repeat-containing protein 8A,LRC8A_MOUSE,no,241296,Lrrc8a,1,10,1,4,0,#N/A
+Mouse,Q80X71,2 - putative,Transmembrane protein 106B,T106B_MOUSE,no,71900,Tmem106b,1,14,1,1,0,#N/A
+Mouse,Q8BFZ2,2 - putative,Lipid phosphate phosphatase-related protein type 1,LPPR1_MOUSE,no,0,Lppr1,1,2,1,6,0,#N/A
+Mouse,Q8BG16,2 - putative,Orphan sodium- and chloride-dependent neurotransmitter transporter NTT73,S6A15_MOUSE,no,103098,Slc6a15,1,2,1,12,0,#N/A
+Mouse,Q8BS35,2 - putative,Transmembrane protein 195,TM195_MOUSE,no,319660,Tmem195,1,1,1,6,0,#N/A
+Mouse,Q8BSM7,2 - putative,Large neutral amino acids transporter small subunit 3,LAT3_MOUSE,no,72401,Slc43a1,1,20,1,12,0,#N/A
+Mouse,Q8BY89,2 - putative,Choline transporter-like protein 2,CTL2_MOUSE,no,68682,Slc44a2,1,31,1,11,0,#N/A
+Mouse,Q8BYI8,2 - putative,Uncharacterized protein KIAA1467,K1467_MOUSE,no,74525,Kiaa1467,1,12,1,1,0,#N/A
+Mouse,Q8C0Z1,2 - putative,Protein ITFG3,ITFG3_MOUSE,no,106581,Itfg3,1,29,1,1,0,#N/A
+Mouse,Q8CBX0,2 - putative,Transmembrane protein 63C,TM63C_MOUSE,no,217733,Tmem63c,1,1,1,9,0,#N/A
+Mouse,Q8CJ91,2 - putative,CD209 antigen-like protein B,C209B_MOUSE,no,69165,Cd209b,1,3,1,1,0,#N/A
+Mouse,Q8K0E3,2 - putative,Sodium/myo-inositol cotransporter 2,SC5AB_MOUSE,no,233836,Slc5a11,1,6,1,14,0,#N/A
+Mouse,Q8K385,2 - putative,Ferric-chelate reductase 1,FRRS1_MOUSE,no,20321,FRRS1,1,12,1,6,0,#N/A
+Mouse,Q8K4Q8,2 - putative,Collectin-12,COL12_MOUSE,no,140792,Colec12,1,16,1,1,0,#N/A
+Mouse,Q8QZW3,2 - putative,Protein FAM151A,F151A_MOUSE,no,230579,Fam151a,1,1,1,1,0,#N/A
+Mouse,Q8R502,2 - putative,Leucine-rich repeat-containing protein 8C,LRC8C_MOUSE,no,100604,Lrrc8c,1,5,1,4,0,#N/A
+Mouse,Q8VBW1,2 - putative,Sodium- and chloride-dependent creatine transporter 1,SC6A8_MOUSE,no,102857,Slc6a8,1,14,1,12,0,#N/A
+Mouse,Q8VEK0,2 - putative,Cell cycle control protein 50A,CC50A_MOUSE,no,69981,Tmem30a,1,8,1,2,0,#N/A
+Mouse,Q91W10,2 - putative,Zinc transporter ZIP8,S39A8_MOUSE,no,67547,Slc39a8,1,1,1,6,0,#N/A
+Mouse,Q91W98,2 - putative,Solute carrier family 15 member 4,S15A4_MOUSE,no,100561,Slc15a4,1,8,1,11,0,#N/A
+Mouse,Q91YT8,2 - putative,Transmembrane protein 63A,TM63A_MOUSE,no,208795,Tmem63a,1,4,1,11,0,#N/A
+Mouse,Q921V7,2 - putative,Choline transporter-like protein 3,CTL3_MOUSE,no,213603,Slc44a3,1,1,1,8,0,#N/A
+Mouse,Q9CQ88,2 - putative,Tetraspanin-31,TSN31_MOUSE,no,67125,Tspan31,1,22,1,4,0,#N/A
+Mouse,Q9CQX5,2 - putative,Claudin domain-containing protein 1,CLDN1_MOUSE,no,224250,Cldnd1,1,28,1,4,0,#N/A
+Mouse,Q9CZR2,2 - putative,N-acetylated-alpha-linked acidic dipeptidase 2,NALD2_MOUSE,no,72560,Naalad2,1,2,1,1,0,#N/A
+Mouse,Q9D771,2 - putative,Transmembrane protein 206,TM206_MOUSE,no,66950,Tmem206,1,12,1,2,0,#N/A
+Mouse,Q9DBP0,2 - putative,Sodium-dependent phosphate transport protein 2B,NPT2B_MOUSE,no,20531,Slc34a2,1,3,1,9,0,#N/A
+Mouse,Q9ES07,2 - putative,Solute carrier family 15 member 2,S15A2_MOUSE,no,57738,Slc15a2,1,4,1,12,0,#N/A
+Mouse,Q9JJX6,2 - putative,P2X purinoceptor 4,P2RX4_MOUSE,no,18438,P2rx4,1,15,1,2,0,#N/A
+Mouse,Q9JKZ2,2 - putative,Sodium/myo-inositol cotransporter,SC5A3_MOUSE,no,53881,Slc5a3,1,23,1,13,0,#N/A
+Mouse,Q9JMI0,2 - putative,Endothelin-converting enzyme-like 1,ECEL1_MOUSE,no,13599,Ecel1,1,1,1,1,0,#N/A
+Mouse,Q9WTS6,2 - putative,Teneurin-3,TEN3_MOUSE,no,23965,Odz3,1,19,1,1,0,#N/A
+Mouse,Q9Z306,2 - putative,Solute carrier family 22 member 4,S22A4_MOUSE,no,30805,Slc22a4,1,1,1,11,0,#N/A
+Mouse,P11370,2 - putative,Retrovirus-related Env polyprotein from Fv-4 locus,ENV2_MOUSE,no,14352,Fv4,0.9997,4,1,1,0,#N/A
+Mouse,Q6ZQE4,2 - putative,Transmembrane protein 194A,T194A_MOUSE,no,210035,Tmem194a,0.9979,7,1,6,0,#N/A
+Mouse,Q80XL7,2 - putative,Metallophosphoesterase 1,MPPE1_MOUSE,no,225651,Mppe1,0.9979,2,1,2,0,#N/A
+Mouse,Q8BG19,2 - putative,Transmembrane and TPR repeat-containing protein 4,TMTC4_MOUSE,no,70551,Tmtc4,0.9979,4,1,12,0,#N/A
+Mouse,Q8BHG3,2 - putative,Cell cycle control protein 50B,CC50B_MOUSE,no,238257,Tmem30b,0.9979,1,1,2,0,#N/A
+Mouse,Q8BX35,2 - putative,Tumor necrosis factor receptor superfamily member 27,TNR27_MOUSE,no,245527,Eda2r,0.9979,2,1,1,0,#N/A
+Mouse,Q9D7N9,2 - putative,Adipocyte plasma membrane-associated protein,APMAP_MOUSE,no,71881,Apmap,0.9979,11,1,1,0,#N/A
+Mouse,Q9Z1X2,2 - putative,Phosphatidylserine synthase 2,PTSS2_MOUSE,no,27388,Ptdss2,0.9979,3,1,9,0,#N/A
+Mouse,O55017,2 - putative,Voltage-dependent N-type calcium channel subunit alpha-1B,CAC1B_MOUSE,no,12287,Cacna1b,0.9973,1,1,23,0,#N/A
+Mouse,Q6NXK7,2 - putative,Inactive dipeptidyl peptidase 10,DPP10_MOUSE,no,269109,Dpp10,0.9973,1,1,1,0,#N/A
+Mouse,Q8R420,2 - putative,ATP-binding cassette sub-family A member 3,ABCA3_MOUSE,no,27410,Abca3,0.9973,2,1,12,0,#N/A
+Mouse,Q8BMD6,2 - putative,UPF0679 protein C14orf101 homolog,CN101_MOUSE,no,218989,0,0.9972,2,1,10,0,#N/A
+Mouse,Q8BXJ9,2 - putative,Transmembrane protein 62,TMM62_MOUSE,no,96957,Tmem62,0.9972,2,1,5,0,#N/A
+Mouse,Q8CHX6,2 - putative,Membrane-bound transcription factor site-2 protease,MBTP2_MOUSE,no,270669,Mbtps2,0.9972,3,1,7,0,#N/A
+Mouse,Q8BGQ6,2 - putative,EF-hand domain-containing protein KIAA0494,K0494_MOUSE,no,0,Kiaa0494,0.997,2,1,1,0,#N/A
+Mouse,P49282,2 - putative,Natural resistance-associated macrophage protein 2,NRAM2_MOUSE,no,18174,Slc11a2,0.9966,4,1,12,0,#N/A
+Mouse,P51912,2 - putative,Neutral amino acid transporter B(0),AAAT_MOUSE,no,20514,Slc1a5,0.9966,8,1,9,0,#N/A
+Mouse,Q3TBN1,2 - putative,UPF0458 protein C7orf42 homolog,CG042_MOUSE,no,71667,0,0.9966,11,1,2,0,#N/A
+Mouse,Q3TDN0,2 - putative,Protein dispatched homolog 1,DISP1_MOUSE,no,68897,Disp1,0.9966,8,1,12,0,#N/A
+Mouse,Q8BGD6,2 - putative,Putative sodium-coupled neutral amino acid transporter 9,S38A9_MOUSE,no,268706,Slc38a9,0.9966,1,1,11,0,#N/A
+Mouse,Q921R7,2 - putative,Probable UDP-sugar transporter protein SLC35A5,S35A5_MOUSE,no,74102,Slc35a5,0.9966,6,1,10,0,#N/A
+Mouse,Q922J6,2 - putative,Tetraspanin-2,TSN2_MOUSE,no,70747,Tspan2,0.9966,6,1,4,0,#N/A
+Mouse,Q99PN0,2 - putative,Sodium/iodide cotransporter,SC5A5_MOUSE,no,114479,Slc5a5,0.9966,1,1,13,0,#N/A
+Mouse,Q9JIP7,2 - putative,Solute carrier family 15 member 1,S15A1_MOUSE,no,56643,Slc15a1,0.9966,4,1,10,0,#N/A
+Mouse,Q9JIS8,2 - putative,Solute carrier family 12 member 4,S12A4_MOUSE,no,20498,Slc12a4,0.9966,29,1,14,0,#N/A
+Mouse,Q9R0A1,2 - putative,Chloride channel protein 2,CLCN2_MOUSE,no,12724,Clcn2,0.9966,13,1,12,0,#N/A
+Mouse,Q3TB48,2 - putative,Transmembrane protein 104,TM104_MOUSE,no,320534,Tmem104,0.9965,3,1,9,0,#N/A
+Mouse,Q9QY33,2 - putative,Tetraspanin-3,TSN3_MOUSE,no,56434,Tspan3,0.9965,22,1,4,0,#N/A
+Mouse,Q02013,2 - putative,Aquaporin-1,AQP1_MOUSE,no,11826,Aqp1,0.9962,5,1,6,0,#N/A
+Mouse,Q02789,2 - putative,Voltage-dependent L-type calcium channel subunit alpha-1S,CAC1S_MOUSE,no,12292,Cacna1s,0.9959,1,1,21,0,#N/A
+Mouse,Q0P5V9,2 - putative,Solute carrier family 45 member 4,S45A4_MOUSE,no,106068,Slc45a4,0.9959,5,1,12,0,#N/A
+Mouse,Q8BXA5,2 - putative,Cleft lip and palate transmembrane protein 1-like protein,CLP1L_MOUSE,no,218335,Clptm1l,0.9959,8,1,6,0,#N/A
+Mouse,Q9JLZ8,2 - putative,Single Ig IL-1-related receptor,SIGIR_MOUSE,no,24058,Sigirr,0.9958,6,1,1,0,#N/A
+Mouse,Q3UF25,2 - putative,Transmembrane protein 110,TM110_MOUSE,no,69179,Tmem110,0.9956,5,1,5,0,#N/A
+Mouse,Q8BHN0,2 - putative,Protein phosphatase 1L,PPM1L_MOUSE,no,242083,Ppm1l,0.9956,14,1,1,0,#N/A
+Mouse,Q8VEC4,2 - putative,Calcium homeostasis modulator protein 2,CAHM2_MOUSE,no,72691,Calhm2,0.9956,3,1,4,0,#N/A
+Mouse,Q8VHW3,2 - putative,Voltage-dependent calcium channel gamma-6 subunit,CCG6_MOUSE,no,54378,Cacng6,0.995,1,1,4,0,#N/A
+Mouse,P51576,2 - putative,P2X purinoceptor 1,P2RX1_MOUSE,no,18436,P2rx1,0.9946,2,1,2,0,#N/A
+Mouse,Q80WR1,2 - putative,Tetraspanin-18,TSN18_MOUSE,no,241556,Tspan18,0.9946,1,1,4,0,#N/A
+Mouse,Q8C9E8,2 - putative,Protein FAM26F,FA26F_MOUSE,no,215900,Fam26f,0.9946,1,1,3,0,#N/A
+Mouse,P18581,2 - putative,Low affinity cationic amino acid transporter 2,CTR2_MOUSE,no,11988,Slc7a2,0.9945,1,1,14,0,#N/A
+Mouse,Q5DU41,2 - putative,Leucine-rich repeat-containing protein 8B,LRC8B_MOUSE,no,433926,Lrrc8b,0.9945,15,1,4,0,#N/A
+Mouse,Q60754,2 - putative,Macrophage receptor MARCO,MARCO_MOUSE,no,17167,Marco,0.9945,1,1,1,0,#N/A
+Mouse,Q8BH18,2 - putative,Transmembrane protein 117,TM117_MOUSE,no,320709,Tmem117,0.9945,1,1,8,0,#N/A
+Mouse,Q8CIV2,2 - putative,Membralin,MBRL_MOUSE,no,216157,ORF61,0.9945,3,1,5,0,#N/A
+Mouse,Q8K449,2 - putative,ATP-binding cassette sub-family A member 9,ABCA9_MOUSE,no,217262,Abca9,0.9945,1,1,14,0,#N/A
+Mouse,Q91VA1,2 - putative,Choline transporter-like protein 4,CTL4_MOUSE,no,70129,Slc44a4,0.9945,4,1,10,0,#N/A
+Mouse,Q9QZ15,2 - putative,C-type lectin domain family 4 member A,CLC4A_MOUSE,no,26888,Clec4a,0.9945,2,1,1,0,#N/A
+Mouse,Q9Z218,2 - putative,Dipeptidyl aminopeptidase-like protein 6,DPP6_MOUSE,no,13483,Dpp6,0.9945,9,1,1,0,#N/A
+Mouse,Q9CQD8,2 - putative,V-type proton ATPase subunit e 1,VA0E1_MOUSE,no,11974,Atp6v0e1,0.9942,3,1,2,0,#N/A
+Mouse,P62956,2 - putative,Voltage-dependent calcium channel gamma-7 subunit,CCG7_MOUSE,no,81904,Cacng7,0.994,3,1,3,0,#N/A
+Mouse,A2AJQ3,2 - putative,Protein dpy-19 homolog 4,D19L4_MOUSE,no,381510,Dpy19l4,0.9938,4,1,12,0,#N/A
+Mouse,O70401,2 - putative,Tetraspanin-6,TSN6_MOUSE,no,56496,Tspan6,0.9938,22,1,4,0,#N/A
+Mouse,P31651,2 - putative,Sodium- and chloride-dependent betaine transporter,S6A12_MOUSE,no,14411,Slc6a12,0.9938,1,1,12,0,#N/A
+Mouse,Q09143,2 - putative,High affinity cationic amino acid transporter 1,CTR1_MOUSE,no,11987,Slc7a1,0.9938,18,1,14,0,#N/A
+Mouse,Q3UHK1,2 - putative,Proton myo-inositol cotransporter,MYCT_MOUSE,no,239606,Slc2a13,0.9938,7,1,12,0,#N/A
+Mouse,Q8VCA5,2 - putative,Transmembrane protease serine 4,TMPS4_MOUSE,no,214523,Tmprss4,0.9938,1,1,1,0,#N/A
+Mouse,Q9D8C2,2 - putative,Tetraspanin-13,TSN13_MOUSE,no,66109,Tspan13,0.9938,22,1,4,0,#N/A
+Mouse,Q9DAX2,2 - putative,Lipid phosphate phosphohydrolase 2,LPP2_MOUSE,no,50784,Ppap2c,0.9938,4,1,6,0,#N/A
+Mouse,Q9JL99,2 - putative,C-type lectin domain family 1 member B,CLC1B_MOUSE,no,56760,Clec1b,0.993,1,1,1,0,#N/A
+Mouse,Q5U4D8,2 - putative,Sodium-dependent multivitamin transporter,SC5A6_MOUSE,no,330064,Slc5a6,0.9928,2,1,13,0,#N/A
+Mouse,Q8BZF2,2 - putative,Magnesium transporter NIPA4,NIPA4_MOUSE,no,214112,Nipal4,0.9928,1,1,9,0,#N/A
+Mouse,Q8VBZ3,2 - putative,Cleft lip and palate transmembrane protein 1 homolog,CLPT1_MOUSE,no,56457,Clptm1,0.9928,11,1,5,0,#N/A
+Mouse,O35219,2 - putative,Potassium voltage-gated channel subfamily H member 2,KCNH2_MOUSE,no,16511,Kcnh2,0.9922,2,1,5,0,#N/A
+Mouse,O88662,2 - putative,Epithelial membrane protein 2,EMP2_MOUSE,no,13731,Emp2,0.9914,4,1,3,0,#N/A
+Mouse,P49300,2 - putative,Macrophage asialoglycoprotein-binding protein 1,MMGL_MOUSE,no,17312,Mgl1,0.9912,4,1,1,0,#N/A
+Mouse,Q8BG07,2 - putative,Phospholipase D4,PLD4_MOUSE,no,104759,Pld4,0.9909,3,1,1,0,#N/A
+Mouse,Q9R1X5,2 - putative,Multidrug resistance-associated protein 5,MRP5_MOUSE,no,27416,Abcc5,0.9906,1,1,12,0,#N/A
+Mouse,Q8C561,2 - putative,LMBR1 domain-containing protein 2,LMBD2_MOUSE,no,320506,Lmbrd2,0.9902,1,1,10,0,#N/A
+Mouse,Q8CIP5,2 - putative,Protein dispatched homolog 2,DISP2_MOUSE,no,214240,Disp2,0.9898,1,1,13,0,#N/A
+Mouse,Q8BJU2,2 - putative,Tetraspanin-9,TSN9_MOUSE,no,109246,Tspan9,0.9892,11,1,4,0,#N/A
+Mouse,Q91VU1,2 - putative,Protein YIPF1,YIPF1_MOUSE,no,230584,Yipf1,0.9876,1,1,5,0,#N/A
+Mouse,Q8C170,2 - putative,Myosin-IXa,MYO9A_MOUSE,no,270163,Myo9a,0.9868,21,1,1,0,#N/A
+Mouse,Q01341,2 - putative,Adenylate cyclase type 6,ADCY6_MOUSE,no,11512,Adcy6,0.9867,5,1,12,0,#N/A
+Mouse,Q8R1C0,2 - putative,Potassium voltage-gated channel subfamily C member 4,KCNC4_MOUSE,no,99738,Kcnc4,0.9862,1,1,7,0,#N/A
+Mouse,Q9EQJ0,2 - putative,Two pore calcium channel protein 1,TPC1_MOUSE,no,252972,Tpcn1,0.9859,11,1,11,0,#N/A
+Mouse,Q62205,2 - putative,Sodium channel protein type 9 subunit alpha,SCN9A_MOUSE,no,20274,Scn9a,0.9833,3,1,24,0,#N/A
+Mouse,P55088,2 - putative,Aquaporin-4,AQP4_MOUSE,no,11829,Aqp4,0.9421,1,1,6,0,#N/A
+Mouse,Q8K595,2 - putative,Mucolipin-2,MCLN2_MOUSE,no,68279,Mcoln2,0.9393,1,1,6,0,#N/A
+Mouse,Q9WUB7,2 - putative,Chloride channel protein ClC-Ka,CLCKA_MOUSE,no,12733,Clcnka,0.9302,2,1,11,0,#N/A
+Mouse,O09117,2 - putative,Synaptophysin-like protein 1,SYPL1_MOUSE,no,19027,Sypl1,1,30,1,3,0,#N/A
+Mouse,O35114,2 - putative,Lysosome membrane protein 2,SCRB2_MOUSE,no,12492,Scarb2,1,29,1,1,0,#N/A
+Mouse,O35405,2 - putative,Phospholipase D3,PLD3_MOUSE,no,18807,Pld3,1,6,1,1,0,#N/A
+Mouse,O35454,2 - putative,Chloride transport protein 6,CLCN6_MOUSE,no,26372,Clcn6,1,7,1,10,0,#N/A
+Mouse,P27046,2 - putative,Alpha-mannosidase 2,MA2A1_MOUSE,no,17158,Man2a1,1,7,1,1,0,#N/A
+Mouse,P39098,2 - putative,"Mannosyl-oligosaccharide 1,2-alpha-mannosidase IB",MA1A2_MOUSE,no,17156,Man1a2,1,12,1,1,0,#N/A
+Mouse,P46978,2 - putative,Dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit STT3A,STT3A_MOUSE,no,16430,Stt3a,1,23,1,13,0,#N/A
+Mouse,P57757,2 - putative,Cystinosin,CTNS_MOUSE,no,83429,Ctns,1,16,1,7,0,#N/A
+Mouse,Q3TDQ1,2 - putative,Dolichyl-diphosphooligosaccharide--protein glycosyltransferase subunit STT3B,STT3B_MOUSE,no,68292,Stt3b,1,25,1,13,0,#N/A
+Mouse,Q3TVI8,2 - putative,Pre-B-cell leukemia transcription factor-interacting protein 1,PBIP1_MOUSE,no,229534,Pbxip1,1,5,1,1,0,#N/A
+Mouse,Q3UDW8,2 - putative,Heparan-alpha-glucosaminide N-acetyltransferase,HGNAT_MOUSE,no,52120,Hgsnat,1,11,1,12,0,#N/A
+Mouse,Q3UUQ7,2 - putative,GPI inositol-deacylase,PGAP1_MOUSE,no,241062,Pgap1,1,16,1,9,0,#N/A
+Mouse,Q3UVK0,2 - putative,Endoplasmic reticulum metallopeptidase 1,ERMP1_MOUSE,no,226090,Ermp1,1,5,1,10,0,#N/A
+Mouse,Q64687,2 - putative,"Alpha-N-acetylneuraminide alpha-2,8-sialyltransferase",SIA8A_MOUSE,no,20449,St8sia1,1,8,1,1,0,#N/A
+Mouse,Q69ZN6,2 - putative,N-acetylglucosamine-1-phosphotransferase subunits alpha/beta,GNPTA_MOUSE,no,432486,Gnptab,1,13,1,2,0,#N/A
+Mouse,Q7TT15,2 - putative,Putative polypeptide N-acetylgalactosaminyltransferase-like protein 3,GLTL3_MOUSE,no,212996,Wbscr17,1,6,1,1,0,#N/A
+Mouse,Q80VP8,2 - putative,Transmembrane protein 106C,T106C_MOUSE,no,380967,Tmem106c,1,4,1,1,0,#N/A
+Mouse,Q80WV3,2 - putative,Carbohydrate sulfotransferase 2,CHST2_MOUSE,no,54371,Chst2,1,2,1,1,0,#N/A
+Mouse,Q80Z60,2 - putative,Endothelin-converting enzyme 2,ECE2_MOUSE,no,107522,Ece2,1,4,1,1,0,#N/A
+Mouse,Q8BGQ4,2 - putative,Protein O-mannosyl-transferase 2,POMT2_MOUSE,no,217734,Pomt2,1,8,1,11,0,#N/A
+Mouse,Q8BHJ6,2 - putative,Serine incorporator 5,SERC5_MOUSE,no,218442,Serinc5,1,10,1,10,0,#N/A
+Mouse,Q8BYU6,2 - putative,Torsin-1A-interacting protein 2,TOIP2_MOUSE,no,240832,Tor1aip2,1,6,1,1,0,#N/A
+Mouse,Q8BZ00,2 - putative,Sodium/hydrogen exchanger 9,SL9A9_MOUSE,no,331004,SLC9a9,1,1,1,12,0,#N/A
+Mouse,Q8C3X8,2 - putative,Lipase maturation factor 2,LMF2_MOUSE,no,105847,Lmf2,1,6,1,10,0,#N/A
+Mouse,Q8K0B2,2 - putative,Probable lysosomal cobalamin transporter,LMBD1_MOUSE,no,68421,Lmbrd1,1,9,1,9,0,#N/A
+Mouse,Q920V1,2 - putative,"UDP-GalNAc:beta-1,3-N-acetylgalactosaminyltransferase 1",B3GL1_MOUSE,no,26879,B3galnt1,1,6,1,1,0,#N/A
+Mouse,Q99JY8,2 - putative,Lipid phosphate phosphohydrolase 3,LPP3_MOUSE,no,67916,Ppap2b,1,6,1,5,0,#N/A
+Mouse,Q9WTN6,2 - putative,Solute carrier family 22 member 21,S22AL_MOUSE,no,56517,Slc22a21,1,14,1,11,0,#N/A
+Mouse,Q9Z222,2 - putative,"UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 2",B3GN2_MOUSE,no,53625,B3gnt2,1,10,1,1,0,#N/A
+Mouse,Q6PIX5,2 - putative,Rhomboid family member 1,RHDF1_MOUSE,no,13650,Rhbdf1,0.9999,3,1,7,0,#N/A
+Mouse,Q64518,2 - putative,Sarcoplasmic/endoplasmic reticulum calcium ATPase 3,AT2A3_MOUSE,no,53313,Atp2a3,0.9993,1,1,8,0,#N/A
+Mouse,Q6PD26,2 - putative,GPI transamidase component PIG-S,PIGS_MOUSE,no,276846,Pigs,0.9979,17,1,2,0,#N/A
+Mouse,Q8BJS4,2 - putative,Protein unc-84 homolog B,UN84B_MOUSE,no,223697,Unc84b,0.9979,10,1,1,0,#N/A
+Mouse,Q8K2W3,2 - putative,Thioredoxin domain-containing protein 11,TXD11_MOUSE,no,106200,Txndc11,0.9979,5,1,1,0,#N/A
+Mouse,Q9R1S3,2 - putative,GPI ethanolamine phosphate transferase 1,PIGN_MOUSE,no,27392,Pign,0.9979,4,1,15,0,#N/A
+Mouse,Q9Z1M7,2 - putative,Glycosyltransferase-like protein LARGE1,LARGE_MOUSE,no,16795,Large,0.9979,6,1,1,0,#N/A
+Mouse,Q9Z2E9,2 - putative,Seipin,BSCL2_MOUSE,no,14705,Bscl2,0.9979,7,1,3,0,#N/A
+Mouse,Q64689,2 - putative,"Sia-alpha-2,3-Gal-beta-1,4-GlcNAc-R:alpha 2,8-sialyltransferase",SIA8C_MOUSE,no,20451,St8sia3,0.9973,1,1,1,0,#N/A
+Mouse,Q765H6,2 - putative,"Alpha-1,6-mannosylglycoprotein 6-beta-N-acetylglucosaminyltransferase B",MGT5B_MOUSE,no,268510,Mgat5b,0.9973,2,1,1,0,#N/A
+Mouse,Q01237,2 - putative,3-hydroxy-3-methylglutaryl-coenzyme A reductase,HMDH_MOUSE,no,15357,Hmgcr,0.9972,4,1,8,0,#N/A
+Mouse,Q3TCT4,2 - putative,Ectonucleoside triphosphate diphosphohydrolase 7,ENTP7_MOUSE,no,93685,Entpd7,0.9966,8,1,2,0,#N/A
+Mouse,Q68FE2,2 - putative,Autophagy-related protein 9A,ATG9A_MOUSE,no,245860,Atg9a,0.9966,16,1,4,0,#N/A
+Mouse,Q8BH31,2 - putative,Major facilitator superfamily domain-containing protein 8,MFSD8_MOUSE,no,72175,Mfsd8,0.9966,9,1,12,0,#N/A
+Mouse,Q8BUB6,2 - putative,Uronyl 2-sulfotransferase,UST_MOUSE,no,338362,Ust,0.9966,6,1,1,0,#N/A
+Mouse,Q9JJI6,2 - putative,GPI ethanolamine phosphate transferase 3,PIGO_MOUSE,no,56703,Pigo,0.9965,1,1,15,0,#N/A
+Mouse,Q9DBZ1,2 - putative,Inhibitor of nuclear factor kappa-B kinase-interacting protein,IKIP_MOUSE,no,67454,Ikip,0.996,2,1,1,0,#N/A
+Mouse,Q9WVL6,2 - putative,Exostosin-like 3,EXTL3_MOUSE,no,54616,Extl3,0.996,8,1,1,0,#N/A
+Mouse,Q8VCF1,2 - putative,Soluble calcium-activated nucleotidase 1,CANT1_MOUSE,no,76025,Cant1,0.9959,10,1,1,0,#N/A
+Mouse,Q80WQ6,2 - putative,Rhomboid family member 2,RHDF2_MOUSE,no,217344,Rhbdf2,0.9949,12,1,7,0,#N/A
+Mouse,P11881,2 - putative,"Inositol 1,4,5-trisphosphate receptor type 1",ITPR1_MOUSE,no,16438,Itpr1,0.9945,1,1,7,0,#N/A
+Mouse,Q640M6,2 - putative,Glycerophosphodiester phosphodiesterase domain-containing protein 5,GDPD5_MOUSE,no,233552,Gdpd5,0.9945,7,1,6,0,#N/A
+Mouse,Q8BLV3,2 - putative,Sodium/hydrogen exchanger 7,SL9A7_MOUSE,no,236727,Slc9a7,0.9945,5,1,12,0,#N/A
+Mouse,Q99J59,2 - putative,Tetraspanin-1,TSN1_MOUSE,no,66805,Tspan1,0.9938,1,1,4,0,#N/A
+Mouse,Q6GQT6,2 - putative,Sterol regulatory element-binding protein cleavage-activating protein,SCAP_MOUSE,no,235623,Scap,0.9935,4,1,7,0,#N/A
+Mouse,Q80UM7,2 - putative,Mannosyl-oligosaccharide glucosidase,MOGS_MOUSE,no,57377,Mogs,0.9932,1,1,1,0,#N/A
+Mouse,Q8K1B9,2 - putative,Putative polypeptide N-acetylgalactosaminyltransferase-like protein 4,GLTL4_MOUSE,no,233733,Galntl4,0.9932,2,1,1,0,#N/A
+Mouse,Q8BRU6,2 - putative,Synaptic vesicular amine transporter,VMAT2_MOUSE,no,214084,Slc18a2,0.9928,1,1,12,0,#N/A
+Mouse,Q7TN60,2 - putative,Transmembrane channel-like protein 6,TMC6_MOUSE,no,217353,Tmc6,0.99,1,1,11,0,#N/A
+Mouse,Q99LL3,2 - putative,Carbohydrate sulfotransferase 12,CHSTC_MOUSE,no,59031,Chst12,0.9822,4,1,1,0,#N/A
+Mouse,Q8R4G6,2 - putative,"Alpha-1,6-mannosylglycoprotein 6-beta-N-acetylglucosaminyltransferase A",MGT5A_MOUSE,no,107895,Mgat5,0.9779,5,1,1,0,#N/A
+Mouse,Q9EQC4,2 - putative,Elongation of very long chain fatty acids protein 4,ELOV4_MOUSE,no,83603,Elovl4,0.9578,5,1,7,0,#N/A
+Mouse,O54905,2 - putative,"Beta-1,3-galactosyltransferase 2",B3GT2_MOUSE,no,26878,B3galt2,0.9023,2,1,1,0,#N/A
+Mouse,O88829,2 - putative,"Lactosylceramide alpha-2,3-sialyltransferase",SIAT9_MOUSE,no,20454,St3gal5,0.8933,1,1,1,0,#N/A
+Mouse,Q61029,2 - putative,"Lamina-associated polypeptide 2, isoforms beta/delta/epsilon/gamma",LAP2B_MOUSE,no,21917,Tmpo,1,8,1,1,0,#N/A
+Mouse,Q7TPV4,2 - putative,Myb-binding protein 1A,MBB1A_MOUSE,no,18432,Mybbp1a,1,5,1,1,0,#N/A
+Mouse,Q8VHK9,2 - putative,Probable ATP-dependent RNA helicase DHX36,DHX36_MOUSE,no,72162,Dhx36,1,6,1,1,0,#N/A
+Mouse,Q8K0L3,2 - putative,"Acyl-coenzyme A synthetase ACSM2, mitochondrial",ACSM2_MOUSE,no,233799,Acsm2,0.9929,2,1,3,0,#N/A
+Mouse,Q9D666,2 - putative,Protein unc-84 homolog A,UN84A_MOUSE,no,77053,Unc84a,0.9924,10,1,3,0,#N/A
+Mouse,Q8K224,2 - putative,N-acetyltransferase 10,NAT10_MOUSE,no,98956,Nat10,0.9912,1,1,1,0,#N/A
+Mouse,Q921T2,2 - putative,Torsin-1A-interacting protein 1,TOIP1_MOUSE,no,208263,Tor1aip1,0.9736,15,1,1,0,#N/A
+Mouse,Q80YY7,2 - putative,Zinc finger protein 618,ZN618_MOUSE,no,272031,Znf618,0.9268,3,1,1,0,#N/A

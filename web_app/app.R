@@ -434,18 +434,21 @@ ui <- fluidPage(
         # Establishes spaces for plots in the main panel
         mainPanel(
           # Gene Expression----
-          br(),
-          downloadButton("down9", label = "Download"),
-          br(),
-          br(),
-          plotOutput("spatialgene", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
-          br(),
+          column(
+            width=6,
+            downloadButton("down9", label = "Download"),
+            br(),
+            plotOutput("spatialgene", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
+            br()
+          ),
           # Theta Values----
-          downloadButton("down10", label = "Download"),
-          br(),
-          br(),
-          plotOutput("spatialtheta", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
-          br()
+          column(
+            width=6,
+            downloadButton("down10", label = "Download"),
+            br(),
+            plotOutput("spatialtheta", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
+            br()
+          )
         )
       )
     ),

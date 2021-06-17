@@ -12,3 +12,5 @@
 - Differential gene expression results across endothelial cell subsets: `endothelial_markers_SupFile.csv`
 
 - Differential gene expression results across myeloid cell subsets: `myeloid_markers_SupFile.csv`
+
+- `gene_lists` contains a series of gene sets that we have found useful (from our analyses and others' work)
