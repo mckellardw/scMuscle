@@ -530,6 +530,7 @@ scMuscle.pref.seurat[['scanorama_res.0.8']] <- as.numeric(scMuscle.pref.seurat@a
 # Find cell type IDs ----
 #     Dot Plot ----
 #       cell type marker genes ----
+#**Note** these genes can also be found in 'supplemental_data/gene_lists'
 all.genes <- c(
   'Ptprc',
   'Ms4a1', #B Cell

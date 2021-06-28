@@ -7,7 +7,11 @@ library(Seurat)
 library(NMF)
 library(CellChat)
 
-# CellChat ----
+# Load data ----
+
+# load in complete scMuscle.seurat object
+
+# CellChat processing ----
 # Vignette used to build analysis:
 #     https://htmlpreview.github.io/?https://github.com/sqjin/CellChat/blob/master/tutorial/CellChat-vignette.html
 
@@ -84,3 +88,67 @@ scMuscle.cellchat <- netAnalysis_computeCentrality(
 plan("sequential") # clears memory usage from future parallelization
 gc()
 
+# Visualization ----
+#   heatmap ----
+
+sources.use = c(
+  "Monocyte (Patrolling)",
+  "Monocyte (Inflammatory)",
+  "Monocyte (Cxcl10+)",
+  "M2 Macro. (Cx3cr1_lo)",
+  "M2 Macro. (Cx3cr1_hi)",
+  "Endothelial (Capillary)",
+  "Endothelial (Artery)",
+  "Endothelial (Vein)",
+  "Smooth Muscle & Pericytes",
+  "FAPs (Stem)",
+  "FAPs (Adipogenic)",
+  "FAPs (Pro-remodeling)"
+)
+targets.use = c(
+  "Quiescent_MuSCs",
+  "Activated_MuSCs",
+  "Committed_Myoblasts",
+  "Fusing_Myocytes"
+)
+
+sub.cellchat <-subsetCellChat(
+  scMuscle.cellchat,
+  idents.use=c(sources.use,targets.use)
+) 
+sub.cellchat@idents <- factor(
+  sub.cellchat@idents,
+  levels= c(
+    "Quiescent_MuSCs","Activated_MuSCs","Committed_Myoblasts","Fusing_Myocytes",
+    "Monocyte (Patrolling)",
+    "Monocyte (Inflammatory)",
+    "Monocyte (Cxcl10+)",
+    "M2 Macro. (Cx3cr1_lo)",
+    "M2 Macro. (Cx3cr1_hi)",
+    "Endothelial (Capillary)",
+    "Endothelial (Artery)",
+    "Endothelial (Vein)",
+    "Smooth Muscle & Pericytes",
+    "FAPs (Stem)",
+    "FAPs (Adipogenic)",
+    "FAPs (Pro-remodeling)"
+  )
+)
+groupSize <- as.numeric(table(sub.cellchat@idents))
+
+par(mfrow = c(1,1), xpd=TRUE)
+netVisual_heatmap(
+  sub.cellchat,
+  slot.name="net",
+  measure="weight",
+  color.use = celltype.colors[sort(c(sources.use,targets.use))],
+  sources.use = sources.use,
+  targets.use = targets.use,
+  # cluster.rows=T, cluster.cols=T,
+  color.heatmap = "YlOrRd",
+  font.size.title = big.font,
+  font.size = small.font,
+  width=width,
+  height=height
+)
+dev.off()
