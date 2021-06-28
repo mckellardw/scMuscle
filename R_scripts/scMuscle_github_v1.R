@@ -1,9 +1,9 @@
+#############################
+# Build and analyze the scMuscle dataset
+# Written by David McKellar
+#############################
 
-
-
-
-
-# Load libs #####
+# Load libs ----
 library(reticulate) # Package that translates python modules to R
 scanorama <- import(module = 'scanorama') # import the python module for scanorama
 library(DoubletFinder)
@@ -36,8 +36,8 @@ meta <- fread("supplemental_data/sample_metadata.csv")
 # Set number of cores to use
 NCORES = 1 # 
 
-# Preprocess objects individually ####
-#     SoupX ####
+# Preprocess objects individually ----
+#     SoupX ----
 # https://github.com/constantAmateur/SoupX
 soup.list <- list()
 soup.mat.list <- list()
@@ -87,7 +87,7 @@ for(i in 1:length(soup.list.est)){
 }
 rhos <- do.call(rbind,rhos)
 
-#     Read in the count matrices ####
+#     Read in the count matrices ----
 mat.list <- list()
 soupx.used <- list()
 for(i in 1:length(meta$data.dir)){ 
@@ -108,7 +108,7 @@ for(i in 1:length(meta$data.dir)){
 
 cat(sum(unlist(lapply(mat.list, ncol))),"cells (total) loaded...\n")
 
-#     Seurat ####
+#     Seurat ----
 seu.list <- list()
 
 # Initialize seurat objects
@@ -128,9 +128,9 @@ seu.list <- mclapply(
 stopCluster(cl)
 
 for(i in 1:length(seu.list)){
-  cat(' #####################################\n',
-      '### Processing dataset number ', i, '###\n',
-      '#####################################\n')
+  cat(' ------------------------------------\n',
+      '--- Processing dataset number ', i, '-\n',
+      '------------------------------------\n')
   # Add meta data
   for(md in colnames(meta)){
     seu.list[[i]][[md]] <- meta[[md]][i]
@@ -200,7 +200,7 @@ seuPreProcess <- function(seu, assay='RNA', n.pcs=50, res=0.8){
 seu.list <- lapply(seu.list, seuPreProcess)
 
 #
-#     DoubletFinder on RNA, individual datasets ####
+#     DoubletFinder on RNA, individual datasets ----
 
 # Mostly taken from the DoubletFinder vignette:
 # https://github.com/chris-mcginnis-ucsf/DoubletFinder
@@ -220,9 +220,9 @@ nExp_poi.adj <- list()
 edr <- estimateDoubletRate.DWM(seu.list = seu.list)/100 #use your own known EDR here
 
 for(i in 1:length(seu.list)){
-  cat(' ############################################\n',
-      '### DoubletFinder for dataset number ', i, '###\n',
-      '############################################\n')
+  cat(' --------------------------------------------\n',
+      '--- DoubletFinder for dataset number ', i, '---\n',
+      '--------------------------------------------\n')
   
   ## pK Identification (no ground-truth)
   bcmvn[[i]]<- paramSweep_v3_DWM(
@@ -258,8 +258,8 @@ for(i in 1:length(seu.list)){
     )
 }
 #
-# Merging and Integration ####
-#     Merge datasets ####
+# Merging and Integration ----
+#     Merge datasets ----
 # set default assay to RNA
 tmp.list <- list()
 for(i in 1:length(seu.list)){
@@ -320,7 +320,7 @@ VlnPlot(
   pt.size = 0
 )
 #
-#     Seurat preprocessing on merged data ####
+#     Seurat preprocessing on merged data ----
 DefaultAssay(scMuscle.pref.seurat) <- 'RNA'
 
 scMuscle.pref.seurat <- 
@@ -366,7 +366,7 @@ scMuscle.pref.seurat <-
 scMuscle.pref.seurat <- FindClusters(object = scMuscle.pref.seurat, resolution = 0.8)
 scMuscle.pref.seurat[['RNA_res.0.8']] <- as.numeric(scMuscle.pref.seurat@active.ident)
 #
-# Harmony integration (RNA, w/ doublets) ####
+# Harmony integration (RNA, w/ doublets) ----
 # https://github.com/immunogenomics/harmony
 scMuscle.pref.seurat <- 
   scMuscle.pref.seurat %>% RunHarmony(
@@ -410,7 +410,7 @@ scMuscle.pref.seurat <- FindClusters(
 )
 scMuscle.pref.seurat[['harmony_res.1.2']] <- as.numeric(scMuscle.pref.seurat@active.ident)
 #
-# BBKNN integration ####
+# BBKNN integration ----
 # https://github.com/Teichlab/bbknn
 use_condaenv("scRNA3")
 
@@ -439,7 +439,7 @@ scMuscle.pref.seurat@graphs$bbknn <-Seurat::as.Graph(
 
 scMuscle.pref.seurat@graphs$bbknn@assay.used <- "RNA"
 
-#       Clustering and dim reduction on bbknn output ####
+#       Clustering and dim reduction on bbknn output ----
 scMuscle.pref.seurat <- 
   scMuscle.pref.seurat %>% RunUMAP(
     graph = 'bbknn',
@@ -455,7 +455,7 @@ scMuscle.pref.seurat <- FindClusters(
 scMuscle.pref.seurat[['bbknn_res.1.2']] <- as.numeric(scMuscle.pref.seurat@active.ident)
 
 #
-# scanorama  integration (w/ doublets) ####
+# scanorama  integration (w/ doublets) ----
 # https://github.com/brianhie/scanorama
 
 # Prepare a list of lists of gene names 
@@ -499,7 +499,7 @@ if(!is.null(scMuscle.pref.seurat[["scanorama"]])){
 gc()
 
 # 
-#     Seurat preprocessing of Scanorama integration ####
+#     Seurat preprocessing of Scanorama integration ----
 scMuscle.pref.seurat@reductions$scanorama@stdev <- 
   apply(scMuscle.pref.seurat@reductions$scanorama@cell.embeddings, 2, sd) #find std dev for scanorama vals
 
@@ -527,9 +527,9 @@ scMuscle.pref.seurat <- FindClusters(
 scMuscle.pref.seurat[['scanorama_res.0.8']] <- as.numeric(scMuscle.pref.seurat@active.ident) 
 
 #
-# Find cell type IDs ####
-#     Dot Plot ####
-#       cell type marker genes ####
+# Find cell type IDs ----
+#     Dot Plot ----
+#       cell type marker genes ----
 all.genes <- c(
   'Ptprc',
   'Ms4a1', #B Cell
@@ -691,7 +691,7 @@ all.genes <- c(
   "Myh4" # Type IIb
 )
 #
-#       plotting ####
+#       plotting ----
 scMuscle.pref.seurat%>%DotPlot(
   group.by='harmony_res.1.0',
   assay='RNA',
@@ -710,7 +710,7 @@ scMuscle.pref.seurat%>%DotPlot(
   ) 
 
 #
-#     Harmony res.1.0 -- DF  ####
+#     Harmony res.1.0 -- DF  ----
 scMuscle.pref.seurat <- AddCellTypeIdents(
   object = scMuscle.pref.seurat, 
   old.name = 'harmony_res.1.0',
@@ -779,7 +779,7 @@ scMuscle.pref.seurat$prefilter_factorIDs <- factor(
   )
 )
 #
-#     Harmony res.1.0 -- DF -- superclusters  ####
+#     Harmony res.1.0 -- DF -- superclusters  ----
 scMuscle.pref.seurat <- AddCellTypeIdents(
   object = scMuscle.pref.seurat, 
   old.idents = 'harmony_res.1.0',
@@ -842,7 +842,7 @@ scMuscle.pref.seurat$group.1.0 <- factor(
 )
 
 #
-#     BBKNN res.1.2 ####
+#     BBKNN res.1.2 ----
 scMuscle.pref.seurat <- AddCellTypeIdents(
   seu = scMuscle.pref.seurat, 
   old.name = 'bbknn_res.1.2',
@@ -888,7 +888,7 @@ scMuscle.seurat$bbknn_factorIDs <- factor(
   )
 )
 #
-#     scanorama_res.0.8 ####
+#     scanorama_res.0.8 ----
 scMuscle.pref.seurat <- AddCellTypeIdents(
   seu = scMuscle.pref.seurat, 
   old.name = 'scanorama_res.0.8',
@@ -952,8 +952,8 @@ scMuscle.pref.seurat$scanorama_factorIDs <- factor(
 )
 
 #
-# Analysis of noisy cells ####
-#     noisy cells- violin plot ####
+# Analysis of noisy cells ----
+#     noisy cells- violin plot ----
 ggplot(
   scMuscle.pref.seurat@meta.data,
   aes(
@@ -975,14 +975,14 @@ ggplot(
   scale_y_log10()
 
 #
-# Remove doublets  ####
+# Remove doublets  ----
 Idents(scMuscle.pref.seurat)<-'sample' 
 scMuscle.seurat <- subset(
   scMuscle.pref.seurat,
   subset = DF.individual == 'Singlet' 
 )  
 
-#     Seurat preprocessing on merged data (w/out doublets)####
+#     Seurat preprocessing on merged data (w/out doublets)----
 DefaultAssay(scMuscle.seurat) <- 'RNA'
 
 scMuscle.seurat <- 
@@ -1032,7 +1032,7 @@ scMuscle.seurat <- FindClusters(
   )
 scMuscle.seurat[['RNA_res.0.8']] <- as.numeric(scMuscle.seurat@active.ident)
 #
-# harmony integration (after QC/doublet removal) ####
+# harmony integration (after QC/doublet removal) ----
 scMuscle.seurat <- 
   scMuscle.seurat %>% RunHarmony(
     group.by.vars=c('sample'),
@@ -1069,7 +1069,7 @@ scMuscle.clean.seurat <-
 scMuscle.clean.seurat <- FindClusters(object = scMuscle.clean.seurat, resolution = 1.2,graph.name='harmony_snn')
 scMuscle.clean.seurat[['harmony_res.1.2']] <- as.numeric(scMuscle.clean.seurat@active.ident)
 #
-# BBKNN integration ####
+# BBKNN integration ----
 # https://github.com/Teichlab/bbknn
 use_condaenv("scRNA3")
 
@@ -1106,7 +1106,7 @@ scMuscle.noisy.seurat@graphs$bbknn <- tmp
 scMuscle.noisy.seurat[["bbknn"]] <- tmp
 scMuscle.noisy.seurat@graphs$bbknn@assay.used <- "RNA"
 
-#       Clustering and dim reduction on bbknn output ####
+#       Clustering and dim reduction on bbknn output ----
 scMuscle.noisy.seurat <- 
   scMuscle.noisy.seurat %>% RunUMAP(
     graph = 'bbknn',
@@ -1122,7 +1122,7 @@ scMuscle.noisy.seurat <- FindClusters(
 scMuscle.noisy.seurat[['bbknn_res.1.2']] <- as.numeric(scMuscle.noisy.seurat@active.ident)
 
 #
-# scanorama  integration (after QC/doublet removal) ####
+# scanorama  integration (after QC/doublet removal) ----
 # Prepare a list of lists of gene names 
 DefaultAssay(scMuscle.noisy.seurat) <- 'RNA'
 genes_list <- strLoop(rownames(scMuscle.noisy.seurat),length(meta$sample))
@@ -1164,7 +1164,7 @@ scMuscle.noisy.scanorama <- CreateDimReducObject(
 )
 save(scMuscle.noisy.scanorama,file="scMuscle.noisy.scanorama.RData")
 # 
-#     Seurat preprocessing of Scanorama integration ####
+#     Seurat preprocessing of Scanorama integration ----
 scMuscle.noisy.seurat@reductions$scanorama@stdev <- 
   apply(scMuscle.noisy.seurat@reductions$scanorama@cell.embeddings, 2, sd) #find std dev for scanorama vals
 
@@ -1196,8 +1196,8 @@ scMuscle.noisy.seurat[['scanorama_res.0.8']] <- as.numeric(scMuscle.noisy.seurat
 # scMuscle.seurat <- FindClusters(object = scMuscle.seurat, resolution = 1.2)
 # scMuscle.seurat[['scanorama_res.1.2']] <- as.numeric(scMuscle.seurat@active.ident) 
 #
-# Edit cluster IDs - w/ out noisy cells ####
-#TODO     harmony res.1.2 ####
+# Edit cluster IDs - w/ out noisy cells ----
+#TODO     harmony res.1.2 ----
 scMuscle.noisy.seurat <- AddCellTypeIdents(
   seu = scMuscle.noisy.seurat, 
   old.name = 'harmony_res.1.2',
@@ -1244,7 +1244,7 @@ scMuscle.noisy.seurat$harmony_factorIDs <- factor(
 )
 
 #
-#     harmony_res.1.2 -- super-clusters ####
+#     harmony_res.1.2 -- super-clusters ----
 scMuscle.seurat <- AddCellTypeIdents(
   object = scMuscle.seurat, 
   old.idents = 'harmony_res.1.2',
@@ -1270,7 +1270,7 @@ scMuscle.seurat$harmony_superFactor <- factor(
 )
 
 #
-#     BBKNN res.1.2 ####
+#     BBKNN res.1.2 ----
 scMuscle.noisy.seurat <- AddCellTypeIdents(
   seu = scMuscle.noisy.seurat, 
   old.name = 'bbknn_res.1.2',
@@ -1316,7 +1316,7 @@ scMuscle.seurat$bbknn_factorIDs <- factor(
   )
 )
 #
-#     BBKNN res.1.2 - super clusters####
+#     BBKNN res.1.2 - super clusters----
 scMuscle.seurat <- AddCellTypeIdents(
   object = scMuscle.seurat, 
   old.idents = 'bbknn_res.1.2',
@@ -1370,7 +1370,7 @@ scMuscle.seurat$bbknn_superFactor <- factor(
   )
 )
 #
-#     scanorama_res.0.8 ####
+#     scanorama_res.0.8 ----
 scMuscle.noisy.seurat <- AddCellTypeIdents(
   object = scMuscle.noisy.seurat, 
   old.idents = 'scanorama_res.0.8',
@@ -1436,7 +1436,7 @@ scMuscle.seurat$scanorama_factorIDs <- factor(
 )
 
 #
-#     scanorama_res.0.8 - super clusters ####
+#     scanorama_res.0.8 - super clusters ----
 scMuscle.seurat <- AddCellTypeIdents(
   object = scMuscle.seurat, 
   old.idents = 'scanorama_res.0.8',
