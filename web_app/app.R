@@ -19,6 +19,12 @@ source("scripts/visListPlot.R")
 
 # Settings & version info ----
 CURR_DATA_VERSION = 1.1
+
+# file paths for seurat objects
+allCells_RData <- "./data/scMuscle_mm10_slim_v1-1.RData"
+myoCells_RData <- "./data/myo_slim_seurat_v1-1.RData"
+vis_RData <- "./data/vis_slim_v1.RData"
+
 cornell_red = "#B31B1B"
 spatial_theta_colors <- c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
 vis.height = "600px"
@@ -463,18 +469,23 @@ ui <- fluidPage(
           a(href = "https://github.com/mckellardw/scMuscle/tree/main/supplemental_data", "here.")
         )
       ),
-      h2("Seurat object downloads coming soon!")
+      h2("Seurat object downloads coming soon!"),
       
       # TODO: add functionality here:
-      # downloadLink(
-      #   "down11", 
-      #   label = paste0("All Cells (Seurat object; ", round(file.size("data/scMuscle_mm10_slim_v5.RData")/10^6), "Mb)")
-      # ),
-      # br(),
-      # downloadLink(
-      #   'down12', 
-      #   label = paste0("Myogenic Cells (seurat obj; ", round(file.size("data/myo_slim_seurat_v3.RData")/10^6), "Mb)")
-      # )
+      downloadLink(
+        outputId="down11",
+        label = paste0("Download all cells/nuclei (Seurat object, .RData file; ", round(file.size(allCells_RData)/10^6), "Mb)")
+      ),
+      br(),
+      downloadLink(
+        outputId='down12',
+        label = paste0("Download myogenic cells/nuclei (Seurat object, .RData file; ", round(file.size(myoCells_RData)/10^6), "Mb)")
+      ),
+      br(),
+      downloadLink(
+        outputId='down13',
+        label = paste0("Download Visium data (list of Seurat objects, .RData file; ", round(file.size(vis_RData)/10^6), "Mb)")
+      )
     )
     
   )
@@ -483,9 +494,9 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output){
   # Loading data----
-  load("./data/scMuscle_mm10_slim_v1-1.RData") # All Cells
-  load("./data/myo_slim_seurat_v1-1.RData") # Myo Cells
-  load("./data/vis_slim_v1.RData") # Visium
+  load(allCells_RData) # All Cells
+  load(myoCells_RData) # Myo Cells
+  load(vis_RData) # Visium
  
   # Plot themes and colors----
   # Figure settings
@@ -916,7 +927,7 @@ server <- function(input, output){
   })
   
   # DownloadHandler----
-  # Allows plots to be donwloaded in specificed file type
+  # Allows plots to be donwloaded in specified file type
     # All Cells - Cell Type UMAP----
   output$down1 <- downloadHandler(
     # specify file name
@@ -1206,13 +1217,29 @@ server <- function(input, output){
       )
     }
   )
+    
     # All Cells - .RData----
   output$down11 <- downloadHandler(
-    filename = function() {
-      paste("name", "Rdata", sep=".")
-    },
-    content = function(file){
-      saveRDS(scMuscle.slim.seurat, file=file)
+    filename = allCells_RData,
+    content = function(con){
+      print(paste0("Downloading ", allCells_RData))
+      file.copy(allCells_RData, con)
+    }
+  )
+  # Myo Cells - .RData----
+  output$down12 <- downloadHandler(
+    filename = myoCells_RData,
+    content = function(con){
+      print(paste0("Downloading ", myoCells_RData))
+      file.copy(myoCells_RData, con)
+    }
+  )
+  # visium - .RData----
+  output$down13 <- downloadHandler(
+    filename = vis_RData,
+    content = function(con){
+      print(paste0("Downloading ", vis_RData))
+      file.copy(vis_RData, con)
     }
   )
 }
