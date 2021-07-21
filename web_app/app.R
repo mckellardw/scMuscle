@@ -41,6 +41,8 @@ ui <- fluidPage(
   navbarPage(
     title="scMuscle",
     id="NAVBAR",
+    # style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B",
+
     # Each tabPanel makes a tab on the upper navbar
     # 'About' tab ----
     tabPanel(
@@ -279,17 +281,29 @@ ui <- fluidPage(
               "UMAP", value = 1,
               # umap grouped by cell types
               br(),
-              downloadButton("down3", label = "Download"),
+              downloadButton(
+                "down3", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               plotOutput("feature") %>% withSpinner(type = 1, color = cornell_red),
               br(),
               # umap grouped by metadata features
-              downloadButton("down2", label = "Download"),
+              downloadButton(
+                "down2", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               plotOutput("umap") %>% withSpinner(type = 1, color = cornell_red),
               br(),
               # feature plot
-              downloadButton("down1", label = "Download"),
+              downloadButton(
+                "down1", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               plotOutput("grouping") %>% withSpinner(type = 1, color = cornell_red), 
               br() 
@@ -300,7 +314,8 @@ ui <- fluidPage(
               "Single Violin", value = 2,
               # by different metadata variables
               br(),
-              downloadButton("down4", label = "Download"),
+              downloadButton("down4", label = "Download",
+                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
               br(), br(),
               plotOutput("violin1") %>% withSpinner(type = 1, color = cornell_red),
               br()
@@ -311,7 +326,8 @@ ui <- fluidPage(
               # makes different violin plots for each unique instance of a metadata variable
               # grouped by cell types IDs of different reductions
               br(),
-              downloadButton("down5", label = "Download"),
+              downloadButton("down5", label = "Download",
+                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
               br(), br(),
               imageOutput("violin2") %>% withSpinner(type = 1, color = cornell_red),
               br()
@@ -321,7 +337,8 @@ ui <- fluidPage(
               title="Dot Plot", value = 4,
               # DotPlot
               br(),
-              downloadButton("down6", label = "Download"),
+              downloadButton("down6", label = "Download",
+                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
               br(), br(),
               plotOutput("dotplot") %>% withSpinner(type = 1, color = cornell_red)
             ),
@@ -401,11 +418,13 @@ ui <- fluidPage(
         mainPanel(
           # PHATE grouped by variables
           br(),
-          downloadButton("down7", label = "Download"),
+          downloadButton("down7", label = "Download",
+                         style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
           br(), br(),
           plotOutput("PHATE") %>% withSpinner(type = 1, color = cornell_red),
           br(),
-          downloadButton("down8", label = "Download"),
+          downloadButton("down8", label = "Download",
+                         style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
           br(), br(),
           imageOutput("phateviolin") %>% withSpinner(type = 1, color = cornell_red),
           br()
@@ -435,6 +454,25 @@ ui <- fluidPage(
             label = "Select cell type(s) to plot:",
             choices = types_vis,
             selected = "Fusing-Myocytes"
+          ),
+          # downloadable plot type and dimensions for "Spatial" Tab
+          br(),
+          helpText("Download Specifications"),
+          selectizeInput(
+            "downloadable3",
+            label = "file type:",
+            choices = c("pdf", "png", "eps"),
+            selected = "pdf"
+          ),
+          numericInput(
+            "plotsizex3",
+            label = "horizontal dimension (inches)",
+            value = 5
+          ),
+          numericInput(
+            "plotsizey3",
+            label = "vertical dimension (inches)",
+            value = 5
           )
         ),
         # Establishes spaces for plots in the main panel
@@ -442,16 +480,21 @@ ui <- fluidPage(
           # Gene Expression----
           column(
             width=6,
-            downloadButton("down9", label = "Download"),
-            br(),
+            downloadButton("down9", label = "Download",
+                           style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+            br(), br(),
             plotOutput("spatialgene", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
             br()
           ),
           # Theta Values----
           column(
             width=6,
-            downloadButton("down10", label = "Download"),
-            br(),
+            downloadButton(
+              "down10", 
+              label = "Download",
+              style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+            ),
+            br(),br(),
             plotOutput("spatialtheta", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
             br()
           )
@@ -462,29 +505,40 @@ ui <- fluidPage(
     tabPanel(
       title="Downloads",
       # h4("Click on the links below to download Seurat objects, metadata files, etc."),
-      br(),
+      
+      h4("Seurat object downloads:"),
+      
+      # TODO: add functionality here:
+      downloadButton(
+        outputId="down11",
+        label = paste0("Download all cells/nuclei (Seurat object, .RData file; ", round(file.size(allCells_RData)/10^6), "Mb)"),
+        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      ),
+      br(),br(),
+      downloadButton(
+        outputId='down12',
+        label = paste0("Download myogenic cells/nuclei (Seurat object, .RData file; ", round(file.size(myoCells_RData)/10^6), "Mb)"),
+        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      ),
+      br(),br(),
+      downloadButton(
+        outputId='down13',
+        label = paste0("Download Visium data (list of Seurat objects, .RData file; ", round(file.size(vis_RData)/10^6), "Mb)"),
+        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      ),
+      br(),br(),
       h4(
         p(
           "Supplemetal resources from our preprint may be found ",
           a(href = "https://github.com/mckellardw/scMuscle/tree/main/supplemental_data", "here.")
         )
       ),
-      h2("Seurat object downloads coming soon!"),
-      
-      # TODO: add functionality here:
-      downloadLink(
-        outputId="down11",
-        label = paste0("Download all cells/nuclei (Seurat object, .RData file; ", round(file.size(allCells_RData)/10^6), "Mb)")
-      ),
-      br(),
-      downloadLink(
-        outputId='down12',
-        label = paste0("Download myogenic cells/nuclei (Seurat object, .RData file; ", round(file.size(myoCells_RData)/10^6), "Mb)")
-      ),
-      br(),
-      downloadLink(
-        outputId='down13',
-        label = paste0("Download Visium data (list of Seurat objects, .RData file; ", round(file.size(vis_RData)/10^6), "Mb)")
+      br(),br(),
+      h4(
+        p(
+          "If you wold like to download the raw sequencing data (.fastq files), you can find GEO/SRA download info ",
+          a(href = "https://github.com/mckellardw/scMuscle/blob/main/supplemental_data/sample_metadata_SupFile1.csv", "here.")
+        )
       )
     )
     
@@ -509,9 +563,13 @@ server <- function(input, output){
   label.size = 4
   feature_color_direction = reactive(1)
   
-  # Color Palette to cell delegation
+  # Cell type colors (from pals::polychrome()))
   colors.celltypes <- reactive({
-    as.vector(polychrome())[c(3:9,17,11:13,21,14:16,32,18:20,28,10,30,29,31,33,34,35,36,22:27)]
+    c(
+      "#F6222E", "#FE00FA", "#16FF32", "#3283FE", "#FEAF16", "#B00068", "#1CFFCE", "#1C8356", "#2ED9FF", "#DEA0FD", "#AA0DFE", "#1CBE4F", 
+      "#F8A19F", "#325A9B", "#C4451C", "#1C7F93", "#85660D", "#B10DA1", "#FBE426", "#BDCDFF", "#90AD1C", "#B5EFB5", "#822E1C", "#7ED7D1",
+      "#D85FF7", "#683B79", "#66B0FF", "#3B00FB", "#FA0087", "#FC1CBF", "#F7E1A0", "#C075A6", "#782AB6", "#AAF400"
+    )
   })
   
   # Plot themes
