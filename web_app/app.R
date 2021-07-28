@@ -76,7 +76,7 @@ ui <- fluidPage(
           width=6, 
           br(), br(), 
           div(
-            img(src = "img3.png", width = 500, height = 100), 
+            img(src = "cornell_bme_logo.png", width = 500, height = 100), 
             align = "center"
           ),
           br(),
