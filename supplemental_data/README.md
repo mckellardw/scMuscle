@@ -7,11 +7,13 @@
 
 - Differential gene expression results across myogenic cell subsets: `myo_phate_bins_markers_SupFile3.csv`
 
-- Differential gene expression results across FAP  subsets: `FAP_markers_SupFile.csv`
+- Differential gene expression results across FAP  subsets: `FAP_markers_SupFile4.csv`
 
-- Differential gene expression results across endothelial cell subsets: `endothelial_markers_SupFile.csv`
+- Differential gene expression results across endothelial cell subsets: `endothelial_markers_SupFile5.csv`
 
-- Differential gene expression results across myeloid cell subsets: `myeloid_markers_SupFile.csv`
+- Differential gene expression results across myeloid cell subsets: `myeloid_markers_SupFile6.csv`
+
+- Differential gene expression results between all cells and nuclei: `cell_nucleus_markers_SupFile6.csv`
 
 - `gene_lists` contains a series of gene sets that we have found useful (from our analyses and others' work)
   - Panel of (canonical) marker genes used to annotate cell types in mouse skeletal muscle: `scMuscle_markers_v1.csv`
