@@ -13,7 +13,8 @@
 
 - Differential gene expression results across myeloid cell subsets: `myeloid_markers_SupFile6.csv`
 
-- Differential gene expression results between all cells and nuclei: `cell_nucleus_markers_SupFile6.csv`
+- Differential gene expression results between cells and nuclei: `cell_nucleus_markers_SupFile7.csv`
+ *Note- results show expression in cells ("pct.1") over nuclei ("pct.2")*
 
 - `gene_lists` contains a series of gene sets that we have found useful (from our analyses and others' work)
   - Panel of (canonical) marker genes used to annotate cell types in mouse skeletal muscle: `scMuscle_markers_v1.csv`
