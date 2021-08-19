@@ -10,9 +10,10 @@ visListPlot <- function(
   pt.size=1,
   font.size=8
 ){
+  
   require(Seurat)
   require(ggplot2)
-  require(viridis)
+  # require(viridis)
   
   cat("Plotting Visium data!\n")
   
@@ -52,7 +53,7 @@ visListPlot <- function(
           pt.size = pt.size,
           reduction=reduction
         ) +
-        scale_color_viridis(limits=unlist(gene.lims[i]), na.value = gray(0.42))+ 
+        scale_color_manual(limits=unlist(gene.lims[i]), na.value = gray(0.42))+ 
         theme(
           plot.margin = unit(rep(0,4), "inches"),
           axis.ticks = element_blank(),

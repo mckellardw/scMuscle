@@ -3,19 +3,63 @@
 
 
 # Load libraries and helper functions ----
-library(shiny)
-library(Seurat)
-library(ggplot2)
-library(shinythemes)
-library(pals)
-library(dplyr)
-library(patchwork)
-library(shiny)
-library(shinycssloaders)
-library(shades) 
+CRAN_REPO <- "http://cran.us.r-project.org"
+LIB_LOCATION <- "/home/centos/R/x86_64-redhat-linux-gnu-library/3.6"
+  # "/usr/lib64/R/library/usr/share/R/library"
 
 
-source("scripts/visListPlot.R")
+if (!require('shiny', quietly=T)) {
+  install.packages("shiny", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(shiny,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('Seurat', quietly=T)) {
+  install.packages("Seurat", lib = LIB_LOCATION,lib.loc = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(Seurat,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('ggplot2', quietly=T)) {
+  install.packages("ggplot2", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(ggplot2,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('shinythemes', quietly=T)) {
+  install.packages("shinythemes", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(shinythemes,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('pals', quietly=T)) {
+  install.packages("pals", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(pals,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('dplyr', quietly=T)) {
+  install.packages("dplyr", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(dplyr,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('patchwork', quietly=T)) {
+  install.packages("patchwork", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(patchwork,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('shinycssloaders', quietly=T)) {
+  install.packages("shinycssloaders", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(shinycssloaders,lib.loc = LIB_LOCATION,quietly = T))
+
+if (!require('shades', quietly=T)) {
+  install.packages("shades", lib = LIB_LOCATION,repos = CRAN_REPO)
+}
+suppressPackageStartupMessages(library(shades,lib.loc = LIB_LOCATION,quietly = T))
+
+# if (!require('viridis', quietly=T)) {
+#   install.packages("viridis", lib = LIB_LOCATION,repos = CRAN_REPO)
+# }
+# suppressPackageStartupMessages(library(viridis,lib.loc = LIB_LOCATION,quietly = T))
+
+
+source("./scripts/visListPlot.R")
 
 # Settings & version info ----
 CURR_DATA_VERSION = 1.1
@@ -26,6 +70,7 @@ myoCells_RData <- "./data/myo_slim_seurat_v1-1.RData"
 vis_RData <- "./data/vis_slim_v1.RData"
 
 cornell_red = "#B31B1B"
+spatial_gene_colors <- c("#440154FF", "#482576FF", "#414487FF", "#35608DFF", "#2A788EFF", "#21908CFF", "#22A884FF", "#43BF71FF", "#7AD151FF","#BBDF27FF", "#FDE725FF")
 spatial_theta_colors <- c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
 vis.height = "600px"
 
@@ -504,6 +549,7 @@ ui <- fluidPage(
     # 'Downloads' tab----
     tabPanel(
       title="Downloads",
+      h4("*Note- downloads may take a few minutes to prepare"),
       # h4("Click on the links below to download Seurat objects, metadata files, etc."),
       
       h4("Seurat object downloads:"),
@@ -585,12 +631,12 @@ server <- function(input, output){
   )
   dot.theme <- theme(
     axis.line = element_blank(),
-    panel.border = element_rect(colour = "black", fill=NA, size=1),
+    panel.border = element_rect(color = "black", fill=NA, size=1),
     legend.text = element_text(size=small.font, color="black"),
     axis.title.x = element_blank(),
     axis.title.y = element_blank(),
     axis.text.x=element_text(angle = 90,hjust = 1,vjust= 0.5),
-    panel.grid.major = element_line(colour = "gray", size = 0.5)
+    panel.grid.major = element_line(color = "gray", size = 0.5)
   )
   vln.theme <- theme(
     panel.background = element_blank(),
@@ -755,12 +801,12 @@ server <- function(input, output){
         features = gene1(),
         reduction = umap.reduction()
       ) +
-        scale_colour_viridis_c() +
+        scale_color_viridis_c() +
         labs(color = "Log-Normalized\nExpression") +
         umap.theme + theme(
           legend.position = "top",
           plot.title=element_text(face="bold.italic")
-        )
+        ) %>% suppressMessages()
     } else {
       FeaturePlot(
         scMuscle.slim.seurat,
@@ -769,13 +815,13 @@ server <- function(input, output){
         features = gene1(),
         reduction = umap.reduction()
       ) +
-        scale_colour_viridis_c(direction = -1) +
+        scale_color_viridis_c(direction = -1) +
         labs(color = "Log-Normalized\nExpression") +
         umap.theme + 
         theme(
           legend.position = "top",
           plot.title=element_text(face="bold.italic")
-        )
+        ) %>% suppressMessages()
     }
   })
   
@@ -796,7 +842,9 @@ server <- function(input, output){
       NoLegend() +
       aes(stroke=pt.stroke)+
       umap.theme+
-      theme(plot.title=element_blank())
+      theme(
+        plot.title=element_blank()
+      ) %>% suppressMessages()
   })
   
   # generates third plot (All Cells - metadata UMAP) ----
@@ -815,7 +863,7 @@ server <- function(input, output){
       aes(stroke=pt.stroke)+
       umap.theme+
       theme(plot.title=element_blank())+
-      NoLegend()
+      NoLegend() %>% suppressMessages()
   })
   
   # generates fourth plot (All Cells - Violin Plot)----
@@ -831,9 +879,9 @@ server <- function(input, output){
       FUN=function(X) X +
         NoLegend() +
         scale_y_continuous(expand=c(0,0)) +
-        scale_colour_viridis_c() +
+        scale_color_viridis_c() +
         vln.theme
-    ) %>% wrap_plots(ncol=1)
+    ) %>% wrap_plots(ncol=1) %>% suppressMessages()
   })
   
   # renders image of fifth plot (All Cells - Split Violin Plot)----
@@ -860,7 +908,7 @@ server <- function(input, output){
         NoLegend() +
         scale_y_continuous(expand=c(0,0.5))+
         facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]])) +
-        scale_colour_viridis_c() +
+        scale_color_viridis_c() +
         vln.theme
     )
     dev.off()
@@ -883,7 +931,7 @@ server <- function(input, output){
         features = dot(),
         group.by = variables.dot()
       )+
-        scale_colour_viridis_c() +
+        scale_color_viridis_c() +
         dot.theme +
         labs(title = "Metadata Features")
     )
@@ -935,7 +983,7 @@ server <- function(input, output){
           FUN = function(X) X +
             NoLegend() +
             scale_y_continuous(expand=c(0,.5))+
-            scale_colour_viridis_c() +
+            scale_color_viridis_c() +
             vln.theme
         ) %>% wrap_plots(ncol=1)
       )
@@ -963,7 +1011,7 @@ server <- function(input, output){
         legend.position="right",
         pt.size=vis.pt.size,
         font.size=big.font
-      ) 
+      )&scale_color_gradientn(colors=spatial_gene_colors, na.value=gray(0.42))
     }
   )
   
@@ -1081,7 +1129,7 @@ server <- function(input, output){
           features = gene1(),
           reduction = umap.reduction()
         ) +
-          scale_colour_viridis_c() +
+          scale_color_viridis_c() +
           labs(color = "Log-Normalized\nExpression") +
           umap.theme) + theme(legend.position = "top")
       } else {
@@ -1092,7 +1140,7 @@ server <- function(input, output){
           features = gene1(),
           reduction = umap.reduction()
         ) +
-          scale_colour_viridis_c(direction = -1) +
+          scale_color_viridis_c(direction = -1) +
           labs(color = "Log-Normalized\nExpression") +
           umap.theme) + theme(legend.position = "top")
       }
@@ -1128,7 +1176,7 @@ server <- function(input, output){
           FUN=function(X) X +
             NoLegend() +
             scale_y_continuous(expand=c(0,0)) +
-            scale_colour_viridis_c() +
+            scale_color_viridis_c() +
             vln.theme
         ) %>% wrap_plots(ncol=1)
       )
@@ -1161,7 +1209,7 @@ server <- function(input, output){
           NoLegend() +
           scale_y_continuous(expand=c(0,.5))+
           facet_grid(rows = vars(scMuscle.slim.seurat@meta.data[[variables.splitVln()]]))+
-          scale_colour_viridis_c()+
+          scale_color_viridis_c()+
           vln.theme
       )
       
@@ -1189,7 +1237,7 @@ server <- function(input, output){
           features = dot(),
           group.by = variables.dot()
         )+
-          scale_colour_viridis_c()+
+          scale_color_viridis_c()+
           dot.theme
       )
       ggsave(
@@ -1261,7 +1309,7 @@ server <- function(input, output){
         FUN = function(X) X +
           NoLegend() +
           scale_y_continuous(expand=c(0,.5))+
-          scale_colour_viridis_c() +
+          scale_color_viridis_c() +
           vln.theme
       ) %>% wrap_plots(ncol=1))
       
