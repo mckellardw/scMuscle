@@ -1,6 +1,7 @@
 # scMuscle
 
 ## The Cornell Single-Cell Muscle Project (scMuscle) aims to collect, analyze, and provide to the research community skeletal muscle transcriptomic data.
+![Figure1](./high_res_figures/Fig1_scMuscle.png)
 
 We used more than 100 single-cell and single-nucleus RNA sequencing datasets, from 14 different research groups, to build an integrated transcriptomic reference of murine skeletal muscle.
 The resulting compendium has ~365,000 cell/nucleus, which we have annotated using a suite of existing software tools (see linked preprint for more details).
