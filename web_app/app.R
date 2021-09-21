@@ -400,7 +400,7 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
-          # PHATE Panel Inputs
+          # PHATE Panel Inputs----
           # inputs for reduction to be shown
           br(),
           helpText("Visualize gene expression in myogenic cells alone..."),
@@ -425,7 +425,8 @@ ui <- fluidPage(
           br(),
           helpText("Click to generate new violin plots"),
           actionButton(
-            "action2", label = "Generate",
+            "action2", 
+            label = "Generate",
             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
           ),
           # inputs for violin plots
@@ -437,12 +438,12 @@ ui <- fluidPage(
             selected = "Myod1",
             multiple = TRUE
           ),
-          # inputs present on all tabs
+          # inputs present on all tabs----
           # downloadable plot type and dimensions for "Myogenic Cells" Tab
           br(),
           helpText("Download Specifications"),
           selectizeInput(
-            "downloadable2",
+            "downloadable_myo",
             label = "file type:",
             choices = c("pdf", "png", "eps"),
             selected = "pdf"
@@ -459,17 +460,23 @@ ui <- fluidPage(
           )
         ), 
 
-        # Establishes spaces for plots in the main panel
+        # Establishes spaces for plots in the main panel----
         mainPanel(
           # PHATE grouped by variables
           br(),
-          downloadButton("down7", label = "Download",
-                         style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+          downloadButton(
+            "downBut_MyoPHATE", 
+            label = "Download",
+            style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+          ),
           br(), br(),
           plotOutput("PHATE") %>% withSpinner(type = 1, color = cornell_red),
           br(),
-          downloadButton("down8", label = "Download",
-                         style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+          downloadButton(
+            "downBut_MyoVln", 
+            label = "Download",
+            style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+          ),
           br(), br(),
           imageOutput("phateviolin") %>% withSpinner(type = 1, color = cornell_red),
           br()
@@ -483,7 +490,7 @@ ui <- fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
-          #Spatial Panel Inputs
+          #Spatial Panel Inputs----
           br(),
           helpText("Visualize spatial gene expression across injury response"),
           selectizeInput(
@@ -504,7 +511,7 @@ ui <- fluidPage(
           br(),
           helpText("Download Specifications"),
           selectizeInput(
-            "downloadable3",
+            "downloadable_spatial",
             label = "file type:",
             choices = c("pdf", "png", "eps"),
             selected = "pdf"
@@ -520,13 +527,16 @@ ui <- fluidPage(
             value = 5
           )
         ),
-        # Establishes spaces for plots in the main panel
+        # Establishes spaces for plots in the main panel----
         mainPanel(
           # Gene Expression----
           column(
             width=6,
-            downloadButton("down9", label = "Download",
-                           style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+            downloadButton(
+              "downBut_VisGene", 
+              label = "Download",
+              style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+            ),
             br(), br(),
             plotOutput("spatialgene", height=vis.height) %>% withSpinner(type = 1, color = cornell_red),
             br()
@@ -535,7 +545,7 @@ ui <- fluidPage(
           column(
             width=6,
             downloadButton(
-              "down10", 
+              "downBut_VisBP", 
               label = "Download",
               style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
             ),
@@ -799,7 +809,8 @@ server <- function(input, output){
         cells = sample(Cells(scMuscle.slim.seurat)),
         #plot cells in random order
         features = gene1(),
-        reduction = umap.reduction()
+        reduction = umap.reduction(),
+        # raster=FALSE
       ) +
         scale_color_viridis_c() +
         labs(color = "Log-Normalized\nExpression") +
@@ -814,6 +825,7 @@ server <- function(input, output){
         #plot cells in random order
         features = gene1(),
         reduction = umap.reduction()
+        # raster=FALSE
       ) +
         scale_color_viridis_c(direction = -1) +
         labs(color = "Log-Normalized\nExpression") +
@@ -837,7 +849,8 @@ server <- function(input, output){
       na.value = NA, # removes noisy cells from plot
       pt.size = pt.size, # see value above
       label.size = label.size, # see value above
-      repel = T,label= TRUE
+      repel = T,label= TRUE,
+      # raster=FALSE
     ) +
       NoLegend() +
       aes(stroke=pt.stroke)+
@@ -859,6 +872,7 @@ server <- function(input, output){
       pt.size = pt.size, # see value above
       label.size = label.size, # see value above
       repel = T,label= TRUE
+      # raster=FALSE
     ) +
       aes(stroke=pt.stroke)+
       umap.theme+
@@ -949,6 +963,7 @@ server <- function(input, output){
       pt.size = pt.size, # see value above
       label.size = label.size, # see value above
       repel = T,label= TRUE
+      # raster=FALSE
     ) +
       NoLegend() +
       aes(stroke=pt.stroke)+
@@ -1034,14 +1049,16 @@ server <- function(input, output){
   
   # DownloadHandler----
   # Allows plots to be donwloaded in specified file type
-    # All Cells - Cell Type UMAP----
+  # All Cells - Cell Type UMAP----
   output$down1 <- downloadHandler(
     # specify file name
     filename = function() {
       paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       print(
         DimPlot(
           scMuscle.slim.seurat,
@@ -1053,6 +1070,7 @@ server <- function(input, output){
           pt.size = pt.size, # see value above
           label.size = label.size, # see value above
           repel = T,label= TRUE
+          # raster=FALSE
         ) +
           NoLegend() +
           aes(stroke=pt.stroke)+
@@ -1073,15 +1091,16 @@ server <- function(input, output){
     }
   )
   
-    # All Cells - metadata UMAP----
+  # All Cells - metadata UMAP----
   output$down2 <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable1, sep = ".")
+      paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
-      
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       print(
         DimPlot(
           scMuscle.slim.seurat,
@@ -1093,6 +1112,7 @@ server <- function(input, output){
           pt.size = pt.size, # see value above
           label.size = label.size, # see value above
           repel = T,label= TRUE
+          # raster=FALSE
         ) +
           NoLegend() +
           aes(stroke=pt.stroke)+
@@ -1113,14 +1133,16 @@ server <- function(input, output){
     }
   )
   
-    # All Cells - FeaturePlot/UMAP----
+  # All Cells - FeaturePlot/UMAP----
   output$down3 <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable1, sep = ".")
+      paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       if (input$action3 %% 2 == 0) {
         print(FeaturePlot(
           scMuscle.slim.seurat,
@@ -1128,6 +1150,7 @@ server <- function(input, output){
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
+          # raster=FALSE
         ) +
           scale_color_viridis_c() +
           labs(color = "Log-Normalized\nExpression") +
@@ -1139,6 +1162,7 @@ server <- function(input, output){
           #plot cells in random order
           features = gene1(),
           reduction = umap.reduction()
+          # raster=FALSE
         ) +
           scale_color_viridis_c(direction = -1) +
           labs(color = "Log-Normalized\nExpression") +
@@ -1156,14 +1180,16 @@ server <- function(input, output){
     }
   )
   
-    # All Cells - Single Violin Plot----
+  # All Cells - Single Violin Plot----
   output$down4 <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable1, sep = ".")
+      paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file) {
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       print(
         VlnPlot( #TODO - add multiple gene plotting
           scMuscle.slim.seurat,
@@ -1181,7 +1207,7 @@ server <- function(input, output){
         ) %>% wrap_plots(ncol=1)
       )
       ggsave(
-        file = file,#paste0(file,".",input$downloadable),
+        file = file,
         device = input$downloadable1,
         width = input$plotsizex1, 
         height = input$plotsizey1,
@@ -1191,14 +1217,16 @@ server <- function(input, output){
     }
   )
   
-    # All Cells - Split Violin Plot----
+  # All Cells - Split Violin Plot----
   output$down5 <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable1, sep = ".")
+      paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       print(
         VlnPlot(
           scMuscle.slim.seurat, 
@@ -1214,7 +1242,7 @@ server <- function(input, output){
       )
       
       ggsave(
-        file = file,#paste0(file,".",input$downloadable),
+        file = file,
         device = input$downloadable1,
         width = input$plotsizex1, 
         height = input$plotsizey1,
@@ -1223,14 +1251,16 @@ server <- function(input, output){
       )
     }
   )
-    # All Cells - DotPlot----
+  # All Cells - DotPlot----
   output$down6 <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable1, sep = ".")
+      paste("scMuscle_plot", input$downloadable1, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable1,"file...\n"))
       print(
         DotPlot(
           scMuscle.slim.seurat,
@@ -1241,7 +1271,7 @@ server <- function(input, output){
           dot.theme
       )
       ggsave(
-        file = file,#paste0(file,".",input$downloadable),
+        file = file,
         device = input$downloadable1,
         width = input$plotsizex1,
         height = input$plotsizey1,
@@ -1250,15 +1280,17 @@ server <- function(input, output){
       )
     }
   )
-
-    # Myogenic Cells - PHATE----
-  output$down7 <- downloadHandler(
+  
+  # Myogenic Cells - PHATE----
+  output$downBut_MyoPHATE <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable2, sep = ".")
+      paste("scMuscle_plot", input$downloadable_myo, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable_myo,"file...\n"))
       print(
         DimPlot(
           myo.slim.seurat,
@@ -1270,6 +1302,7 @@ server <- function(input, output){
           pt.size = pt.size, # see value above
           label.size = label.size, # see value above
           repel = T,label= TRUE
+          # raster=FALSE
         ) +
           NoLegend() +
           aes(stroke=pt.stroke)+
@@ -1280,8 +1313,8 @@ server <- function(input, output){
       )
       
       ggsave(
-        file = file,#paste0(file,".",input$downloadable),
-        device = input$downloadable2,
+        file = file,
+        device = input$downloadable_myo,
         width = input$plotsizex2, 
         height = input$plotsizey2,
         units = "in", 
@@ -1290,14 +1323,16 @@ server <- function(input, output){
     }
   )
   
-    # Myogenic Cells - PHATE violins----
-  output$down8 <- downloadHandler(
+  # Myogenic Cells - PHATE violins----
+  output$downBut_MyoVln <- downloadHandler(
     # specify file name
     filename = function() {
-      paste("name", input$downloadable2, sep = ".")
+      paste("scMuscle_plot", input$downloadable_myo, sep = ".")
     },
+    
     # creates the plot
     content = function(file){
+      message(paste("Downloading a",input$downloadable_myo,"file...\n"))
       print(VlnPlot(
         myo.slim.seurat,
         features = gene4(),
@@ -1314,8 +1349,8 @@ server <- function(input, output){
       ) %>% wrap_plots(ncol=1))
       
       ggsave(
-        file = file,#paste0(file,".",input$downloadable),
-        device = input$downloadable2,
+        file = file,
+        device = input$downloadable_myo,
         width = input$plotsizex2, 
         height = input$plotsizey2,
         units = "in", 
@@ -1323,8 +1358,80 @@ server <- function(input, output){
       )
     }
   )
+  
+  # Visium - Gene Expression----
+  output$downBut_VisGene <- downloadHandler(
+    # specify file name
+    filename = function() {
+      paste("scMuscle_plot", input$downloadable_spatial, sep = ".")
+    },
     
-    # All Cells - .RData----
+    # creates the plot
+    content = function(file){
+      message(paste("Downloading a",input$downloadable_spatial,"file...\n"))
+      print(
+        visListPlot(
+          seu.list = vis.list,
+          features = vis_genes_selector(),
+          assay = 'Spatial',
+          reduction = "space",
+          legend.position = "right",
+          pt.size = vis.pt.size,
+          font.size = big.font
+        ) &
+          scale_color_gradientn(colors = spatial_gene_colors, na.value = gray(0.42))
+      )
+      
+      ggsave(
+        file = file,
+        device = input$downloadable_spatial,
+        width = input$plotsizex3, 
+        height = input$plotsizey3,
+        units = "in", 
+        dpi=300
+      )
+    }
+  )
+  
+  # Visium - BayesPrism----
+  output$downBut_VisBP <- downloadHandler(
+    # specify file name
+    filename = function() {
+      paste("scMuscle_plot", input$downloadable_spatial, sep = ".")
+    },
+    
+    # creates the plot
+    content = function(file){
+      message(paste("Downloading a",input$downloadable_spatial,"file...\n"))
+      print(
+        visListPlot(
+          seu.list = vis.list,
+          features = vis_types_selector(),
+          assay = 'sub_raw_deg_ted',
+          reduction = "space",
+          legend.position = "right",
+          pt.size = vis.pt.size,
+          font.size = big.font
+        ) &
+          scale_color_gradientn(
+            colors = spatial_theta_colors,
+            na.value = gray(0.42),
+            limits = c(10 ^ -2, 1)
+          )
+      )
+      
+      ggsave(
+        file = file,
+        device = input$downloadable_spatial,
+        width = input$plotsizex3, 
+        height = input$plotsizey3,
+        units = "in", 
+        dpi=300
+      )
+    }
+  )
+    
+  # All Cells - .RData----
   output$down11 <- downloadHandler(
     filename = allCells_RData,
     content = function(con){

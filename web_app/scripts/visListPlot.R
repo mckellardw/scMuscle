@@ -21,6 +21,7 @@ visListPlot <- function(
     alt.titles=features
   }
   
+  # Change active assay, to find gene of interest
   seu.list <- lapply(
     seu.list,
     FUN = function(SEU){
@@ -53,7 +54,7 @@ visListPlot <- function(
           pt.size = pt.size,
           reduction=reduction
         ) +
-        scale_color_manual(limits=unlist(gene.lims[i]), na.value = gray(0.42))+ 
+        scale_color_continuous(limits=unlist(gene.lims[i]), na.value = gray(0.42))+ 
         theme(
           plot.margin = unit(rep(0,4), "inches"),
           axis.ticks = element_blank(),
@@ -90,6 +91,6 @@ visListPlot <- function(
   cat("Done plotting Visium data!\n")
   
   return(
-    wrap_plots(plot.list,nrow=1)
+    wrap_plots(plot.list,nrow=1,guides="collect")
   )
 }
