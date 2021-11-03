@@ -15,6 +15,8 @@ You will also find the development version of the code used in our [web applicat
 
 **Web application to explore these data can be found [here](http://scmuscle.bme.cornell.edu/)**
 
+**Fully processed Seurat and CellChat objects from this study can be downloaded [here](https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34)**
+
 **Raw data from Spatial RNA sequencing (Visium) can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE161318)**
 
-*Raw sequencing data for new 10x Chromium datasets will be made available on GEO soon!*
+**Raw data from new 10x Chromium datasets can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE162172)**
