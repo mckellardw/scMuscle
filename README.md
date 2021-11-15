@@ -10,8 +10,10 @@ Here, you'll find all of the R scripts used for the analysis and visualization (
 
 You will also find the development version of the code used in our [web application](http://scmuscle.bme.cornell.edu/)(`web_app/`), as well as details on different versions of the data (`data_versions/`)
 
-**Code and supplemental data from McKellar et al, *bioRxiv*, 2020:**  
-[link to preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v2)
+**Code and supplemental data from McKellar et al, *Communications Biology*, 2021:**  
+[link to final manuscript](https://www.nature.com/articles/s42003-021-02810-x)
+
+[link to bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v2)
 
 **Web application to explore these data can be found [here](http://scmuscle.bme.cornell.edu/)**
 

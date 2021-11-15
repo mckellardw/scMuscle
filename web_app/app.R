@@ -69,6 +69,11 @@ allCells_RData <- "./data/scMuscle_mm10_slim_v1-1.RData"
 myoCells_RData <- "./data/myo_slim_seurat_v1-1.RData"
 vis_RData <- "./data/vis_slim_v1.RData"
 
+allCells_rds <- "./data/scMuscle_mm10_v1-1.rds"
+myoCells_rds <- "./data/myo_slim_seurat_v1-1.rds"
+vis_rds <- "./data/vis_slim_v1.rds"
+
+
 cornell_red = "#B31B1B"
 spatial_gene_colors <- c("#440154FF", "#482576FF", "#414487FF", "#35608DFF", "#2A788EFF", "#21908CFF", "#22A884FF", "#43BF71FF", "#7AD151FF","#BBDF27FF", "#FDE725FF")
 spatial_theta_colors <- c("#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598", "#FFFFBF", "#FEE08B", "#FDAE61", "#F46D43", "#D53E4F", "#9E0142")
@@ -559,29 +564,34 @@ ui <- fluidPage(
     # 'Downloads' tab----
     tabPanel(
       title="Downloads",
-      h4("*Note- downloads may take a few minutes to prepare"),
+      # h4("*Note- downloads may take a few minutes to prepare"),
       # h4("Click on the links below to download Seurat objects, metadata files, etc."),
       
-      h4("Seurat object downloads:"),
-      
-      # TODO: add functionality here:
-      downloadButton(
-        outputId="down11",
-        label = paste0("Download all cells/nuclei (Seurat object, .RData file; ", round(file.size(allCells_RData)/10^6), "Mb)"),
-        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      h4(
+        p(
+          "Seurat object downloads can be found ",
+          a(href = "https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34", "here.")
+        )
       ),
-      br(),br(),
-      downloadButton(
-        outputId='down12',
-        label = paste0("Download myogenic cells/nuclei (Seurat object, .RData file; ", round(file.size(myoCells_RData)/10^6), "Mb)"),
-        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
-      ),
-      br(),br(),
-      downloadButton(
-        outputId='down13',
-        label = paste0("Download Visium data (list of Seurat objects, .RData file; ", round(file.size(vis_RData)/10^6), "Mb)"),
-        style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
-      ),
+      # Old download buttons... not used anymore
+      # downloadButton(
+      #   outputId="down11",
+      #   label = paste0("Download all cells/nuclei (Seurat object, .RData file; ", round(file.size(allCells_RData)/10^6), "Mb)"),
+      #   style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      # ),
+      # br(),br(),
+      # downloadButton(
+      #   outputId='down12',
+      #   label = paste0("Download myogenic cells/nuclei (Seurat object, .RData file; ", round(file.size(myoCells_RData)/10^6), "Mb)"),
+      #   style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      # ),
+      # br(),br(),
+      # downloadButton(
+      #   outputId='down13',
+      #   label = paste0("Download Visium data (list of Seurat objects, .RData file; ", round(file.size(vis_RData)/10^6), "Mb)"),
+      #   style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+      # ),
+
       br(),br(),
       h4(
         p(
@@ -604,10 +614,17 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output){
   # Loading data----
-  load(allCells_RData) # All Cells
-  load(myoCells_RData) # Myo Cells
-  load(vis_RData) # Visium
+
+  ## Load .RData files (much slower)
+  # load(allCells_RData) # All Cells
+  # load(myoCells_RData) # Myo Cells
+  # load(vis_RData) # Visium
  
+  ## Load uncompressed .rds files
+  scMuscle.slim.seurat <- readRDS(allCells_rds) # All Cells
+  myo.slim.seurat <- readRDS(myoCells_rds) # Myo Cells
+  vis.list <- readRDS(vis_rds) # Visium
+  
   # Plot themes and colors----
   # Figure settings
   small.font = 10
