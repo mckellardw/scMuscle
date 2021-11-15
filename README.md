@@ -1,6 +1,7 @@
 # scMuscle
 
-## The Cornell Single-Cell Muscle Project (scMuscle) aims to collect, analyze, and provide to the research community skeletal muscle transcriptomic data.
+## The Single-Cell Muscle Project (scMuscle) aims to collect, analyze, annotate, and provide to the research community skeletal muscle transcriptomic data. This includes tools to visualize and re-analyze these data in a consistent and repeatable manner.
+
 ![Figure1](./high_res_figures/Fig1_scMuscle.png)
 
 We used more than 100 single-cell and single-nucleus RNA sequencing datasets, from 14 different research groups, to build an integrated transcriptomic reference of murine skeletal muscle.
@@ -8,12 +9,12 @@ The resulting compendium has ~365,000 cell/nucleus, which we have annotated usin
 
 Here, you'll find all of the R scripts used for the analysis and visualization (`R_scripts/`) as well as some of the supplemental resources we generated (`supplemental_data/`). These resources include metadata details, outputs from differential gene expression analysis, and some other useful gene lists.
 
-You will also find the development version of the code used in our [web application](http://scmuscle.bme.cornell.edu/)(`web_app/`), as well as details on different versions of the data (`data_versions/`)
+You will also find the development version of the code used in our [web application](http://scmuscle.bme.cornell.edu/) (`web_app/`), as well as details on different versions of the data (`data_versions/`)
 
+## Links:
 **Code and supplemental data from McKellar et al, *Communications Biology*, 2021:**  
-[link to final manuscript](https://www.nature.com/articles/s42003-021-02810-x)
-
-[link to bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v2)
+- [link to final manuscript](https://www.nature.com/articles/s42003-021-02810-x)
+- [link to bioRxiv preprint](https://www.biorxiv.org/content/10.1101/2020.12.01.407460v2)
 
 **Web application to explore these data can be found [here](http://scmuscle.bme.cornell.edu/)**
 
