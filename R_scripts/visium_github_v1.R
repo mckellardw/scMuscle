@@ -1,5 +1,5 @@
 # Libs ####
-library(TED) 
+library(TED)
 
 library(Matrix)
 library(dplyr)
@@ -20,7 +20,7 @@ library(viridis)
 library(shades)
 library(ggplotify)
 
-source("helper_functions_v1.R") 
+source("helper_functions_v1.R")
 
 # Metadata ####
 meta <- list()
@@ -41,7 +41,7 @@ meta$injury <- c(
   "D2", "D5", "D7"
 )
 
-# inputs for flipping the coordinates to make DimPlots easier with Visium data 
+# inputs for flipping the coordinates to make DimPlots easier with Visium data
 meta$coord_flip<- c(
   T, T,T
 )
@@ -58,8 +58,8 @@ meta <- as.data.frame(meta)
 # Read in count mats & initialize Seurat objects ####
 
 seu.list <- list()
-for(i in 1:length(meta$data.dir)){ 
-  if(file.exists(paste0(meta$data.dir[i], '/outs/filtered_feature_bc_matrix'))){ 
+for(i in 1:length(meta$data.dir)){
+  if(file.exists(paste0(meta$data.dir[i], '/outs/filtered_feature_bc_matrix'))){
     cat("Reading #",i, ": ", meta$data.dir[i], ' \n')
     seu.list[[i]] <- Seurat::Load10X_Spatial(
       data.dir = paste0(meta$data.dir[i], '/outs'),
@@ -79,29 +79,29 @@ for(i in 1:length(seu.list)){
   for(md in colnames(meta)){
     seu.list[[i]][[md]] <- meta[[md]][i]
   }
-  
+
   # add %MT
-  seu.list[[i]][["percent.mt"]]  <- PercentageFeatureSet(seu.list[[i]], pattern = "mt-") 
-  
+  seu.list[[i]][["percent.mt"]]  <- PercentageFeatureSet(seu.list[[i]], pattern = "mt-")
+
   # hemaglobin scores
   seu.list[[i]][["percent.Hb"]]  <- PercentageFeatureSet(
-    seu.list[[i]], 
+    seu.list[[i]],
     features = c(
       rownames(seu.list[[i]])[grep(rownames(seu.list[[i]]),pattern="Hba")],
       rownames(seu.list[[i]])[grep(rownames(seu.list[[i]]),pattern="Hbb")]
     )
   )
-  
+
   # ribosomal protein scores
   seu.list[[i]][["percent.Rp"]]  <- PercentageFeatureSet(
-    seu.list[[i]], 
+    seu.list[[i]],
     features = c(
       rownames(seu.list[[i]])[grep(rownames(seu.list[[i]]),pattern="Rps")],
       rownames(seu.list[[i]])[grep(rownames(seu.list[[i]]),pattern="Rpl")]
     )
   )
-  
-  # Filter out low quality spots according to the metrics defined above- 
+
+  # Filter out low quality spots according to the metrics defined above-
   #   Note, no percent.mt filter because these samples were not dissociated
   seu.list[[i]] <- subset(seu.list[[i]],
                           subset = nCount_Spatial > 1000 &
@@ -115,7 +115,7 @@ seuPreProcess <- function(seu, assay='Spatial', n.pcs=50, res=0.8){
   pca.name = paste0('pca_', assay)
   pca.key = paste0(pca.name,'_')
   umap.name = paste0('umap_', assay)
-  
+
   seu = NormalizeData(
     seu
   ) %>% FindVariableFeatures(
@@ -132,10 +132,10 @@ seuPreProcess <- function(seu, assay='Spatial', n.pcs=50, res=0.8){
     verbose = F,
     npcs = n.pcs
   )
-  
+
   #find pcs to use
   n.pcs.use = npcs(seu,var.toal = 0.95,reduction = pca.name)
-  
+
   # FindNeighbors %>% RunUMAP, FindClusters
   seu <- FindNeighbors(
     seu,
@@ -148,12 +148,12 @@ seuPreProcess <- function(seu, assay='Spatial', n.pcs=50, res=0.8){
     dims = 1:n.pcs.use,
     reduction.name=umap.name
   )
-  
+
   seu@reductions[[umap.name]]@misc$n.pcs.used <- n.pcs.use
-  
+
   seu <- FindClusters(object = seu,resolution = res)
   seu[[paste0('RNA_res.',res)]] <- as.numeric(seu@active.ident)
-  
+
   return(seu)
 }
 
@@ -175,13 +175,13 @@ seu.list <- mapply(
     }
     colnames(tmp) <- paste0("space_", 1:2)
     rownames(tmp) <- colnames(SEU)
-    
+
     SEU[["space"]] <- CreateDimReducObject(
       embeddings=as.matrix(tmp),
       assay="Spatial",
       key = "space_"
     )
-    
+
     return(SEU)
   },
   seu.list,
@@ -197,11 +197,11 @@ seu.list <- mapply(
 load("/path/to/scMuscle_seurat.RData") #integrated reference from Fig. 1
 load("/path/to/myo__seurat.RData") #subset myogenic cells, after running PHATE, and binning (see Fig. 2)
 
-# remove mito and ribo genes; important for deconvolution - 
+# remove mito and ribo genes; important for deconvolution -
 #     See vignette at https://github.com/Danko-Lab/TED
 genes.remove <-  unique(c(
   rownames(scMuscle.seurat)[grep("Rps",x = rownames(scMuscle.seurat))], # ribo, short
-  rownames(scMuscle.seurat)[grep("Rpl",x = rownames(scMuscle.seurat))], # ribo long 
+  rownames(scMuscle.seurat)[grep("Rpl",x = rownames(scMuscle.seurat))], # ribo long
   rownames(scMuscle.seurat)[grep("mt-",x = rownames(scMuscle.seurat))] # mito
 ))
 
@@ -235,7 +235,7 @@ options(future.globals.maxSize = 4500 * 1024^2) # Be sure to change this accordi
 
 # Output is in "supplemental_data/scMuscle_harmonytypes_plus_phatebins_markers.csv"
 all.markers <- FindAllMarkers(
-  scMuscle.seurat, 
+  scMuscle.seurat,
   verbose=T
 )
 gc()
@@ -256,12 +256,12 @@ dim(celltype.gep)
 gc()
 
 celltype.bp <- list()
-for(i in 1:length(seu.list)){ 
+for(i in 1:length(seu.list)){
   cat("Sample: ", meta$sample[i],"\n")
-  celltype.bp[[i]] <-run.Ted( 
+  celltype.bp[[i]] <-run.Ted(
     ref.dat = t(celltype.gep), #cell types x genes
     X=as.matrix(t(GetAssayData(seu.list[[i]],slot="counts"))), # spot to deconvolve
-    input.type = "GEP", 
+    input.type = "GEP",
     n.cores=n.cores
   )
   gc()
@@ -274,21 +274,57 @@ for(i in 1:length(seu.list)){ # add theta (composition) values as an Assay
   seu.list[[i]][["celltype.bp"]] <- CreateAssayObject(data=t(celltype.bp[[i]]$res$final.gibbs.theta))
 }
 
-# Ridge plots for BayesPrism outputs (theta values)
+
+#      calculate co-occurrence ####
+# Adapted from:
+#   https://github.com/madhavmantri/chicken_heart/blob/master/scripts/anchor_integeration.R
+
+# Order cell types...
+celltypes.order = c(
+  "Quiescent-MuSCs", "Activated-MuSCs", "Committed-Myoblasts",
+  "Fusing-Myocytes",
+  "Myonuclei-(Type-IIb)","Myonuclei-(Type-IIx)",
+
+  "Endothelial-(Capillary)","Endothelial-(Artery)","Endothelial-(Vein)",
+
+  "Smooth-Muscle",
+
+  "FAPs-(Stem)", "FAPs-(Adipogenic)","FAPs-(Pro-remodeling)",
+  "Tenocytes","Neural",
+
+  "Monocyte-(Cxcl10+)", "Monocyte-(Patrolling)","Monocyte-(Inflammatory)",
+  "M2-Macro.-(Cx3cr1-lo)",
+  "M2-Macro.-(Cx3cr1-hi)",
+
+  "Dendritic", "Neutrophils", "B-Cells", "NK-Cells", "T-Cells"
+)
+
+#     Ridge plots for BayesPrism outputs (theta values) ####
 library(ggridges)
 
+# Pull BayesPrism values from the Seurat objects, and put them into a list
+prediction.scores <- lapply(
+  seu.list[2:4],
+  FUN = function(SEU){
+    prediction.scores <- t(GetAssayData(SEU, assay="sub_raw_deg_ted"))[,celltypes.order]
+    return(prediction.scores)
+  }
+)
+
+# format the prediction scores for ggplot
 tmp.df <- lapply(prediction.scores, as.data.frame)
 tmp.df[[1]]$injury <- "D2"
 tmp.df[[2]]$injury <- "D5"
 tmp.df[[3]]$injury <- "D7"
 
-tmp.df <- melt(tmp.df) 
+tmp.df <- melt(tmp.df)
 
 tmp.df$variable = factor(
   tmp.df$variable, ordered = T,
   levels = unique(tmp.df$variable) %>% rev()
 )
 
+# build plot
 ggplot(
   tmp.df,
   aes(
@@ -296,7 +332,7 @@ ggplot(
     y=variable,
     fill=injury
   )
-) + 
+) +
   geom_density_ridges(alpha=0.5)+
   scale_x_log10(
     expand=c(0,0),
@@ -305,7 +341,7 @@ ggplot(
   labs(
     x="Theta",
     fill="Injury"
-  )+ 
+  )+
   scale_fill_manual(
     values=c("blue","red","yellow")
   )+
@@ -319,57 +355,25 @@ ggplot(
     axis.title.y = element_blank()
   )
 
-
-#      calculate co-occurrence ####
-# Adapted from:
-#   https://github.com/madhavmantri/chicken_heart/blob/master/scripts/anchor_integeration.R
-
-# Order cell types...
-celltypes.order = c(
-  "Quiescent-MuSCs", "Activated-MuSCs", "Committed-Myoblasts", 
-  "Fusing-Myocytes",
-  "Myonuclei-(Type-IIb)","Myonuclei-(Type-IIx)",
-  
-  "Endothelial-(Capillary)","Endothelial-(Artery)","Endothelial-(Vein)",
-  
-  "Smooth-Muscle", 
-  
-  "FAPs-(Stem)", "FAPs-(Adipogenic)","FAPs-(Pro-remodeling)",
-  "Tenocytes","Neural",
-  
-  "Monocyte-(Cxcl10+)", "Monocyte-(Patrolling)","Monocyte-(Inflammatory)",
-  "M2-Macro.-(Cx3cr1-lo)",
-  "M2-Macro.-(Cx3cr1-hi)",
-  
-  "Dendritic", "Neutrophils", "B-Cells", "NK-Cells", "T-Cells" 
-)
-
-prediction.scores <- lapply(
-  seu.list[2:4],
-  FUN = function(SEU){
-    prediction.scores <- t(GetAssayData(SEU, assay="sub_raw_deg_ted"))[,celltypes.order]
-    return(prediction.scores)
-  }
-)
-
-# Inputs: 
+# Function to calculate co-occurrence
+# Inputs:
 #   PRED: theta predictions
 #   loading.filter: theta loading to use as noise floor (cell types with theta loadings lower than this are not considered)
 #   celltype.filter: number of celltypes to look at in each spot (max is 10)
 
 find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
   tmp.feat = colnames(PRED)
-  
+
   interaction_matrix = matrix(
-    0, 
-    ncol = ncol(PRED), 
+    0,
+    ncol = ncol(PRED),
     nrow = ncol(PRED)
   )
   rownames(interaction_matrix) <- tmp.feat
   colnames(interaction_matrix) <- tmp.feat
-  
+
   if(is.null(loading.filter)){
-    loading.filter <- 0.01 # filter for noisy/falsely predicted cell type loadings 
+    loading.filter <- 0.01 # filter for noisy/falsely predicted cell type loadings
   }
   if(is.null(celltype.filter)){
     celltype.filter <- 10 # number of cell types to look at, per spot (max is 10)
@@ -377,7 +381,7 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
   for(i in 1:nrow(PRED)){
     tmp <- names(sort(PRED[i,PRED[i,] > 0], decreasing = T))[1:celltype.filter] # order cell types by BayesPrism loadings
     tmp <- tmp[tmp>loading.filter] # set noise floor & filter based on loading values
-    
+
     if(length(tmp) == 2){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
     } else if(length(tmp) == 3){
@@ -396,14 +400,14 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[3] ] <- interaction_matrix[tmp[1], tmp[3] ] + 1
       interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
       interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
     } else if(length(tmp) == 6){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
@@ -411,19 +415,19 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[4] ] <- interaction_matrix[tmp[1], tmp[4] ] + 1
       interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
       interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
       interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
       interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
       interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
-      
+
       interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
     } else if(length(tmp) == 7){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
@@ -432,25 +436,25 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[5] ] <- interaction_matrix[tmp[1], tmp[5] ] + 1
       interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
       interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
       interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
       interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
       interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
       interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
       interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
       interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
-      
+
       interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
       interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
-      
+
       interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
     } else if(length(tmp) == 8){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
@@ -460,32 +464,32 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[6] ] <- interaction_matrix[tmp[1], tmp[6] ] + 1
       interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
       interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
       interaction_matrix[tmp[2], tmp[6] ] <- interaction_matrix[tmp[2], tmp[6] ] + 1
       interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
       interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
       interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
       interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
       interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
       interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
       interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
       interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
       interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
       interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
       interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
-      
+
       interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
     } else if(length(tmp) == 9){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
@@ -496,7 +500,7 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[7] ] <- interaction_matrix[tmp[1], tmp[7] ] + 1
       interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
       interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
@@ -504,32 +508,32 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[2], tmp[7] ] <- interaction_matrix[tmp[2], tmp[7] ] + 1
       interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
       interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
       interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
       interaction_matrix[tmp[3], tmp[7] ] <- interaction_matrix[tmp[3], tmp[7] ] + 1
       interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
       interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
       interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
       interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
       interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
       interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
       interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
       interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
       interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
       interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
       interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
       interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
-      
+
       interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
     } else if(length(tmp) >= 10){
       interaction_matrix[tmp[1], tmp[2] ] <- interaction_matrix[tmp[1], tmp[2] ] + 1
@@ -541,7 +545,7 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[1], tmp[8] ] <- interaction_matrix[tmp[1], tmp[8] ] + 1
       interaction_matrix[tmp[1], tmp[9] ] <- interaction_matrix[tmp[1], tmp[9] ] + 1
       interaction_matrix[tmp[1], tmp[10] ] <- interaction_matrix[tmp[1], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[2], tmp[3] ] <- interaction_matrix[tmp[2], tmp[3] ] + 1
       interaction_matrix[tmp[2], tmp[4] ] <- interaction_matrix[tmp[2], tmp[4] ] + 1
       interaction_matrix[tmp[2], tmp[5] ] <- interaction_matrix[tmp[2], tmp[5] ] + 1
@@ -550,7 +554,7 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[2], tmp[8] ] <- interaction_matrix[tmp[2], tmp[8] ] + 1
       interaction_matrix[tmp[2], tmp[9] ] <- interaction_matrix[tmp[2], tmp[9] ] + 1
       interaction_matrix[tmp[2], tmp[10] ] <- interaction_matrix[tmp[2], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[3], tmp[4] ] <- interaction_matrix[tmp[3], tmp[4] ] + 1
       interaction_matrix[tmp[3], tmp[5] ] <- interaction_matrix[tmp[3], tmp[5] ] + 1
       interaction_matrix[tmp[3], tmp[6] ] <- interaction_matrix[tmp[3], tmp[6] ] + 1
@@ -558,47 +562,47 @@ find_interactions =function(PRED, loading.filter=NULL, celltype.filter=NULL){
       interaction_matrix[tmp[3], tmp[8] ] <- interaction_matrix[tmp[3], tmp[8] ] + 1
       interaction_matrix[tmp[3], tmp[9] ] <- interaction_matrix[tmp[3], tmp[9] ] + 1
       interaction_matrix[tmp[3], tmp[10] ] <- interaction_matrix[tmp[3], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[4], tmp[5] ] <- interaction_matrix[tmp[4], tmp[5] ] + 1
       interaction_matrix[tmp[4], tmp[6] ] <- interaction_matrix[tmp[4], tmp[6] ] + 1
       interaction_matrix[tmp[4], tmp[7] ] <- interaction_matrix[tmp[4], tmp[7] ] + 1
       interaction_matrix[tmp[4], tmp[8] ] <- interaction_matrix[tmp[4], tmp[8] ] + 1
       interaction_matrix[tmp[4], tmp[9] ] <- interaction_matrix[tmp[4], tmp[9] ] + 1
       interaction_matrix[tmp[4], tmp[10] ] <- interaction_matrix[tmp[4], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[5], tmp[6] ] <- interaction_matrix[tmp[5], tmp[6] ] + 1
       interaction_matrix[tmp[5], tmp[7] ] <- interaction_matrix[tmp[5], tmp[7] ] + 1
       interaction_matrix[tmp[5], tmp[8] ] <- interaction_matrix[tmp[5], tmp[8] ] + 1
       interaction_matrix[tmp[5], tmp[9] ] <- interaction_matrix[tmp[5], tmp[9] ] + 1
       interaction_matrix[tmp[5], tmp[10] ] <- interaction_matrix[tmp[5], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[6], tmp[7] ] <- interaction_matrix[tmp[6], tmp[7] ] + 1
       interaction_matrix[tmp[6], tmp[8] ] <- interaction_matrix[tmp[6], tmp[8] ] + 1
       interaction_matrix[tmp[6], tmp[9] ] <- interaction_matrix[tmp[6], tmp[9] ] + 1
       interaction_matrix[tmp[6], tmp[10] ] <- interaction_matrix[tmp[6], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[7], tmp[8] ] <- interaction_matrix[tmp[7], tmp[8] ] + 1
       interaction_matrix[tmp[7], tmp[9] ] <- interaction_matrix[tmp[7], tmp[9] ] + 1
       interaction_matrix[tmp[7], tmp[10] ] <- interaction_matrix[tmp[7], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[8], tmp[9] ] <- interaction_matrix[tmp[8], tmp[9] ] + 1
       interaction_matrix[tmp[8], tmp[10] ] <- interaction_matrix[tmp[8], tmp[10] ] + 1
-      
+
       interaction_matrix[tmp[9], tmp[10] ] <- interaction_matrix[tmp[9], tmp[10] ] + 1
     }
-    
+
     # add self-interactions (just count how many times each cell type shows up...)
     for(tmp.type in tmp){
       interaction_matrix[tmp.type,tmp.type] <- interaction_matrix[tmp.type,tmp.type] + 1
     }
   }
-  
+
   interaction_matrix <- interaction_matrix + t(interaction_matrix)
   colnames(interaction_matrix)
-  
-  
+
+
   interaction_matrix[lower.tri(interaction_matrix)] <- NA #0
-  
+
   return(interaction_matrix)
 }
 
@@ -617,7 +621,7 @@ interaction.list <- lapply(
     return(X)
   }
 )
-    
+
 #      interaction heatmaps, Fig. 4f ####
 injury=c("D2", "D5", "D7")
 
@@ -626,18 +630,18 @@ for(i in 1:length(injury)){
   draw.legend = injury[i]=="D7"
   inter.heat[[i]] <- ggplotify::as.ggplot(
     pheatmap(
-      interaction.list[[i]][rev(rownames(interaction.list[[i]]))[-1],c(-1)], 
+      interaction.list[[i]][rev(rownames(interaction.list[[i]]))[-1],c(-1)],
       color=viridis(1000, option="magma", direction=-1),
       border_color = NA,
       main=injury[i],
-      legend = draw.legend, 
-      
+      legend = draw.legend,
+
       show_rownames = draw.legend, show_colnames = draw.legend,
       labels_row = stringr::str_replace_all(rev(rownames(interaction.list[[i]])),"-"," ")[-1],
       labels_col = stringr::str_replace_all(colnames(interaction.list[[i]]),"-"," ")[-1],
       fontsize_row = 5, fontsize_col= 5,
-      
-      fontsize=6, 
+
+      fontsize=6,
       cluster_rows = F, cluster_cols = F,
       na_col = "white"
     )
@@ -687,11 +691,11 @@ tmp.interactions <- c(
 interaction.macro.line <- ggplot(
   df[df$cat.type %in% tmp.interactions,],
   aes(
-    x=injury, y=score, 
+    x=injury, y=score,
     col=row.type
   )
 ) +
-  geom_line() + 
+  geom_line() +
   geom_point(size=0.75 ) +
   theme_minimal()+
   fig1bcd.theme +
@@ -730,11 +734,11 @@ tmp.interactions <- c(
 interaction.faps.line <- ggplot(
   df[df$cat.type %in% tmp.interactions,],
   aes(
-    x=injury, y=score, 
+    x=injury, y=score,
     col=row.type
   )
 ) +
-  geom_line() + 
+  geom_line() +
   geom_point(size=0.75 ) +
   theme_minimal()+
   fig1bcd.theme +
@@ -764,10 +768,3 @@ wrap_plots(
 )
 
 #    ####
-
-
-
-
-
-
-
