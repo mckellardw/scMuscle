@@ -69,10 +69,12 @@ allCells_RData <- "./data/scMuscle_mm10_slim_v1-1.RData"
 myoCells_RData <- "./data/myo_slim_seurat_v1-1.RData"
 vis_RData <- "./data/vis_slim_v1.RData"
 
+allCells_subsample_rds <- "./data/scMuscle_subsampled_mm10_v1-1.rds"
 allCells_rds <- "./data/scMuscle_mm10_v1-1.rds"
 myoCells_rds <- "./data/myo_slim_seurat_v1-1.rds"
 vis_rds <- "./data/vis_slim_v1.rds"
 
+perc_data_loaded = reactive(10)
 
 cornell_red = "#B31B1B"
 spatial_gene_colors <- c("#440154FF", "#482576FF", "#414487FF", "#35608DFF", "#2A788EFF", "#21908CFF", "#22A884FF", "#43BF71FF", "#7AD151FF","#BBDF27FF", "#FDE725FF")
@@ -160,12 +162,12 @@ ui <- fluidPage(
           ),
           h4(
             p("Please cite this ",
-              a(href = "https://www.biorxiv.org/content/10.1101/2020.12.01.407460v1", "preprint"),
+              a(href = "https://doi.org/10.1038/s42003-021-02810-x", "paper"),
               " when using this resource:"),
             style="color: #6B6B6B"
           ),
           h6(
-            "McKellar, D. W. et al. Strength in numbers: Large-scale integration of single-cell transcriptomic data reveals rare, transient muscle progenitor cell states in muscle regeneration. bioRxiv 2020.12.01.407460 (2020). doi:10.1101/2020.12.01.407460",
+            "McKellar, D.W., Walter, L.D., Song, L.T. et al. Large-scale integration of single-cell transcriptomic data captures transitional progenitor states in mouse skeletal muscle regeneration. Commun Biol 4, 1280 (2021). https://doi.org/10.1038/s42003-021-02810-x",
             style="color: #000000"
           ),
           br(), br()
@@ -182,8 +184,20 @@ ui <- fluidPage(
           # UMAP Panel Inputs----
           conditionalPanel(
             condition = "input.tabselected==1",
+            
+            h6(
+              p(
+                "Click here to load entire dataset. (opens with 10% of all cells)\nRe-draw plots to see additional data once loaded."
+              )
+            ),
+            actionButton( # Button to load entire scMuscle dataset
+              inputId = "actionLoadscMuscle", 
+              label = "Load\nentire\ndataset",
+              icon=icon("battery-quarter"),
+              style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+            ),
+            br(), br(),
             # inputs for reduction to be shown
-            br(),
             # helpText("Select a cell type clustering, gene, or metadata feature to visualize in UMAP space"),
             # inputs gene for feature plot
             selectizeInput(
@@ -193,9 +207,11 @@ ui <- fluidPage(
               selected = "Myod1"
             ),
             actionButton(
-              "action3", label = "Flip Color Scale",
+              "action3", 
+              label = "Flip Color Scale",
+              icon=icon("paint-roller"),
               style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
-            ),
+            ) %>% withSpinner(type = 1, color = cornell_red),
             br(),
             selectizeInput(
               "umap.reduction",
@@ -364,8 +380,11 @@ ui <- fluidPage(
               "Single Violin", value = 2,
               # by different metadata variables
               br(),
-              downloadButton("down4", label = "Download",
-                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+              downloadButton(
+                "down4", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               plotOutput("violin1") %>% withSpinner(type = 1, color = cornell_red),
               br()
@@ -376,8 +395,11 @@ ui <- fluidPage(
               # makes different violin plots for each unique instance of a metadata variable
               # grouped by cell types IDs of different reductions
               br(),
-              downloadButton("down5", label = "Download",
-                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+              downloadButton(
+                "down5", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               imageOutput("violin2") %>% withSpinner(type = 1, color = cornell_red),
               br()
@@ -387,8 +409,11 @@ ui <- fluidPage(
               title="Dot Plot", value = 4,
               # DotPlot
               br(),
-              downloadButton("down6", label = "Download",
-                             style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"),
+              downloadButton(
+                "down6", 
+                label = "Download",
+                style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
+              ),
               br(), br(),
               plotOutput("dotplot") %>% withSpinner(type = 1, color = cornell_red)
             ),
@@ -621,9 +646,33 @@ server <- function(input, output){
   # load(vis_RData) # Visium
  
   ## Load uncompressed .rds files
-  scMuscle.slim.seurat <- readRDS(allCells_rds) # All Cells
+  scMuscle.slim.seurat <- readRDS(allCells_subsample_rds) # All Cells, subsampled (10%)
+  message(paste0(ncol(scMuscle.slim.seurat), " cells loaded from subset data!"))
   myo.slim.seurat <- readRDS(myoCells_rds) # Myo Cells
   vis.list <- readRDS(vis_rds) # Visium
+  
+  #
+  actionLoadData <- observeEvent(
+    input$actionLoadscMuscle, 
+    {
+      if(ncol(scMuscle.slim.seurat)<100000){
+        message("~~ Whole dataset loaded! ~~")
+        readRDS(allCells_rds) #Load entire scMuscle dataset
+        
+        # input$perc_cells_loaded <- 100
+        
+        updateActionButton( # Change label on button
+          inputId="actionLoadscMuscle",
+          label="All data loaded!",
+          icon=icon("battery-full")
+        )
+        
+      }else{
+        message("~~ Whole dataset already loaded... ~~")
+      }
+    }
+  )
+  
   
   # Plot themes and colors----
   # Figure settings
