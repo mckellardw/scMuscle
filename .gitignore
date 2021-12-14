@@ -8,3 +8,4 @@
 data/*.h5Seurat
 data/*.RData
 web_app/data/*
+web_app/user_logs/*

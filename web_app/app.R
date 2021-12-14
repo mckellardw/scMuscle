@@ -211,7 +211,7 @@ ui <- fluidPage(
               label = "Flip Color Scale",
               icon=icon("paint-roller"),
               style="color: #B31B1B; background-color: #F7F7F7; border-color: #B31B1B"
-            ) %>% withSpinner(type = 1, color = cornell_red),
+            ),
             br(),
             selectizeInput(
               "umap.reduction",
