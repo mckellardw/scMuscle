@@ -1,0 +1,222 @@
+
+
+```{r Libs, message=FALSE, warning=FALSE}
+library(Matrix)
+library(dplyr)
+library(Seurat)
+library(ggplot2)
+library(patchwork)
+
+library(NMF)
+library(CellChat)
+```
+
+# Load and prepare preprocessed CellChat data
+```{r}
+# Download here:
+#     https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34
+load("/local/workdir/dwm269/muscle_data/robjs/scMuscle_mm10_clean_v40.RData")
+load("/local/workdir/dwm269/muscle_data/robjs/scMuscle_cellchat_v3.RData")
+
+# TODO: add `celltype.colors`
+```
+
+## Subset scMuscle CellChat
+```{r}
+#Update CellChat if you get errors w/ subsetCellChat()
+sources.use = c(
+  "Endothelial (Capillary)",
+  "Endothelial (Artery)",
+  "Endothelial (Vein)"
+)
+targets.use = c(
+  "Quiescent_MuSCs",
+  "Activated_MuSCs",
+  "Committed_Myoblasts",
+  "Fusing_Myocytes"
+)
+
+sub.cellchat <-subsetCellChat(
+  scMuscle.cellchat,
+  idents.use = c(sources.use,targets.use)
+)
+sub.cellchat@idents <- factor(
+  sub.cellchat@idents,
+  levels = c(sources.use,targets.use)
+)
+groupSize <- as.numeric(table(sub.cellchat@idents))
+```
+
+# Write list of top interactions to csv
+```{r}
+out.df <- reshape2::melt(sub.cellchat@net$prob)
+colnames(out.df) <- c("ligand", "receptor", "interaction", "prob")
+
+out.df$pval <- reshape2::melt(sub.cellchat@net$pval)[,"value"]
+out.df <- out.df[out.df$prob>0,]
+
+write.csv(
+  out.df,
+  "/workdir/dwm269/muscle_data/analysis/endo_to_myo_CellChat_v1.csv",
+  row.names = F
+)
+```
+
+
+# Endothelial-to-myogenic signaling 
+```{r fig.height=5, fig.width=6}
+par(mfrow = c(1,1), xpd=TRUE)
+netVisual_heatmap(
+  sub.cellchat,
+  slot.name="netP",
+  measure="weight",
+  color.use = celltype.colors[sort(c(sources.use,targets.use))],
+  # sources.use = sources.use,
+  # targets.use = targets.use,
+  cluster.rows=T, cluster.cols=T,
+  color.heatmap = "YlOrRd",
+  font.size.title = 16,
+  font.size = 14,
+  width=width,
+  height=height
+)
+
+```
+
+```{r fig.height=5, fig.width=5}
+par(mfrow = c(1,1), xpd=TRUE)
+netVisual_chord_gene(
+  sub.cellchat, 
+  sources.use = sources.use,
+  targets.use = targets.use,
+  slot.name = "netP",
+  thresh=10^-100,
+  small.gap=0.25,
+  big.gap=5,
+  color.use = celltype.colors[sort(c(sources.use,targets.use))],
+  show.legend = T, legend.pos.x = 10, legend.pos.y = 50,
+  lab.cex=0.6
+)
+```
+## Bubble plot for previously identified pathways
+```{r}
+netVisual_bubble(
+  sub.cellchat, 
+  sources.use = sources.use, 
+  targets.use = targets.use,
+  # thresh = 10^-150,
+  signaling = c("CXCL","EGF", "NOTCH"),
+  min.quantile = c(0.5),
+  font.size = 18,line.size = 5,
+  remove.isolate = FALSE
+)
+```
+## Bubble for collagen
+```{r}
+netVisual_bubble(
+  sub.cellchat, 
+  sources.use = sources.use, 
+  targets.use = targets.use,
+  # thresh = 10^-150,
+  signaling = c("COLLAGEN"),
+  min.quantile = c(0.5),
+  font.size = 18,line.size = 5,
+  remove.isolate = FALSE
+)
+```
+## Bubble for JAM
+```{r}
+netVisual_bubble(
+  sub.cellchat, 
+  sources.use = sources.use, 
+  targets.use = targets.use,
+  # thresh = 10^-150,
+  signaling = c("JAM", "HSPG", "LAMININ"),
+  min.quantile = c(0.5),
+  font.size = 18,line.size = 5,
+  remove.isolate = FALSE
+)
+```
+
+# JAM Signaling
+```{r fig.height=6, fig.width=3}
+pathways.show="JAM"
+netAnalysis_contribution(
+  sub.cellchat, 
+  signaling = pathways.show,
+  title="Jam Signaling" #pathways.show
+)
+```
+
+```{r}
+FeaturePlot(
+  scMuscle.seurat,
+  cells = sample(colnames(scMuscle.seurat)),
+  reduction='umap_harmony',
+  features=c("Jam2","F11r","Jam3"),
+  raster=F,
+  combine=FALSE
+) %>% lapply(
+  FUN = function(x) x + 
+    scale_color_viridis_c(option="plasma")+
+    theme(
+      plot.title=element_text(size=big.font,face="bold",hjust=0.5),
+      legend.title = element_text(size=small.font,face="bold",hjust=0.5),
+      legend.text = element_text(size=small.font),
+      legend.position = "right",
+      # legend.direction = "horizontal",
+      plot.margin = unit(rep(0,4),"inches"),
+      axis.line=element_blank(),axis.title=element_blank(),
+      axis.text=element_blank(),
+      axis.ticks = element_blank()
+    )+
+    labs(
+      x="UMAP_Harmony_1",
+      y="UMAP_Harmony_2",
+      col="Log-Normalized\nExpression"
+    )
+) %>%
+  wrap_plots(nrow=1)
+```
+
+
+# CXCL Signaling
+```{r fig.height=3, fig.width=3}
+pathways.show="CXCL"
+netAnalysis_contribution(
+  sub.cellchat, 
+  signaling = pathways.show,
+  title=paste0(pathways.show," Signaling")
+)
+```
+
+```{r}
+FeaturePlot(
+  scMuscle.seurat,
+  cells = sample(colnames(scMuscle.seurat)),
+  reduction='umap_harmony',
+  features=c("Jam2","F11r","Jam3"),
+  raster=F,
+  combine=FALSE
+) %>% lapply(
+  FUN = function(x) x + 
+    scale_color_viridis_c(option="plasma")+
+    theme(
+      plot.title=element_text(size=big.font,face="bold",hjust=0.5),
+      legend.title = element_text(size=small.font,face="bold",hjust=0.5),
+      legend.text = element_text(size=small.font),
+      legend.position = "right",
+      # legend.direction = "horizontal",
+      plot.margin = unit(rep(0,4),"inches"),
+      axis.line=element_blank(),axis.title=element_blank(),
+      axis.text=element_blank(),
+      axis.ticks = element_blank()
+    )+
+    labs(
+      x="UMAP_Harmony_1",
+      y="UMAP_Harmony_2",
+      col="Log-Normalized\nExpression"
+    )
+) %>%
+  wrap_plots(nrow=1)
+```
