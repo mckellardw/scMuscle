@@ -1,0 +1,475 @@
+# Description:
+Generating figures for Norris et al, bioRxiv, 2022
+Author: David W. McKellar
+
+
+# Load libraries
+Link to the utility functions used in this analysis:
+https://github.com/mckellardw/DWM_utils
+```{r}
+# single-cell libs
+library(Seurat)
+# library(harmony)
+
+# plotting and color palette libs
+
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+library(pals)
+library(viridis)
+library(data.table)
+library(cowplot)
+# library(schex)
+
+# DWM_utils
+# https://github.com/mckellardw/DWM_utils
+source("/home/dwm269/DWM_utils/sc_utils/seurat_helpers/seutils.R")
+source("/home/dwm269/DWM_utils/sc_utils/seurat_helpers/seuplots.R")
+
+source("/home/dwm269/DWM_utils/plotting_utils/scThemes.R")
+scTheme <- scThemes(
+  small.font = 6*2,
+  big.font = 8*2,
+  line.width = 0.5,
+  pt.size=0.01,
+  pt.stroke=0.3,
+  label.size=2
+)
+```
+# load data
+[link to download](https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34)
+```{r}
+if(!exists("scMuscle.seurat")&!exists("sub.seurat")){
+  load("/local/workdir/dwm269/muscle_data/robjs/scMuscle_mm10_clean_v40.RData")
+}
+
+meta <- fread("/workdir/dwm269/muscle_data/scMuscle_metadata_v8_1.csv")
+```
+
+# Subset out injury timepoints with sufficient cell counts for less noisy plotting
+```{r}
+timepoints <- c(
+  0,0.5,1,2,3.5,7,10,21
+)
+if(!exists("sub.seurat")){
+  sub.seurat <- subset(
+    scMuscle.seurat,
+    cells = Cells(scMuscle.seurat)[scMuscle.seurat$injury.days %in% timepoints]
+  )
+}
+print(dim(sub.seurat))
+```
+color palettes
+```{r}
+mckolors <- read.csv("/home/dwm269/DWM_utils/plotting_utils/McKolors_v1.csv")
+
+celltypes <- c(
+  levels(sub.seurat$harmony_factorIDs),
+  levels(sub.seurat$bbknn_factorIDs),
+  levels(sub.seurat$scanorama_factorIDs)
+)%>%
+  unique()
+celltypes
+
+celltype.colors = as.vector(polychrome())[
+  c(
+    3:9, 11:13,# B Cells -> Dendritic
+    14:16,32,18:20,28,10,30,29,31,33, # end harmony types
+    34,35,36,22, #end bbknn
+    23,1,24,25,1,26,1,1,1, #1= "De Micheli 2020b clusters"
+    2,27,17,21
+  )
+] %>% c(gray(0.52)) #for mixed nuclei cluster
+names(celltype.colors) <- celltypes[1:length(celltype.colors)]
+```
+
+# Plotting
+***all cell types UMAP***
+```{r fig.height=16, fig.width=12}
+all.umap.IDs <- DimPlot(
+  sub.seurat,
+  reduction='umap_harmony',
+  group.by='harmony_factorIDs',
+  cols=celltype.colors,
+  pt.size = 0,
+  label=T,label.size = 4,
+  raster=F,
+  repel = T
+) + 
+  labs(
+    x='UMAP_1',
+    y='UMAP_2'
+  ) + 
+  scTheme$umap + 
+  theme(
+    axis.line =element_blank(),
+    axis.title = element_blank()
+  )+
+  guides(colour = guide_legend(override.aes = list(size=2), ncol=2))
+
+
+wrap_plots(
+  all.umap.IDs+NoLegend()+coord_fixed(),
+  cowplot::get_legend(all.umap.IDs+theme(legend.position = "bottom")),
+  ncol=1,
+  heights = c(1,1)
+)
+```
+
+injury UMAP
+```{r fig.height=12, fig.width=12}
+umap.injury <-
+  DimPlot(
+    sub.seurat,
+    cells=sample(Cells(sub.seurat)),
+    reduction='umap_harmony',
+    group.by='injury.days',
+    cols=viridis(
+      n=max(sub.seurat$injury.days)+1,
+      option="plasma",
+      direction=-1
+    )[sort(unique(sub.seurat$injury.days))+1],
+    pt.size = 0,
+    label=F,label.size = 4,
+    na.value = "white",
+    repel = T
+  ) + 
+  # NoLegend() +
+  xlab('UMAP_1') + 
+  ylab('UMAP_2') + 
+  scTheme$umap + 
+  guides(
+    colour = guide_legend(override.aes = list(size=2), ncol=1)
+    )
+umap.injury
+```
+
+
+```{r fig.height=12, fig.width=12}
+#       injury agent UMAP
+umap.injury.agent <-
+  DimPlot(
+    sub.seurat,
+    shuffle=T,
+    reduction='umap_harmony',
+    group.by='injury.agent',
+    cols=mckolors$rickandmorty_ggsci[3:4],
+    pt.size = 0,
+    label=F,label.size = 4,
+    na.value = gray(0.8),
+    repel = T
+  ) + 
+  # NoLegend() +
+  xlab('UMAP_1') + 
+  ylab('UMAP_2') + 
+  scTheme$umap + 
+  guides(colour = guide_legend(override.aes = list(size=2), ncol=1))
+umap.injury.agent
+```
+
+#       cell types violin
+```{r fig.height=8, fig.width=12}
+tmp.features = c(
+  "Shh",
+  "Ihh",
+  "Dhh"
+)
+
+hh.vln <-
+  sub.seurat %>% 
+  VlnPlot(
+    group.by='harmony_factorIDs',
+    features = tmp.features,
+    cols=celltype.colors,
+    pt.size = 0,
+    combine = F
+  ) %>%
+  lapply(
+    FUN = function(x) x +
+      NoLegend() + 
+      scTheme$vln+
+      # theme(
+      #   axis.line = element_blank(),
+      #   panel.border = element_rect(colour = "black", fill=NA, size=1),
+      #   title = element_text(size=big.font, face='bold'),
+      #   axis.title.x = element_blank(),
+      #   axis.title.y = element_text(size = big.font, face='bold', hjust = 0.5, vjust = 0.5),
+      #   axis.text.x = element_text(size = small.font, face='bold', hjust = 1, vjust = 0.5, angle = 90), 
+      #   axis.ticks = element_blank()
+      #   # legend.text = element_text(size=small.font)
+      # ) + 
+      scale_y_continuous(expand = c(0.05, 0))
+  )
+wrap_plots(hh.vln)
+```
+
+#   **HH genes - injury  violin plot
+```{r fig.height=4, fig.width=8}
+tmp.features = c(
+  "Shh",
+  "Ihh",
+  "Dhh"
+)
+tmp.feature.limits <- list()
+for(gene in tmp.features){
+  tmp.feature.limits[[gene]] <- c(-0.01, 1.1*max(GetAssayData(sub.seurat)[gene,]))
+}
+
+Idents(sub.seurat) <- "harmony_superFactor"
+
+tmp.idents <- list(
+  # "Endothelial (Capillary)",
+  # "Endothelial (Artery)",
+  # "Endothelial (Vein)",
+  "Endothelial",
+  "Neural"
+)
+
+hh.injury.vln <- list()
+for(gene in tmp.features){
+  hh.injury.vln[[gene]] <- lapply(
+    tmp.idents,
+    FUN = function(IDENT) VlnPlot(
+      sub.seurat,
+      group.by='injury.days',
+      idents = IDENT,
+      cols = rep("black", 12),
+      pt.size = 0,
+      # split.by = "injury.agent", split.plot = T,
+      features = gene
+    ) +
+      scTheme$vln +
+      theme(
+        # axis.title.y = element_text(face="bold"),
+        axis.text.x = element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title=element_blank()
+      )+
+      scale_y_continuous(
+        limits = tmp.feature.limits[[gene]],
+        expand = c(0.05, 0)
+      ) +
+      NoLegend() +
+      labs(y=IDENT) 
+  ) 
+  
+  # Add title to top plot
+  hh.injury.vln[[gene]][[1]] <- hh.injury.vln[[gene]][[1]] + 
+    labs(title=gene) +
+    theme(plot.title=element_text(color="black",face="bold.italic", hjust=0.5))
+  
+  hh.injury.vln[[gene]][[length(tmp.idents)]] <- hh.injury.vln[[gene]][[length(tmp.idents)]] + 
+    theme(
+      axis.text.x = element_text(color="black"),
+      axis.title.x =  element_text(color="black",face="bold"),
+      axis.ticks.x=element_line(color="black"),
+      axis.line.x=element_line(color="black")
+    ) +
+    labs(x="Days Post-Injury")
+  
+  hh.injury.vln[[gene]] <- hh.injury.vln[[gene]] %>% wrap_plots(ncol=1, guides = "collect")
+}
+
+wrap_plots(
+  hh.injury.vln,
+  guides="collect"
+)
+```
+
+#   **HH genes - feature plots
+```{r fig.height=4, fig.width=12}
+tmp.features = c(
+  "Shh",
+  "Ihh",
+  "Dhh"
+)
+
+hh.features <- sub.seurat %>% 
+  FeaturePlot(
+    cells=sample(Cells(sub.seurat)),
+    reduction= 'umap_harmony',
+    slot = 'data',
+    order = T,
+    features=tmp.features,
+    # keep.scale = "all",
+    min.cutoff = 10^-3,max.cutoff = 3,
+    pt.size = 0.01,
+    cols = c(gray(0.9),"black"),
+    raster=F,
+    combine=F
+  ) %>%
+  lapply(
+    FUN = function(X) X + 
+      xlab('UMAP_1') + 
+      ylab('UMAP_2') + 
+      # scale_color_viridis_c(direction=1, option="plasma",na.value =  gray(0.9)) +
+      scTheme$umap +
+      theme(
+        plot.margin = unit(rep(0,4),"in"),
+        axis.line =element_blank(),
+        axis.title = element_blank(),
+        plot.title = element_text(color="black", face="bold.italic"),
+        # plot.title = element_blank(),
+        legend.key=element_rect(colour="black")
+      )
+  ) 
+
+wrap_plots(hh.features, gudes="collect")&theme(legend.position="bottom",legend.justification = "center")
+
+```
+
+#   **Gli genes - injury  violin plot
+```{r fig.height=4, fig.width=8}
+tmp.features = c(
+  "Gli1",
+  "Gli2",
+  "Gli3"
+)
+tmp.feature.limits <- list()
+for(gene in tmp.features){
+  tmp.feature.limits[[gene]] <- c(-0.01, 1.1*max(GetAssayData(sub.seurat)[gene,]))
+}
+
+Idents(sub.seurat) <- "harmony_superFactor"
+
+tmp.idents <- list(
+  "FAPs",
+  "Myogenic"
+)
+
+gli.injury.vln <- list()
+for(gene in tmp.features){
+  gli.injury.vln[[gene]] <- lapply(
+    tmp.idents,
+    FUN = function(IDENT) VlnPlot(
+      sub.seurat,
+      group.by='injury.days',
+      idents = IDENT,
+      cols = rep("black", 12), # #7aa6bf
+      pt.size = 0,
+      # split.by = "injury.agent", split.plot = T,
+      features = gene
+    ) +
+      scTheme$vln +
+      theme(
+        axis.line.x = element_line(color="black"),
+        # axis.title.y = element_text(face="bold"),
+        axis.text.y=element_text(),
+        axis.text.x = element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.title=element_blank()
+      )+
+      scale_y_continuous(
+        limits = tmp.feature.limits[[gene]],
+        expand = c(0.05, 0)
+      ) +
+      NoLegend() +
+      labs(y=IDENT) 
+  ) 
+  
+  # Add title to top plot
+  gli.injury.vln[[gene]][[1]] <- gli.injury.vln[[gene]][[1]] + 
+    labs(title=gene) +
+    theme(plot.title=element_text(color="black",face="bold.italic", hjust=0.5))
+  
+  gli.injury.vln[[gene]][[length(tmp.idents)]] <- gli.injury.vln[[gene]][[length(tmp.idents)]] + 
+    theme(
+      axis.text.x = element_text(color="black"),
+      axis.title.x =  element_text(color="black", face="bold"),
+      axis.ticks.x=element_line(color="black")
+    ) +
+    labs(x="Days Post-Injury")
+  
+  gli.injury.vln[[gene]] <- gli.injury.vln[[gene]] %>% wrap_plots(ncol=1, guides = "collect")
+}
+
+wrap_plots(gli.injury.vln)
+
+```
+
+#   **Gli genes - feature plots
+```{r fig.height=6, fig.width=8}
+tmp.features = c(
+  "Gli1",
+  "Gli2",
+  "Gli3"
+)
+
+gli.features <- sub.seurat %>% 
+  FeaturePlot(
+    cells=sample(Cells(sub.seurat)),
+    reduction= 'umap_harmony',
+    slot = 'data',
+    order = T,
+    features=tmp.features,
+    # keep.scale = "all",
+    min.cutoff = 0,max.cutoff = 3,
+    cols = c(gray(0.9),"black"),
+    raster=F,
+    combine=F
+  ) %>%
+  lapply(
+    FUN = function(X) X + 
+      # xlab('UMAP_1') + 
+      # ylab('UMAP_2') + 
+      # scale_color_viridis_c(direction=-1) +
+      scTheme$umap +
+      theme(
+        plot.margin = unit(rep(0,4),"in"),
+        axis.line =element_blank(),
+        axis.title = element_blank(),
+        plot.title = element_text(color="black", face="bold.italic"),
+        # plot.title = element_blank(),
+        legend.key=element_rect(colour="black")
+      )+
+      coord_fixed()
+  ) 
+
+wrap_plots(gli.features, gudes="collect")&theme(legend.position="bottom",legend.justification = "center")
+```
+
+# Final Plots
+```{r}
+wrap_plots(
+  wrap_plots(
+    wrap_plots(
+      plot_spacer(),#all.umap.IDs+NoLegend()+coord_fixed(),
+      cowplot::get_legend(all.umap.IDs+theme(legend.position = "bottom")),
+      ncol=1,
+      heights = c(1,1)
+    ),
+    plot_spacer(),
+    ncol=1,
+    heights = c(1,1)
+  ),
+  wrap_plots( #right column
+    wrap_plots(hh.features, nrow=1)&
+      coord_fixed()&
+      theme(legend.position="bottom",legend.justification = "center"),
+    wrap_plots(hh.injury.vln)&theme(plot.title = element_blank()),
+    plot_spacer(),
+    wrap_plots(gli.features, nrow=1)&
+      coord_fixed()&
+      theme(legend.position="bottom",legend.justification = "center"),
+    wrap_plots(gli.injury.vln, nrow=1)&theme(plot.title = element_blank()),
+    heights=c(
+      1,0.4,
+      0.1,
+      1,0.4
+    ),
+    ncol=1
+  ),
+  nrow=1,
+  widths = c(1.5,3)
+)
+ggsave(
+  file = "/workdir/dwm269/kopinke_cilia/analysis/manuscript_figs/kopinke_right_col_v3.pdf",
+  device="pdf",
+  width = 7*2, 
+  height = 7*2,
+  units = "in", 
+  dpi=300
+)
+
+```
