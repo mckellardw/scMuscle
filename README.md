@@ -20,7 +20,24 @@ You will also find the development version of the code used in our [web applicat
 
 **Web application to explore these data can be found [here](http://scmuscle.bme.cornell.edu/)**
 
-**Fully processed Seurat and CellChat objects from this study can be downloaded [here](https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34)**
+**Fully processed Seurat and CellChat objects from this study can be downloaded [here](https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34).** Or, you can download individual objects with `wget`:
+- Full scMuscle atlas dataset:
+```
+wget -O scMuscle_mm10_slim_v1-1.RData https://datadryad.org/stash/downloads/file_stream/1113825
+```
+- Subset myogenic data:
+```
+wget -O myo_slim_seurat_v1-1.RData https://datadryad.org/stash/downloads/file_stream/1113823
+```
+- CellChat object:
+```
+wget -O scMuscle_cellchat_v1-1.RData https://datadryad.org/stash/downloads/file_stream/1113826
+``
+- Preprocessed Visium data:
+```
+wget -O vis_slim_v1.RData https://datadryad.org/stash/downloads/file_stream/1113824
+```
+
 
 **Raw data from Spatial RNA sequencing (Visium) can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE161318)**
 
