@@ -25,3 +25,15 @@ You will also find the development version of the code used in our [web applicat
 **Raw data from Spatial RNA sequencing (Visium) can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE161318)**
 
 **Raw data from new 10x Chromium datasets can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE162172)**
+
+## Projects and manuscripts that have used the scMuscle dataset:
+A Tead1-Apelin axis directs paracrine communication from myogenic to endothelial cells in skeletal muscle.  
+Lee, U., Stuelsatz, P., Karaz, S., McKellar, DW, Russeil, J., Deak, M., de Vlaminck, I., Lepper, C., Deplancke, B., Cosgrove, B. D., Feige, J. N.  
+[iScience, 2022](https://www.sciencedirect.com/science/article/pii/S2589004222008616?via%3Dihub)  
+[PubMed link](https://pubmed.ncbi.nlm.nih.gov/35789856/)
+\*Script for this analysis can be found in `R_scripts/example_notebooks/Lee_Tead-Apelin_iScience_2022.Rmd`
+
+Hedgehog signaling acts as cell fate determinant during adult tissue repair.  
+Norris AM, Johnson CD, Zhou LY, Appu A, McKellar DW, Cosgrove BD, Kopinke D  
+[bioRxiv, 2022](https://www.biorxiv.org/content/10.1101/2022.08.15.504012v1)
+\*Script for this analysis can be found in `R_scripts/example_notebooks/hedgehog_Norris_et_al.Rmd`

@@ -1,0 +1,85 @@
+# Figures for Lee et al, *iScience*, 2022
+[link to manuscript](https://www.sciencedirect.com/science/article/pii/S2589004222008616?via%3Dihub)
+Citation:
+Lee, Umji, Pascal Stuelsatz, Sonia Karaz, David W. McKellar, Julie Russeil, Maria Deak, Iwijn De Vlaminck, et al. A Tead1-Apelin Axis Directs Paracrine Communication from Myogenic to Endothelial Cells in Skeletal Muscle. IScience 25, no. 7 (July 2022): 104589. https://doi.org/10.1016/j.isci.2022.104589.
+
+# load libraries ----
+```{r}
+library(Matrix)
+library(dplyr)
+library(Seurat)
+library(ggplot2)
+library(patchwork)
+```
+
+# Plot settings ----
+Please note that I use a few helper functions in this code to siplify plotting. The code for these can be found [here](https://github.com/mckellardw/DWM_utils/tree/main/plotting_utils)
+```{r}
+source("~/DWM_utils/plotting_utils/scThemes.R")
+scTheme <- scThemes()
+```
+
+# Load Data ####
+The full dataset can be downloaded [here](https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.t4b8gtj34)
+Please cite either the Dryad repository or the [*Communications Biology*]() paper when using this dataset
+
+Dryad citation:
+McKellar, David; De Vlaminck, Iwijn; Cosgrove, Benjamin (2021), Large-scale integration of single-cell transcriptomic data captures transitional progenitor states in mouse skeletal muscle regeneration, Dryad, Dataset, https://doi.org/10.5061/dryad.t4b8gtj34
+
+McKellar et al, Communications Biology, 2021 citation:
+McKellar, D.W., Walter, L.D., Song, L.T. et al. Large-scale integration of single-cell transcriptomic data captures transitional progenitor states in mouse skeletal muscle regeneration. *Commun Biol* 4, 1280 (2021). https://doi.org/10.1038/s42003-021-02810-x
+
+Please also note that we only used data generated in [this project](https://www.sciencedirect.com/science/article/pii/S2211124720302357?via%3Dihub). Here is the citation:
+De Micheli, Andrea J., Emily J. Laurilliard, Charles L. Heinke, Hiranmayi Ravichandran, Paula Fraczek, Sharon Soueid-Baumgarten, Iwijn De Vlaminck, Olivier Elemento, and Benjamin D. Cosgrove. Single-Cell Analysis of the Muscle Stem Cell Hierarchy Identifies Heterotypic Communication Signals Involved in Skeletal Muscle Regeneration. Cell Reports 30, no. 10 (March 10, 2020): 3583-3595.e5. https://doi.org/10.1016/j.celrep.2020.02.067.
+
+
+load scMuscle dataset (remember to change this path to where *you* have the data stored)
+```{r}
+load("/local/workdir/dwm269/muscle_data/robjs/scMuscle_mm10_clean_v40.RData") 
+```
+
+# Subset the dataset just to De Micheli et al
+```{r}
+scMuscle.seurat <- subset(
+  scMuscle.seurat,
+  cells= Cells(scMuscle.seurat)[scMuscle.seurat$source.label %in% c("De Micheli 2020a","De Micheli 2020b")]
+)
+table(scMuscle.seurat$injury)
+```
+
+# UMAP plot showing cell types
+```{r}
+DimPlot(
+  scMuscle.seurat,
+  group.by="harmony_factorIDs",
+  reduction="umap_harmony",
+  cols = mckolors$polychrome[3:36]
+)+
+  coord_fixed()+
+  scTheme$umap
+```
+
+# Dot plot showing Apln, Aplnr, and Tead1 expression 
+```{r}
+genes <- c('Apln', 'Aplnr', 'Tead1')
+
+scMuscle.seurat %>%
+  DotPlot(
+    group.by='harmony_factorIDs',
+    # split.by = "injury",
+    assay='RNA',
+    dot.scale = 10,
+    cols=c('lightgrey', '#B31B1B'), # #B31B1B
+    features=genes
+  ) + 
+  # scale_color_viridis()+
+  theme(
+    axis.line = element_blank(),
+    panel.border = element_rect(colour = "black", fill=NA, size=1),
+    axis.title.x = element_blank(), 
+    axis.title.y = element_blank(),
+    axis.text.x=element_text(angle = 90,hjust = 1,vjust= 0.5),
+    panel.grid.major = element_line(colour = "gray", size = 0.5
+    )
+  )
+```
