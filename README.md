@@ -32,7 +32,7 @@ wget -O myo_slim_seurat_v1-1.RData https://datadryad.org/stash/downloads/file_st
 - CellChat object:
 ```
 wget -O scMuscle_cellchat_v1-1.RData https://datadryad.org/stash/downloads/file_stream/1113826
-``
+```
 - Preprocessed Visium data:
 ```
 wget -O vis_slim_v1.RData https://datadryad.org/stash/downloads/file_stream/1113824
