@@ -44,6 +44,12 @@ wget -O vis_slim_v1.RData https://datadryad.org/stash/downloads/file_stream/1113
 **Raw data from new 10x Chromium datasets can be found [here](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE162172)**
 
 ## Projects and manuscripts that have used the scMuscle dataset:
+Actions and interactions of IGF-I and MMPs during muscle regeneration
+Kok, H.J. & Barton, E.R.
+[Seminars in Cell & Developmental Biology, 2021](https://www.sciencedirect.com/science/article/pii/S1084952121000914?via%3Dihub)
+[PubMed link](https://pubmed.ncbi.nlm.nih.gov/33962867/)
+The first figures published of the scMuscle project were actually in this review. Check out Figure 3!
+
 A Tead1-Apelin axis directs paracrine communication from myogenic to endothelial cells in skeletal muscle.  
 Lee, U., Stuelsatz, P., Karaz, S., McKellar, DW, Russeil, J., Deak, M., de Vlaminck, I., Lepper, C., Deplancke, B., Cosgrove, B. D., Feige, J. N.  
 [iScience, 2022](https://www.sciencedirect.com/science/article/pii/S2589004222008616?via%3Dihub)  
